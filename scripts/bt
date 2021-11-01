@@ -1,0 +1,47 @@
+#!/bin/sh
+#
+# Initialize bluetooth via bluetoothctl
+# 
+# Note: If audio is already playing before headphones are connected, the 
+# terminal instance must be terminated before the headphones will pick up audio 
+#
+# If you consistently have troubles connecting, even after using bt off, you will
+# need to kill pulseaudio, start it, enter bluetoothctl manually, remove device,
+# power off, scan off and reset device list on headphones. Then try again
+
+SELECTION=$1
+MAC=28:11:A5:44:BE:B0
+
+function stereo {
+	echo "Please ensure headphones are already in pairing mode; otherwise stop this script, put them in pairing mode and try again..."
+	echo "Turning on headphones with stereo profile..."
+	bluetoothctl power on
+	bluetoothctl scan on
+	bluetoothctl connect $MAC
+}
+
+function turnoff {
+	bluetoothctl disconnect $MAC
+	bluetoothctl power off
+	bluetoothctl quit
+	echo "Disconnected from $MAC"
+}
+
+# Probably broken on artix install
+function hfs {
+	pacmd set-card-profile bluez_card.$MAC headset_head_unit
+}
+
+function a2dp {
+	pacmd set-card-profile bluez_card.$MAC a2dp_sink
+}
+
+case $SELECTION in
+on) stereo;;
+off) turnoff;;
+mic-on) hfs;;
+mic-off) a2dp;;
+*)
+	echo -e "\nHelp\non) Attempts a connection with Bose QC II. This means high quality audio with no mic\nsupport. Ensure headphones are in pairing mode and press ctrl+c once device is found.\noff) Disconnects an establishing connection. This can act as a reset if headphones are acting funny.\nmic-on) Loads HFS/HFP profile. This means reduced quality in audio with mic support (Seriously. Brace your ears).\nmic-off) Loads default A2DP profile. This means good quality stereo sound with no mic support.\n"
+	;;
+esac

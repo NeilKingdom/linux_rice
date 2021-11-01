@@ -1,0 +1,22 @@
+#!/bin/bash
+#
+# Configuration for my dwm bar
+
+DELIM=" | "
+TIME=$(date -u | sed s/UTC//)
+#Average time it took to do 5 pings
+T_PING=$(ping -c 5 8.8.8.8 | awk -e 'gsub("/", " ") { print int($8) }') 
+WHITE="\[$(tput setaf 8)\]"
+GREEN="\[$(tput setaf 2)\]"
+YELLOW="\[$(tput setaf 3)\]"
+RED="\[$(tput setaf 1)\]"
+
+if (($T_PING<=50)); then
+	WIFI_STAT=")))"
+elif (($T_PING<=150)); then
+	WIFI_STAT="))"
+else
+	WIFI_STAT=")"
+fi
+
+xsetroot -name "wifi status: $WIFI_STAT $DELIM date: $TIME $DELIM"

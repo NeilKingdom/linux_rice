@@ -1,0 +1,22 @@
+#!/bin/bash
+#
+# Pull all repositories from git
+
+GIT_DIR=$HOME/devel/github
+API=https://api.github.com/users/NeilKingdom/repos
+
+cd $GIT_DIR
+ls | grep -v Misc | xargs rm -rf
+curl $API -o $GIT_DIR/.meta
+
+# Cant output directly to .meta because it's being operated on
+grep '"name"' .meta | sed -r 's/name|[",:]//g' > .temp
+cat .temp > .meta && rm .temp
+
+# Clone all repositories
+while read -r LINE; do
+	git clone "https://github.com/NeilKingdom/$LINE.git"
+done < .meta
+
+# Optionally copy notes to ~/docs
+cp -r Computer-Engineering-Technician-Notes $HOME/docs

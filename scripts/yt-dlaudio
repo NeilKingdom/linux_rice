@@ -1,0 +1,32 @@
+#!/bin/sh
+
+# Extract the best audio quality from a youtube video
+
+PARAM=1
+
+# Get last parameter (must be URL)
+for URL in $@; do :; done
+
+for ARG in $@; do
+	case $ARG in
+		"-d")
+			# TODO: Input correct file descriptor
+			echo "Enter the directory you'd like to place the file in (default is ~/music)"; read -u 3 -p DIR 
+			echo "Enter the new name of the file (default is to keep file name unchanged)"; read -u 3 NAME 
+			[ -z $DIR ] && DIR="~/music"
+			youtube-dl -f bestaudio --extract-audio --force-ipv4 $URL &&
+			DEF_FILENAME=$(youtube-dl --get-filename $URL)
+			echo $NAME
+			exit 0
+			;;
+		"-h")
+			echo "Usage: yt-dlaudio [Options...] <URL>"
+			exit 0
+			;;
+		*)
+			youtube-dl -f bestaudio --extract-audio --force-ipv4 $URL
+			exit 0
+			;;
+	esac
+	PARAM=$((PARAM++))
+done
