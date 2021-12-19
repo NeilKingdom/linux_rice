@@ -3,5 +3,5 @@
 # A script for copying emojis using dmenu
 
 EMOJILIST=~/scripts/emoji.txt
-grep -v "#" $EMOJILIST | dmenu -i -l 15 -fn noto-fonts-emoji-18 | awk '{print $1}' | tr -d '\n' | xclip -selection clipboard
+grep -v "#" $EMOJILIST | sort | dmenu -i -l 15 | awk '{print $1}' | tr -d '\n' | xclip -selection clipboard
 pgrep -x dunst >/dev/null && notify-send "$(xclip -o -selection clipboard) copied to clipboard"

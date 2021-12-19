@@ -1,120 +1,120 @@
-😀 grinning face
-😃 grinning face with big eyes
-😄 grinning face with smiling eyes
-😁 beaming face with smiling eyes
+😀 happy face
+😃 happy face with big eyes
+😄 happy face with eyes closed
+😁 say cheese 
 😆 grinning squinting face
 😅 grinning face with sweat
 🤣 rolling on the floor laughing
-😂 face with tears of joy
-🙂 slightly smiling face
-🙃 upside-down face
+😂 laughing face
+🙂 smiley face
+🙃 upside-down smiley face
 😉 winking face
-😊 smiling face with smiling eyes
-😇 smiling face with halo
-🥰 smiling face with hearts
-😍 smiling face with heart-eyes
+😊 smiley face with eyes closed
+😇 smiley face with halo
+🥰 smiley face with hearts
+😍 heart-eyes
 🤩 star-struck
-😘 face blowing a kiss
+😘 blowing a kiss
 😗 kissing face
 ☺️ smiling face
-😚 kissing face with closed eyes
-😙 kissing face with smiling eyes
-🥲 smiling face with tear
-😋 face savoring food
-😛 face with tongue
-😜 winking face with tongue
-🤪 zany face
-😝 squinting face with tongue
-🤑 money-mouth face
+😚 kissing face with blush
+😙 kissing face with eyes closed
+🥲 smiley face with tear
+😋 yummy 
+😛 happy face with tongue out
+😜 winking face with tongue out
+🤪 wacky face
+😝 XD 
+🤑 happy face with money
 🤗 hugging face
-🤭 face with hand over mouth
-🤫 shushing face
+🤭 giggling with hand over mouth 
+🤫 shhhh face
 🤔 thinking face
-🤐 zipper-mouth face
-🤨 face with raised eyebrow
+🤐 mouth zipped shut 
+🤨 confused 
 😐 neutral face
-😑 expressionless face
-😶 face without mouth
-😏 smirking face
-😒 unamused face
-🙄 face with rolling eyes
-😬 grimacing face
+😑 -_- 
+😶 expressionless 
+😏 sexy smiley face 
+😒 unimpressed 
+🙄 eye roll 
+😬 wincing face 
 🤥 lying face
 😌 relieved face
-😔 pensive face
-😪 sleepy face
+😔 frowny face with eyes closed 
+😪 frowny face with tear and eyes closed
 🤤 drooling face
 😴 sleeping face
-😷 face with medical mask
-🤒 face with thermometer
-🤕 face with head-bandage
+😷 contagious 
+🤒 fever 
+🤕 headache 
 🤢 nauseated face
-🤮 face vomiting
+🤮 vomiting
 🤧 sneezing face
 🥵 hot face
 🥶 cold face
-🥴 woozy face
-😵 dizzy face
+🥴 dazed face
+😵 XoX
 🤯 exploding head
 🤠 cowboy hat face
 🥳 partying face
-🥸 disguised face
+🥸 disguise 
 😎 smiling face with sunglasses
 🤓 nerd face
-🧐 face with monocle
-😕 confused face
+🧐 confused with monicle 
+😕 mild frowny face 
 😟 worried face
-🙁 slightly frowning face
-☹️ frowning face
-😮 face with open mouth
-😯 hushed face
-😲 astonished face
-😳 flushed face
-🥺 pleading face
-😦 frowning face with open mouth
+🙁 slightly frowny face
+☹️  frowny face
+😮 OoO 
+😯 speechless 
+😲 amazed face 
+😳 embarassed face
+🥺 puppy eyes 
+😦 frowny face with open mouth
 😧 anguished face
-😨 fearful face
+😨 anxious face
 😰 anxious face with sweat
-😥 sad but relieved face
-😢 crying face
-😭 loudly crying face
-😱 face screaming in fear
-😖 confounded face
-😣 persevering face
+😥 frowny face with tear 
+😢 puppy eyes with tear 
+😭 crying a river 
+😱 scream
+😖 >w< 
+😣 frowny face with squinty eyes 
 😞 disappointed face
-😓 downcast face with sweat
-😩 weary face
-😫 tired face
+😓 frowny face with sweat
+😩 whiney face  
+😫 whiney face with squinty eyes
 🥱 yawning face
-😤 face with steam from nose
-😡 pouting face
+😤 livid with steam out of nose 
+😡 angry face (red)
 😠 angry face
-🤬 face with symbols on mouth
-😈 smiling face with horns
-👿 angry face with horns
+🤬 swearing 
+😈 happy demon 
+👿 angry demon 
 💀 skull
-☠️ skull and crossbones
-💩 pile of poo
+☠️  skull and crossbones
+💩 poo 
 🤡 clown face
 👹 ogre
 👺 goblin
 👻 ghost
 👽 alien
-👾 alien monster
+👾 space-invaders 
 🤖 robot
-😺 grinning cat
-😸 grinning cat with smiling eyes
-😹 cat with tears of joy
-😻 smiling cat with heart-eyes
-😼 cat with wry smile
-😽 kissing cat
-🙀 weary cat
-😿 crying cat
-😾 pouting cat
-🙈 see-no-evil monkey
-🙉 hear-no-evil monkey
-🙊 speak-no-evil monkey
-💋 kiss mark
+😺 happy cat face
+😸 happy cat face with eyes closed
+😹 laughing cat face
+😻 happy cat face with heart eyes
+😼 brash cat face
+😽 kissing cat face
+🙀 screaming cat face
+😿 crying cat face
+😾 pouting cat face
+🙈 monkey with hands over eyes 
+🙉 monkey with hands over ears
+🙊 monkey with hands over mouth
+💋 kiss
 💌 love letter
 💘 heart with arrow
 💝 heart with ribbon
@@ -126,7 +126,7 @@
 💟 heart decoration
 ❣️ heart exclamation
 💔 broken heart
-❤️ red heart
+❤️  red heart
 🧡 orange heart
 💛 yellow heart
 💚 green heart
@@ -135,63 +135,63 @@
 🤎 brown heart
 🖤 black heart
 🤍 white heart
-💯 hundred points
+💯 100
 💢 anger symbol
-💥 collision
-💫 dizzy
-💦 sweat droplets
-💨 dashing away
+💥 bang 
+💫 dazed stars
+💦 water droplets
+💨 smoke puff 
 🕳️ hole
 💣 bomb
-💬 speech balloon
-🗨️ left speech bubble
-🗯️ right anger bubble
-💭 thought balloon
+💬 speech bubble ...
+🗨️ speech bubble
+🗯️ exclamation speech bubble 
+💭 thought bubble
 💤 zzz
 👋 waving hand
-🤚 raised back of hand
-🖐️ hand with fingers splayed
-✋ raised hand
-🖖 vulcan salute
+🤚 back of hand
+🖐️ hi-five 
+✋ stop hand
+🖖 live long in prosper 
 👌 OK hand
-🤌 pinched fingers
-🤏 pinching hand
-✌️ victory hand
-🤞 crossed fingers
-🤟 love-you gesture
-🤘 sign of the horns
+🤌 italian hand
+🤏 pinching fingers
+✌️ peace hand
+🤞 fingers crossed 
+🤟 rock hand with thumb out
+🤘 rock hand
 🤙 call me hand
-👈 backhand index pointing left
-👉 backhand index pointing right
-👆 backhand index pointing up
+👈 point left
+👉 point right
+👆 point up
 🖕 middle finger
-👇 backhand index pointing down
-☝️ index pointing up
+👇 point down
+☝️ #1 hand
 👍 thumbs up
 👎 thumbs down
-✊ raised fist
-👊 oncoming fist
-🤛 left-facing fist
-🤜 right-facing fist
+✊ fist
+👊 punch
+🤛 punch left
+🤜 punch right
 👏 clapping hands
 🙌 raising hands
-👐 open hands
-🤲 palms up together
+👐 dove hands
+🤲 book hands
 🤝 handshake
-🙏 folded hands
+🙏 praying hands
 ✍️ writing hand
 💅 nail polish
 🤳 selfie
-💪 flexed biceps
-🦾 mechanical arm
-🦿 mechanical leg
+💪 muscle arm
+🦾 robotic arm
+🦿 robitic leg
 🦵 leg
 🦶 foot
 👂 ear
 🦻 ear with hearing aid
 👃 nose
 🧠 brain
-🫀 anatomical heart
+🫀 heart (realistic)
 🫁 lungs
 🦷 tooth
 🦴 bone
@@ -203,14 +203,14 @@
 🧒 child
 👦 boy
 👧 girl
-🧑 person
-👱 person: blond hair
+🧑 person with brown hair
+👱 person blond hair
 👨 man
-🧔 man: beard
+🧔 man with beard
 👩 woman
-🧓 older person
-👴 old man
-👵 old woman
+🧓 old person
+👴 grandpa
+👵 grandma
 🙍 person frowning
 🙎 person pouting
 🙅 person gesturing NO
@@ -290,7 +290,7 @@
 👥 busts in silhouette
 🫂 people hugging
 👣 footprints
-🐵 monkey face
+🐵 smiley monkey face
 🐒 monkey
 🦍 gorilla
 🦧 orangutan
@@ -301,7 +301,7 @@
 🐺 wolf
 🦊 fox
 🦝 raccoon
-🐱 cat face
+🐱 smiley cat face
 🐈 cat
 🦁 lion
 🐯 tiger face
@@ -422,7 +422,7 @@
 🌵 cactus
 🌾 sheaf of rice
 🌿 herb
-☘️ shamrock
+☘️  three leaf clover
 🍀 four leaf clover
 🍁 maple leaf
 🍂 fallen leaf
@@ -442,7 +442,7 @@
 🍒 cherries
 🍓 strawberry
 🫐 blueberries
-🥝 kiwi fruit
+🥝 kiwi 
 🍅 tomato
 🫒 olive
 🥥 coconut
@@ -450,7 +450,7 @@
 🍆 eggplant
 🥔 potato
 🥕 carrot
-🌽 ear of corn
+🌽 corn
 🌶️ hot pepper
 🫑 bell pepper
 🥒 cucumber
@@ -471,8 +471,8 @@
 🧇 waffle
 🧀 cheese wedge
 🍖 meat on bone
-🍗 poultry leg
-🥩 cut of meat
+🍗 chicken wing
+🥩 steak
 🥓 bacon
 🍔 hamburger
 🍟 french fries
@@ -760,14 +760,14 @@
 🌀 cyclone
 🌈 rainbow
 🌂 closed umbrella
-☂️ umbrella
+☂️  umbrella
 ☔ umbrella with rain drops
 ⛱️ umbrella on ground
 ⚡ high voltage
-❄️ snowflake
-☃️ snowman
+❄️  snowflake
+☃️  snowman
 ⛄ snowman without snow
-☄️ comet
+☄️  comet
 🔥 fire
 💧 droplet
 🌊 water wave

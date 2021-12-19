@@ -1,17 +1,21 @@
 #!/bin/bash
 
-# Script to detect any URLs in a file. All URLs will be piped to dmenu to select. 
-# The script will then try to detect a file format and open it in the program provided
+# This script parses input for valid URLs. Input can include the user's .bash_history,
+# direct input from stdin, or input from a given file. If more than one URLs are found
+# in a given file, they are piped to dmenu. The script opens the URL in a specified 
+# program according to the extension of the URL.
 
 OPEN_PIC=sxiv
 OPEN_GIF=mpv
 OPEN_PDF=zathura
 OPEN_OTHER=$BROWSER
 
+# Get last parameter (Posix compliant)
+for TARG in $@; do :; done
 
 function failure {
 
-	echo "Could not find file $1"
+	echo "Could not find file or url $1"
 	echo "Exiting..."
 	rm "/tmp/url" >& "/dev/null"
 	rm "tmp/hist_tail" >& "/dev/null"
@@ -19,36 +23,40 @@ function failure {
 }
 
 function parameters {
-	
-	# If only one argument was supplied and it was not an option, then it's assumed to be a file
-	[ "$1" -eq 1 ] && [ "$2" != "-h" ] && [ "$2" != "-l" ] && [ "$2" != "-b" ] && SEARCH="$PWD/$2"
 
-	# Check all arguments to find valid options
-	for ARG in "$3"; do
-		if [ "$ARG" = "-h" ]; then
+	# Check for help flag
+	for ARG in $1; do
+		if [ $ARG = "-h" ]; then
 			# Must redirect to /dev/tty, otherwise the text is returned as one big string
-			echo "Usage: <gotourl> [options] file" > "/dev/tty"
+			echo "Usage: gotourl [options] [file | url]" > "/dev/tty"
 			echo "-h: help menu" > "/dev/tty"
-			echo "-b: bash history - Looks at the tail of your .bash_history for URLs" > "/dev/tty"
+			echo "-b: bash history - Looks at the tail of your .bash_history for URLs (/home/user/.bash_history is the default search location)" > "/dev/tty"
 			echo "-l: point to the location of your .bash_history file" > "/dev/tty"
 		fi
 	done 
 
-	# If -l is not supplied, assume bash_history is in default location
 	HIST_LOCATION="$HOME/.bash_history" 
 
-	# TODO: -l has not properly been implemented. Need to find a way to check the argument after -l option
-	# if -l was supplied, use the provided history location
-	for ARG in "$3"; do
-		[ "$ARG" = "-l" ] && HIST_LOCATION=
+	# Check for bash history location flag
+	for ((i = 1; i <= $2; i++)); do
+		eval ARG=\$$i
+		eval NEXT_ARG=\$$((i+1))
+		[ "$ARG" = '-l' ] && HIST_LOCATION="$NEXT_ARG"
+		# If -l is supplied, but NEXT_ARG is empty, HIST_LOCATION remains as the default
+		[ -z "$NEXT_ARG" ] && HIST_LOCATION="$HOME/.bash_history" 
 	done
 
-	# Refresh history and output last 10 lines to /tmp/hist_tail
-	history -r > "/dev/null"
-	tail $HIST_LOCATION > "/tmp/hist_tail"
-
-	for ARG in "$3"; do
-		[ "$ARG" = "-b" ] && SEARCH="/tmp/hist_tail"
+	SEARCH="$TARG"
+	
+	# Check for bash history flag (takes precedence over file or url if both are provided)
+	for ARG in $1; do
+		if [ $ARG = "-b" ]; then
+			# Refresh history and output last 10 lines to /tmp/hist_tail
+			history -r > "/dev/null"
+			tail $HIST_LOCATION > "/tmp/hist_tail"
+			SEARCH="/tmp/hist_tail"
+			break
+		fi
 	done
 
 	# Hacky way to return local variable
@@ -58,16 +66,21 @@ function parameters {
 ### Script Begin ###
 
 # If no arguments are supplied, request the name of the file, otherwise check parameters
-[ "$#" -eq 0 ] && read -p "Please enter the file you'd like to parse " FILE && SEARCH="$PWD/$FILE" || SEARCH="$(parameters $# $1 $@)"
-[ -z "$SEARCH" ] && exit 0
-! [ -f "$SEARCH" ] && failure "$SEARCH"
+[ $# -eq 0 ] && read -p "Please enter a file that you would like to parse or a direct URL: " TARG && SEARCH="$(parameters $@ $#)" || SEARCH="$(parameters $@ $#)"
 
-# Test that there exists at least 1 valid URL
-grep -q "https\?://\S*\.[A-Za-z]\+\S*" "$SEARCH" >& "/dev/null"
-[ "$?" -ne 0 ] && echo "Could not find any valid URLs" && exit 0 
+URL=
+REGEX="https\?://\S*\.[A-Za-z]\+\S*" 
+# If user supplied a file, grep the file
+if [ -f $SEARCH ]; then
+	# Pipe to dmenu if more than 1 url were found
+	[ $(grep $REGEX $SEARCH | wc -l) -gt 1 ] && URL="$(grep $REGEX $SEARCH | dmenu -p "Select the URL you'd like to open" -l 10)" || URL="$(grep -o $REGEX $SEARCH)"
+# Else, grep the URL
+else
+	URL="$(echo $SEARCH | grep "https\?://\S*\.[A-Za-z]\+\S*")"
+fi
 
-# Pipe to dmenu
-URL="$(grep "https\?://\S*\.[A-Za-z]\+\S*" "$SEARCH" | dmenu -p "Select the URL you'd like to open" -l 10)"
+# Check that a URL was found
+[ -z "$URL" ] && echo "Could not find any valid URLs" && exit 0
 
 # Assumes that only one extension will be found in URL
 EXT=
@@ -79,7 +92,7 @@ EXT=
 # Ensure that wget downloaded the file, otherwise throw exception
 ! [ -f "/tmp/url" ] && ! [ -z "$EXT" ] && failure "/tmp/url"
 
-# Note: The use of $TERMINAL env var with -e option was not tested for terms other than st
+# Note: The use of $TERMINAL env var with -e option has only been tested with st term. emu.
 case $EXT in
 	1)
 		$TERMINAL -e $OPEN_PIC "/tmp/url"
@@ -98,7 +111,7 @@ case $EXT in
 		;;
 esac
 
-rm "/tmp/hist_tail" >& "/dev/null"
+#rm "/tmp/hist_tail" >& "/dev/null"
 rm "/tmp/url" >& "/dev/null"
 
 exit 0

@@ -1,32 +1,35 @@
 #!/bin/sh
-
+#
 # Extract the best audio quality from a youtube video
 
-PARAM=1
+MUSIC_DIR=$HOME/music
 
-# Get last parameter (must be URL)
+# Get last parameter (Posix compliant)
 for URL in $@; do :; done
 
-for ARG in $@; do
+for ((i = 1; i <= $#; i++)); do
+	eval ARG=\$$i
 	case $ARG in
 		"-d")
-			# TODO: Input correct file descriptor
-			echo "Enter the directory you'd like to place the file in (default is ~/music)"; read -u 3 -p DIR 
-			echo "Enter the new name of the file (default is to keep file name unchanged)"; read -u 3 NAME 
-			[ -z $DIR ] && DIR="~/music"
-			youtube-dl -f bestaudio --extract-audio --force-ipv4 $URL &&
-			DEF_FILENAME=$(youtube-dl --get-filename $URL)
-			echo $NAME
+			echo "Enter the directory you'd like to place the file in (default is $(echo $MUSIC_DIR))"; read DIR 
+			echo "Enter the new name of the file (default is to keep file name unchanged)"; read NAME 
+			! [ -z $(echo $URL | grep "www.youtube.com") ] && yt-dlp -f bestaudio --extract-audio --force-ipv4 $URL || (echo "Invalid URL" && exit 0)
+			FILE="$(echo $(yt-dlp --get-filename $URL) | sed 's/webm/opus/g')"
+			! [ -z $NAME ] && mv "$FILE" "$NAME" || NAME="$FILE"
+			[ -z $DIR ] && DIR="$MUSIC_DIR"
+			mv "$NAME" "$DIR"
 			exit 0
 			;;
 		"-h")
 			echo "Usage: yt-dlaudio [Options...] <URL>"
+			echo "Options:"
+			echo "-d Specify output directory"
+			echo "-h Help menu"
 			exit 0
 			;;
 		*)
-			youtube-dl -f bestaudio --extract-audio --force-ipv4 $URL
+			! [ -z $(echo $URL | grep "www.youtube.com") ] && yt-dlp -f bestaudio --extract-audio --force-ipv4 $URL || echo "Invalid URL"
 			exit 0
 			;;
 	esac
-	PARAM=$((PARAM++))
 done
