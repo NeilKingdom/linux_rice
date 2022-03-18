@@ -1,0 +1,33 @@
+#!/bin/sh
+#
+# Initialize bluetooth via bluetoothctl
+# 
+# If you consistently have troubles connecting, even after using bt off, you will
+# need to kill pulseaudio, start it, enter bluetoothctl manually, remove device,
+# power off, scan off and reset device list on headphones. Then try again
+
+SELECTION=$1
+MAC=28:11:A5:44:BE:B0
+
+function stereo {
+	echo "Please ensure headphones are already in pairing mode; otherwise stop this script, put them in pairing mode and try again..."
+	echo "Turning on headphones with stereo profile..."
+	bluetoothctl power on
+	bluetoothctl scan on
+	bluetoothctl connect $MAC
+}
+
+function turnoff {
+	bluetoothctl disconnect $MAC
+	bluetoothctl power off
+	bluetoothctl quit
+	echo "Disconnected from $MAC"
+}
+
+case $SELECTION in
+on) stereo;;
+off) turnoff;;
+*)
+	echo -e "\nHelp\non) Attempts a connection with Bose QC II. This means high quality audio with no mic\nsupport. Ensure that headphones are in pairing mode and press Ctrl+C after bluetoothctl has recognized the device.\n\noff) Disconnects from the target device and powers off bluetoothctl. Not required in most circumstances."
+	;;
+esac
