@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Initialize bluetooth via bluetoothctl
 # 
@@ -9,7 +9,7 @@
 SELECTION=$1
 MAC=28:11:A5:44:BE:B0
 
-function stereo {
+stereo() {
 	echo "Please ensure headphones are already in pairing mode; otherwise stop this script, put them in pairing mode and try again..."
 	echo "Turning on headphones with stereo profile..."
 	bluetoothctl power on
@@ -17,7 +17,7 @@ function stereo {
 	bluetoothctl connect $MAC
 }
 
-function turnoff {
+turnoff() {
 	bluetoothctl disconnect $MAC
 	bluetoothctl power off
 	bluetoothctl quit
