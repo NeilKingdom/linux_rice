@@ -1,0 +1,38 @@
+#external-url-viewer "urlview"
+auto-reload yes
+
+# Regex to color fake url feed headers and hide the entry number
+highlight feedlist "---.*---" blue default bold
+highlight feedlist ".*(0/0))" black
+
+bind-key j down
+bind-key k up
+bind-key j next articlelist
+bind-key k prev articlelist
+bind-key J next-feed articlelist
+bind-key K prev-feed articlelist
+bind-key G end
+bind-key g home
+bind-key d pagedown
+bind-key u pageup
+bind-key l open
+bind-key h quit
+bind-key a toggle-article-read
+bind-key n next-unread
+bind-key N prev-unread
+bind-key D pb-download
+bind-key U show-urls
+bind-key x pb-delete
+
+color listnormal cyan default
+color listfocus black yellow standout bold
+color listnormal_unread blue default
+color listfocus_unread yellow default bold
+color info red black bold
+color article cyan default
+
+# Macros
+macro m set browser "mpv --ytdl-format='mp4[height<=1440]+bestaudio' %u" ; open-in-browser ; set browser "elinks %u"
+macro b set browser "$BROWSER %u" ; open-in-browser ; set browser "elinks %u"
+macro i set browser "sxiv %u" ; open-in-browser ; set browser "elinks %u"
+#macro g set browser "gotourl %u" ; open-in-browser ; set browser "elinks %u"

@@ -1,0 +1,16 @@
+set folder = "imaps://neil@neilkingdom.xyz@mail.neilkingdom.xyz:993"
+
+set smtp_url = "smtp://neil@neilkingdom.xyz@mail.neilkingdom.xyz:587"
+
+set from = "neil@neilkingdom.xyz"
+set realname = "Neil Kingdom"
+
+set spoolfile = "+INBOX"
+set record = "+Sent"
+set trash = "+Trash"
+set postponed = "+Drafts"
+
+mailboxes =INBOX =Sent =Trash =Drafts =Junk
+
+source neomuttrc
+source colors.muttrc

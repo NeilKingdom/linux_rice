@@ -1,0 +1,54 @@
+" XDG Directory
+set runtimepath^=$XDG_CONFIG_HOME/vim
+set runtimepath+=$XDG_DATA_HOME/vim
+set runtimepath+=$XDG_CONFIG_HOME/vim/after
+
+set packpath^=$XDG_DATA_HOME/vim,$XDG_CONFIG_HOME/vim
+set packpath+=$XDG_CONFIG_HOME/vim/after,$XDG_DATA_HOME/vim/after
+
+let g:netrw_home = $XDG_DATA_HOME."/vim"
+call mkdir($XDG_DATA_HOME."/vim/spell", 'p')
+set viewdir=$XDG_DATA_HOME/vim/view | call mkdir(&viewdir, 'p')
+
+set backupdir=$XDG_CACHE_HOME/vim/backup | call mkdir(&backupdir, 'p')
+set directory=$XDG_CACHE_HOME/vim/swap   | call mkdir(&directory, 'p')
+set undodir=$XDG_CACHE_HOME/vim/undo     | call mkdir(&undodir,   'p')
+
+if !has('nvim') | set viminfofile=$XDG_CACHE_HOME/vim/viminfo | endif
+
+" Config start 
+syntax on
+
+" Set spell check on for tex, latex, markdown
+autocmd FileType tex,latex,markdown setlocal spell! spelllang=en_us
+autocmd InsertEnter * norm zz
+
+set number
+set relativenumber
+set expandtab
+set tabstop=3
+set softtabstop=3
+set shiftwidth=3
+set splitright
+set splitbelow
+set wildmode=longest,list,full
+" set cursorline
+" highlight CursorLine ctermbg=Grey cterm=bold guibg=#2b2b2b
+
+" Key bindings
+let mapleader=" "
+map <leader>i :setlocal autoindent<CR>
+map <leader>I :setlocal noautoindent<CR>
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+noremap <Up> 5<C-w><S-+>
+noremap <Down> 5<C-w><S-->
+noremap <Left> 10<C-w><S->>
+noremap <Right> 10<C-w><S-<>
+" nnoremap <C-g> :! gotourl %
+" nnoremap <C-e> :! emoji
+
+" Pathogen for managing vim plugins
+execute pathogen#infect()
