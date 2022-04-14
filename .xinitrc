@@ -5,6 +5,9 @@ if [ -x /usr/bin/gpg-agent ]; then
 	eval "$(/usr/bin/gpg-agent --daemon)"
 fi
 
+# Set key latency and pause time before key processing
+xset r rate 200 45
+
 #Sync hwclock to Real Time Clock (RTC) with chrony
 chrony trimrtc &
 

@@ -4,10 +4,8 @@ autoload -U colors && colors
 PS1="%B%{$fg[magenta]%}[%{$fg[cyan]%}%n%{$fg[blue]%}@%{$fg[cyan]%M %1d%{$fg[magenta]%}]%{$fg[cyan]%}$%{$reset_color%} "
 
 # History settings
-HISTSIZE=
-SAVEHIST=
-HISTCONTROL=ignoreboth:erasedups
-PROMPT_COMMAND="history -a; history -r"
+HISTSIZE=5000
+SAVEHIST=5000
 HISTFILE="$HOME/.cache/zsh/history"
 
 # Tab complete
@@ -17,7 +15,7 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots) # Include hidden files
 
-# vi mode 
+# vi mode
 bindkey -v
 export KEYTIMEOUT=1
 
@@ -79,6 +77,7 @@ alias scli="scli -s -n -f --color=high"
 alias scim="sc-im"
 alias ap="absolutely-proprietary -f"
 alias rstudio="rstudio-bin"
+alias history="history 1"
 alias ls="ls --color"
 alias za="zathura"
 alias tc="transmission-cli"

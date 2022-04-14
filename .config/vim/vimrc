@@ -1,54 +1,66 @@
-" XDG Directory
+" PATH VARIABLES
+
 set runtimepath^=$XDG_CONFIG_HOME/vim
-set runtimepath+=$XDG_DATA_HOME/vim
-set runtimepath+=$XDG_CONFIG_HOME/vim/after
+set packpath^=$XDG_CONFIG_HOME/vim/plugged
 
-set packpath^=$XDG_DATA_HOME/vim,$XDG_CONFIG_HOME/vim
-set packpath+=$XDG_CONFIG_HOME/vim/after,$XDG_DATA_HOME/vim/after
+" CONFIG START
 
-let g:netrw_home = $XDG_DATA_HOME."/vim"
-call mkdir($XDG_DATA_HOME."/vim/spell", 'p')
-set viewdir=$XDG_DATA_HOME/vim/view | call mkdir(&viewdir, 'p')
-
-set backupdir=$XDG_CACHE_HOME/vim/backup | call mkdir(&backupdir, 'p')
-set directory=$XDG_CACHE_HOME/vim/swap   | call mkdir(&directory, 'p')
-set undodir=$XDG_CACHE_HOME/vim/undo     | call mkdir(&undodir,   'p')
-
-if !has('nvim') | set viminfofile=$XDG_CACHE_HOME/vim/viminfo | endif
-
-" Config start 
 syntax on
+let mapleader=" "
 
-" Set spell check on for tex, latex, markdown
-autocmd FileType tex,latex,markdown setlocal spell! spelllang=en_us
-autocmd InsertEnter * norm zz
+" PLUGGINS
 
-set number
-set relativenumber
+call plug#begin('~/.config/vim/plugged')
+Plug 'airblade/vim-gitgutter'
+Plug 'vim-airline/vim-airline'
+Plug 'altercation/vim-colors-solarized'
+call plug#end()
+
+" SETS
+
+set encoding=utf-8
+set splitbelow splitright
+set number relativenumber
+set smartindent
 set expandtab
 set tabstop=3
 set softtabstop=3
 set shiftwidth=3
-set splitright
-set splitbelow
+set scrolloff=8
+set smartcase
+set nohlsearch
+set incsearch
+set noswapfile
+set nobackup
+set undodir=~/.config/vim/undodir
+set undofile
 set wildmode=longest,list,full
-" set cursorline
-" highlight CursorLine ctermbg=Grey cterm=bold guibg=#2b2b2b
 
-" Key bindings
-let mapleader=" "
-map <leader>i :setlocal autoindent<CR>
-map <leader>I :setlocal noautoindent<CR>
+" MAPPINGS
+
+map <leader>c :set signcolumn=yes <CR>
+map <leader>C :set signcolumn=no <CR>
+map <leader>s :!clear && shellcheck %<CR>
+map <leader>so :so %<CR>
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-noremap <Up> 5<C-w><S-+>
-noremap <Down> 5<C-w><S-->
-noremap <Left> 10<C-w><S->>
-noremap <Right> 10<C-w><S-<>
-" nnoremap <C-g> :! gotourl %
-" nnoremap <C-e> :! emoji
+nnoremap <Up> 5<C-w><S-+>
+nnoremap <Down> 5<C-w><S-->
+nnoremap <Left> 10<C-w><S->>
+nnoremap <Right> 10<C-w><S-<>
 
-" Pathogen for managing vim plugins
-execute pathogen#infect()
+" AUTO COMMANDS
+
+" Detect latex files properly
+autocmd BufRead,BufNewFile *.tex set filetype=tex
+
+" Set spellcheck on for tex, latex, markdown
+autocmd FileType tex,latex,markdown setlocal spell! spelllang=en_us
+
+" Center page on transition to insert mode
+autocmd InsertEnter * norm zz
+
+" Clear trailing whitespace on save
+autocmd BufWritePre * %s/\s\+$//e
