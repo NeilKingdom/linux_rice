@@ -2,6 +2,7 @@
 
 set runtimepath^=$XDG_CONFIG_HOME/vim
 set packpath^=$XDG_CONFIG_HOME/vim/plugged
+set viminfo=%,<800,'10,/50,:100,h,f0,n~/.config/vim/viminfo
 
 " CONFIG START
 
@@ -11,7 +12,7 @@ let mapleader=" "
 " PLUGGINS
 
 call plug#begin('~/.config/vim/plugged')
-Plug 'airblade/vim-gitgutter'
+"Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'altercation/vim-colors-solarized'
 call plug#end()

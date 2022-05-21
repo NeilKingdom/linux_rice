@@ -10,13 +10,24 @@
 
 # hlsearch on (H) or off (h):
 ~h
+# Last Substitute String:
+$
+
 # Command Line History (newest to oldest):
-:q
-|2,0,1630286904,,"q"
 :wq
-|2,0,1630282958,,"wq"
+|2,0,1653103161,,"wq"
+:q
+|2,0,1653084563,,"q"
+:q!
+|2,0,1653009134,,"q!"
+:w
+|2,0,1652997769,,"w"
 
 # Search String History (newest to oldest):
+? \s\+$
+|2,1,1653103161,,"\\s\\+$"
+?/read
+|2,1,1652997021,47,"read"
 
 # Expression History (newest to oldest):
 
@@ -25,296 +36,180 @@
 # Debug Line History (newest to oldest):
 
 # Registers:
-""0	LINE	0
+"0	LINE	0
 	######################################################################
-|3,1,0,1,1,0,1630291676,"######################################################################"
-"1	LINE	0
-	mbsync -c "$XDG_CONFIG_HOME/isync/mbsyncrc"
-|3,0,1,1,1,0,1630282725,"mbsync -c \"$XDG_CONFIG_HOME/isync/mbsyncrc\""
+|3,0,0,1,1,0,1630291676,"######################################################################"
+""1	BLOCK	1
+	~/
+	~/
+	~/
+	~/
+	~/
+	~/
+	~/
+	~/
+	~/
+	~/
+	~/
+	~/
+	~/
+	~/
+	~/
+	~/
+	~/
+	~/
+	~/
+	~/
+	~/
+|3,1,1,2,21,1,1653103159,"~/","~/","~/","~/","~/","~/","~/","~/","~/","~/","~/","~/","~/","~/","~/","~/","~/","~/","~/","~/","~/"
 "2	LINE	0
-	mbsync -c "$XDG_CONFIG_HOME/isync/mbsyncrc"
-|3,0,2,1,1,0,1630282439,"mbsync -c \"$XDG_CONFIG_HOME/isync/mbsyncrc\""
+	rm "$HOME/neil/.fehbg" &
+|3,0,2,1,1,0,1653010780,"rm \"$HOME/neil/.fehbg\" &"
 "3	LINE	0
-	export NMBGIT="$XDG_DATA_HOME/notmuch/nmbug"
-|3,0,3,1,1,0,1630282434,"export NMBGIT=\"$XDG_DATA_HOME/notmuch/nmbug\""
+	
+|3,0,3,1,1,0,1653009781,""
 "4	LINE	0
-	gpg2 --homedir "$XDG_DATA_HOME/gnupg"
-|3,0,4,1,1,0,1630282391,"gpg2 --homedir \"$XDG_DATA_HOME/gnupg\""
+	#!/bin/sh
+|3,0,4,1,1,0,1653009781,"#!/bin/sh"
 "5	LINE	0
-	export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
-|3,0,5,1,1,0,1630281879,"export XAUTHORITY=\"$XDG_RUNTIME_DIR\"/Xauthority"
+	
+|3,0,5,1,1,0,1653007166,""
+"6	LINE	0
+	fi
+|3,0,6,1,1,0,1653007165,"fi"
+"7	LINE	0
+	   xrdb -merge $sysresources
+|3,0,7,1,1,0,1653007165,"   xrdb -merge $sysresources"
+"8	LINE	0
+	if [ -f $sysresources ]; then
+|3,0,8,1,1,0,1653007164,"if [ -f $sysresources ]; then"
+"9	LINE	0
+	#Start xrdb (X Resource Database)
+|3,0,9,1,1,0,1653007164,"#Start xrdb (X Resource Database)"
 "z	CHAR	0
 	QZQ€ýa€ýa€ýa€ýa
 |3,0,35,0,1,0,1630286931,"QZQ€ýa€ýa€ýa€ýa"
+"-	CHAR	0
+	&
+|3,0,36,0,1,0,1653009118,"&"
 
-# File marks:
-'0  30  2  ~/coding_conventions
-|4,48,30,2,1630292137,"~/coding_conventions"
-'1  2  0  /tmp/tmpx0_5d440.md
-|4,49,2,0,1630286932,"/tmp/tmpx0_5d440.md"
-'2  1  0  /tmp/tmpx0_5d440.md
-|4,50,1,0,1630286904,"/tmp/tmpx0_5d440.md"
-'3  1  0  /tmp/tmpx0_5d440.md
-|4,51,1,0,1630286904,"/tmp/tmpx0_5d440.md"
-'4  2  0  ~/proprietary_programs.md
-|4,52,2,0,1630286853,"~/proprietary_programs.md"
-'5  39  0  ~/.bashrc
-|4,53,39,0,1630282958,"~/.bashrc"
-'6  29  0  ~/.bashrc
-|4,54,29,0,1630282886,"~/.bashrc"
-'7  29  0  ~/.bashrc
-|4,55,29,0,1630282886,"~/.bashrc"
-'8  28  16  ~/.bashrc
-|4,56,28,16,1630282860,"~/.bashrc"
-'9  28  16  ~/.bashrc
-|4,57,28,16,1630282860,"~/.bashrc"
-
-# Jumplist (newest first):
--'  30  2  ~/coding_conventions
-|4,39,30,2,1630292137,"~/coding_conventions"
--'  1  0  ~/coding_conventions
-|4,39,1,0,1630291635,"~/coding_conventions"
--'  2  0  /tmp/tmpx0_5d440.md
-|4,39,2,0,1630286932,"/tmp/tmpx0_5d440.md"
--'  2  0  /tmp/tmpx0_5d440.md
-|4,39,2,0,1630286932,"/tmp/tmpx0_5d440.md"
--'  1  0  /tmp/tmpx0_5d440.md
-|4,39,1,0,1630286923,"/tmp/tmpx0_5d440.md"
--'  1  0  /tmp/tmpx0_5d440.md
-|4,39,1,0,1630286923,"/tmp/tmpx0_5d440.md"
--'  1  0  /tmp/tmpx0_5d440.md
-|4,39,1,0,1630286904,"/tmp/tmpx0_5d440.md"
--'  1  0  /tmp/tmpx0_5d440.md
-|4,39,1,0,1630286904,"/tmp/tmpx0_5d440.md"
--'  2  0  ~/proprietary_programs.md
-|4,39,2,0,1630286853,"~/proprietary_programs.md"
--'  2  0  ~/proprietary_programs.md
-|4,39,2,0,1630286853,"~/proprietary_programs.md"
--'  2  0  ~/proprietary_programs.md
-|4,39,2,0,1630286853,"~/proprietary_programs.md"
--'  2  0  ~/proprietary_programs.md
-|4,39,2,0,1630286853,"~/proprietary_programs.md"
--'  2  0  ~/proprietary_programs.md
-|4,39,2,0,1630286853,"~/proprietary_programs.md"
--'  2  0  ~/proprietary_programs.md
-|4,39,2,0,1630286853,"~/proprietary_programs.md"
--'  2  0  ~/proprietary_programs.md
-|4,39,2,0,1630286853,"~/proprietary_programs.md"
--'  2  0  ~/proprietary_programs.md
-|4,39,2,0,1630286853,"~/proprietary_programs.md"
--'  1  0  ~/proprietary_programs.md
-|4,39,1,0,1630286844,"~/proprietary_programs.md"
--'  1  0  ~/proprietary_programs.md
-|4,39,1,0,1630286844,"~/proprietary_programs.md"
--'  1  0  ~/proprietary_programs.md
-|4,39,1,0,1630286844,"~/proprietary_programs.md"
--'  1  0  ~/proprietary_programs.md
-|4,39,1,0,1630286844,"~/proprietary_programs.md"
--'  1  0  ~/proprietary_programs.md
-|4,39,1,0,1630286844,"~/proprietary_programs.md"
--'  1  0  ~/proprietary_programs.md
-|4,39,1,0,1630286844,"~/proprietary_programs.md"
--'  1  0  ~/proprietary_programs.md
-|4,39,1,0,1630286844,"~/proprietary_programs.md"
--'  1  0  ~/proprietary_programs.md
-|4,39,1,0,1630286844,"~/proprietary_programs.md"
--'  39  0  ~/.bashrc
-|4,39,39,0,1630282958,"~/.bashrc"
--'  39  0  ~/.bashrc
-|4,39,39,0,1630282958,"~/.bashrc"
--'  39  0  ~/.bashrc
-|4,39,39,0,1630282958,"~/.bashrc"
--'  39  0  ~/.bashrc
-|4,39,39,0,1630282958,"~/.bashrc"
--'  39  0  ~/.bashrc
-|4,39,39,0,1630282958,"~/.bashrc"
--'  39  0  ~/.bashrc
-|4,39,39,0,1630282958,"~/.bashrc"
--'  39  0  ~/.bashrc
-|4,39,39,0,1630282958,"~/.bashrc"
--'  39  0  ~/.bashrc
-|4,39,39,0,1630282958,"~/.bashrc"
--'  39  0  ~/.bashrc
-|4,39,39,0,1630282958,"~/.bashrc"
--'  39  0  ~/.bashrc
-|4,39,39,0,1630282958,"~/.bashrc"
--'  39  0  ~/.bashrc
-|4,39,39,0,1630282958,"~/.bashrc"
--'  39  0  ~/.bashrc
-|4,39,39,0,1630282958,"~/.bashrc"
--'  39  0  ~/.bashrc
-|4,39,39,0,1630282958,"~/.bashrc"
--'  39  0  ~/.bashrc
-|4,39,39,0,1630282958,"~/.bashrc"
--'  39  0  ~/.bashrc
-|4,39,39,0,1630282958,"~/.bashrc"
--'  39  0  ~/.bashrc
-|4,39,39,0,1630282958,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282944,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282944,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282944,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282944,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282944,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282944,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282944,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282944,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282944,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282944,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282944,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282944,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282944,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282944,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282944,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282944,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282886,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282886,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282886,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282886,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282886,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282886,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282886,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282886,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282886,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282886,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282886,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282886,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282886,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282886,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282886,"~/.bashrc"
--'  29  0  ~/.bashrc
-|4,39,29,0,1630282886,"~/.bashrc"
--'  28  16  ~/.bashrc
-|4,39,28,16,1630282861,"~/.bashrc"
--'  28  16  ~/.bashrc
-|4,39,28,16,1630282861,"~/.bashrc"
--'  28  16  ~/.bashrc
-|4,39,28,16,1630282861,"~/.bashrc"
--'  28  16  ~/.bashrc
-|4,39,28,16,1630282861,"~/.bashrc"
--'  28  16  ~/.bashrc
-|4,39,28,16,1630282861,"~/.bashrc"
--'  28  16  ~/.bashrc
-|4,39,28,16,1630282861,"~/.bashrc"
--'  28  16  ~/.bashrc
-|4,39,28,16,1630282861,"~/.bashrc"
--'  28  16  ~/.bashrc
-|4,39,28,16,1630282861,"~/.bashrc"
--'  28  16  ~/.bashrc
-|4,39,28,16,1630282861,"~/.bashrc"
--'  28  16  ~/.bashrc
-|4,39,28,16,1630282861,"~/.bashrc"
--'  28  16  ~/.bashrc
-|4,39,28,16,1630282861,"~/.bashrc"
--'  28  16  ~/.bashrc
-|4,39,28,16,1630282861,"~/.bashrc"
--'  28  16  ~/.bashrc
-|4,39,28,16,1630282861,"~/.bashrc"
--'  28  16  ~/.bashrc
-|4,39,28,16,1630282861,"~/.bashrc"
--'  28  16  ~/.bashrc
-|4,39,28,16,1630282861,"~/.bashrc"
--'  28  16  ~/.bashrc
-|4,39,28,16,1630282861,"~/.bashrc"
--'  28  16  ~/.bashrc
-|4,39,28,16,1630282861,"~/.bashrc"
--'  28  16  ~/.bashrc
-|4,39,28,16,1630282861,"~/.bashrc"
--'  28  16  ~/.bashrc
-|4,39,28,16,1630282861,"~/.bashrc"
--'  28  16  ~/.bashrc
-|4,39,28,16,1630282861,"~/.bashrc"
--'  28  16  ~/.bashrc
-|4,39,28,16,1630282861,"~/.bashrc"
--'  28  16  ~/.bashrc
-|4,39,28,16,1630282861,"~/.bashrc"
--'  28  16  ~/.bashrc
-|4,39,28,16,1630282861,"~/.bashrc"
--'  28  16  ~/.bashrc
-|4,39,28,16,1630282861,"~/.bashrc"
--'  28  16  ~/.bashrc
-|4,39,28,16,1630282861,"~/.bashrc"
--'  28  16  ~/.bashrc
-|4,39,28,16,1630282861,"~/.bashrc"
--'  28  16  ~/.bashrc
-|4,39,28,16,1630282861,"~/.bashrc"
--'  28  16  ~/.bashrc
-|4,39,28,16,1630282861,"~/.bashrc"
+# Buffer list:
+%~/.gitignore	1	0
 
 # History of marks within files (newest to oldest):
 
-> ~/coding_conventions
-	*	1630292136	0
-	"	30	2
-	^	30	3
-	.	29	0
-	+	3	33
-	+	2	14
+> ~/.gitignore
+	*	1653103159	0
+	"	1	0
+	^	21	7
+	.	1	0
+	+	18	6
+	+	15	7
+	+	19	0
+	+	16	0
+	+	15	0
+	+	21	0
+	+	14	0
+	+	9	10
+	+	21	6
+	+	1	0
+
+> ~/.xinitrc
+	*	1653084562	0
+	"	21	0
+	^	7	70
+	.	30	0
+	+	30	2
+	+	31	32
+	+	11	0
+	+	33	0
+	+	32	0
+	+	2	0
+	+	36	0
+	+	37	0
+	+	36	0
+	+	7	0
+	+	35	0
+	+	2	1
+	+	2	41
+	+	2	0
+	+	2	2
+	+	2	3
+	+	2	6
+	+	2	5
+	+	2	0
+	+	2	1
+	+	2	9
+	+	2	15
+	+	18	0
+	+	28	0
+	+	8	0
+	+	9	0
+	+	2	0
+	+	9	0
+	+	8	25
+	+	9	10
+	+	1	0
+	+	33	19
+	+	30	33
+	+	29	3
+	+	30	21
+	+	7	69
+	+	30	0
+
+> ~/pywal-git/PKGBUILD
+	*	1653007663	0
+	"	19	66
+	^	19	67
+	.	19	66
+	+	20	67
+	+	19	66
+
+> ~/pywal/setup.py
+	*	1653007576	0
+	"	2	8
+
+> ~/out.log
+	*	1653007413	0
+	"	53	0
+
+> ~/debug
+	*	1653007353	0
+	"	1	0
+
+> ~/scripts/printctl
+	*	1652997402	0
+	"	7	36
+	^	6	8
+	.	6	8
+	+	11	50
+	+	11	0
+	+	10	19
+	+	10	6
+	+	11	46
+	+	4	0
+	+	10	27
+	+	13	43
+	+	13	0
+	+	13	2
+	+	13	3
+	+	13	13
+	+	11	76
+	+	12	16
+	+	13	0
 	+	5	0
-	+	4	14
-	+	9	2
-	+	28	18
-	+	30	1
-	+	29	6
-	+	29	0
+	+	9	0
+	+	13	0
+	+	6	8
 
-> /tmp/tmpx0_5d440.md
-	*	1630286931	0
-	"	2	0
+> ~/scripts/bt
+	*	1652997282	0
+	"	1	0
 
-> ~/proprietary_programs.md
-	*	1630286850	0
-	"	2	0
+> ~/scripts/qvm
+	*	1652997278	0
+	"	8	0
 
-> ~/.bashrc
-	*	1630282954	0
-	"	39	0
-	^	28	25
-	.	28	24
-	+	42	37
-	+	27	56
-	+	40	0
-	+	39	46
-	+	40	38
-	+	41	36
-	+	41	57
-	+	42	43
-	+	42	42
-	+	41	0
-	+	42	0
-	+	43	0
-	+	28	13
-	+	27	55
-	+	28	40
-	+	27	45
-	+	28	24
+> ~/scripts/gotourl
+	*	1652997022	0
+	"	21	0
