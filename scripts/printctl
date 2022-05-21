@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Configure my stupid HP DeskJet printer
+
+echo_and_run() {
+   echo "$@"
+   eval $(printf '%q ' "$@") < /dev/tty
+}
+
+read -p "Enter IP address: " IP
+CMD="lpadmin -p HP_DeskJet_Plus_4152 -E -v ipp://$IP/ipp/print -m everywhere"
+echo_and_run $CMD

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Pull all repositories from git
 
@@ -7,7 +7,8 @@ DOC_DIR=$HOME/docs
 API=https://api.github.com/users/NeilKingdom/repos
 
 cd $GIT_DIR
-#ls | grep -v Misc | xargs rm -rf
+# Optionally uncomment if Misc directory should not be pulled
+#ls -l | grep -v Misc | xargs rm -rf
 ls -l | xargs rm -rf
 curl $API -o $GIT_DIR/.meta
 
@@ -20,7 +21,7 @@ while read -r LINE; do
 	git clone "https://github.com/NeilKingdom/$LINE.git"
 done < .meta
 
-# Optionally move notes to ~/docs 
+# Optionally move notes to ~/docs
 # NOTE: mv clobbers existing directories by default
 mv CET_Notes $DOC_DIR
 mv Mathematics_Notes $DOC_DIR
