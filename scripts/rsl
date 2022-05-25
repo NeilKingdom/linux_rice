@@ -1,1 +1,0 @@
-rsync -uvaP /home/neil neil@10.0.0.227:/home
