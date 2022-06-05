@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =3
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/home/neil/devel/school/2021_Fall/Compilers_Term4/Assignment12'
+let g:netrw_dirhist_4='/home/neil/.config/gnupg'
 let g:netrw_dirhist_3='/usr/share/terminfo'
 let g:netrw_dirhist_2='/home/neil/.config/ncmpcpp'
 let g:netrw_dirhist_1='/home/neil/.config/pipewire'

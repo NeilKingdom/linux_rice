@@ -8,6 +8,8 @@
 SELECTION=
 ARCH=
 MACHINE=
+LANG=en-us
+NCPUS=
 ISO_PATH="$HOME/devel/VMs/isos"
 
 # Functions
@@ -25,7 +27,7 @@ get_architecture()
    for PKG in $INSTALLED
    do
       i=$((i+1)) # POSIX compliant, unlike ((i++))
-      set -- "$@" $(echo $PKG | sed s/qemu-system-//) # POSIX compliant method of adding elements to an array
+      set -- "$@" "$(echo $PKG | sed s/qemu-system-//)" # POSIX compliant method of adding elements to an array
       echo "[$i] $PKG"
    done
    echo "Please select the target architecture: "; read -r SELECTION
@@ -51,7 +53,7 @@ select_machine()
       ;;
    esac
 
-   MACHINE=$(echo $CHOICES | awk '{if (NR>1) {print $1}}' | tr " " "\n" | dmenu -i -l 100 -p "Enter the desired machine")
+   MACHINE=$(echo "$CHOICES" | awk '{if (NR>1) {print $1}}' | tr " " "\n" | dmenu -i -l 50 -p "Enter the desired machine")
    echo "You selected $MACHINE"
 }
 
@@ -66,8 +68,8 @@ check_machine()
    echo "Would you like to select which machine to use (usually required for arm/aarch64)?"
    echo "[y/n]"
    read -r SELECTION
-   [ $SELECTION = y ] && select_machine && select_hardware_accelerator
-   [ $SELECTION = n ] && select_hardware_accelerator || echo "Invalid selection"; check_machine
+   [ "$SELECTION" = y ] && select_machine && select_hardware_accelerator
+   [ "$SELECTION" = n ] && select_hardware_accelerator || echo "Invalid selection"; check_machine
 }
 
 # Invoke functions

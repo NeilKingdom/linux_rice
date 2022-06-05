@@ -73,10 +73,10 @@ alias code='vscodium --extensions-dir "$XDG_DATA_HOME/vscode"'
 # Abbreviations
 alias cddev="cd $DEVEL_DIR"
 alias paint="mtpaint"
-alias scli="scli -s -n -f --color=high"
+alias scli="scli -n -f --color=high"
 alias scim="sc-im"
 alias ap="absolutely-proprietary -f"
-alias rstudio="rstudio-bin"
+alias rstudio="rstudio-bin --no-sandbox"
 alias history="history 1"
 alias ls="ls --color"
 alias za="zathura"

@@ -2,8 +2,10 @@
 
 # This script parses input for valid URLs. Input can include the user's .bash_history,
 # direct input from stdin, or input from a given file. If more than one URLs are found
-# in a given file, they are piped to dmenu. The script opens the URL in a specified 
+# in a given file, they are piped to dmenu. The script opens the URL in a specified
 # program according to the extension of the URL.
+#
+# This script could be significantly improved using xdg-open and MIME types
 
 OPEN_PIC=sxiv
 OPEN_GIF=mpv
@@ -33,9 +35,9 @@ function parameters {
 			echo "-b: bash history - Looks at the tail of your .bash_history for URLs (/home/user/.bash_history is the default search location)" > "/dev/tty"
 			echo "-l: point to the location of your .bash_history file" > "/dev/tty"
 		fi
-	done 
+	done
 
-	HIST_LOCATION="$HOME/.bash_history" 
+	HIST_LOCATION="$HOME/.bash_history"
 
 	# Check for bash history location flag
 	for ((i = 1; i <= $2; i++)); do
@@ -43,11 +45,11 @@ function parameters {
 		eval NEXT_ARG=\$$((i+1))
 		[ "$ARG" = '-l' ] && HIST_LOCATION="$NEXT_ARG"
 		# If -l is supplied, but NEXT_ARG is empty, HIST_LOCATION remains as the default
-		[ -z "$NEXT_ARG" ] && HIST_LOCATION="$HOME/.bash_history" 
+		[ -z "$NEXT_ARG" ] && HIST_LOCATION="$HOME/.bash_history"
 	done
 
 	SEARCH="$TARG"
-	
+
 	# Check for bash history flag (takes precedence over file or url if both are provided)
 	for ARG in $1; do
 		if [ $ARG = "-b" ]; then
@@ -69,7 +71,7 @@ function parameters {
 [ $# -eq 0 ] && read -p "Please enter a file that you would like to parse or a direct URL: " TARG && SEARCH="$(parameters $@ $#)" || SEARCH="$(parameters $@ $#)"
 
 URL=
-REGEX="https\?://\S*\.[A-Za-z]\+\S*" 
+REGEX="https\?://\S*\.[A-Za-z]\+\S*"
 # If user supplied a file, grep the file
 if [ -f $SEARCH ]; then
 	# Pipe to dmenu if more than 1 url were found

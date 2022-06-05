@@ -1,12 +1,15 @@
 #!/bin/sh
 #
-# Purpose: Connect headphones to bluetooth
+# Purpose: Connect bluetooth headphones
 #
 # Dependencies: bluetoothctl, bluez5
 #
 # If you consistently have troubles connecting, even after using bt off, you will
-# need to restart your audio daemon, enter bluetoothctl manually, remove device,
-# power off, scan off, and reset device list on headphones. Then try again
+# need to restart your audio manager, enter bluetoothctl manually, remove device,
+# power off, scan off, and reset device list on headphones.
+#
+# If you recieve error "Could not find default agent", try removing bluetooth dongle
+# from USB port and plug back in.
 
 SELECTION=$1
 MAC=28:11:A5:44:BE:B0
@@ -21,8 +24,8 @@ signal_handler() {
 turnon() {
    trap signal_handler INT
 
-	echo "Please put headphones in pairing mode. Wait a second or two and then press Ctrl+C to pair."
-   echo "If this fails, turn headphones off and try again."
+	echo "Please run this script before turning headphones on."
+   echo "Wait a moment until headphones are connected and press Ctrl+C once paired."
 	bluetoothctl power on
 	bluetoothctl scan on
 	bluetoothctl connect $MAC
@@ -52,7 +55,7 @@ off)
 *)
    echo "Options:"
    echo
-   echo "    on) Attempts to connect with headphones. Headphones must be in pairing mode."
+   echo "    on) Attempts to connect with headphones."
    echo "    off) Terminates connection between headphones and bluetooth dongle."
    echo
 	;;
