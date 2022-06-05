@@ -1,17 +1,88 @@
 #!/bin/sh
-
+#
+# Dependencies: qemu-system-x86, qemu-system-arm, qemu-system-aarch64, qemu-img, libvirt
+#
 # Auto setup for qemu
 
-ISO_PATH=$HOME/devel/VMs/isos
+# Global Variables
+SELECTION=
+ARCH=
+MACHINE=
+ISO_PATH="$HOME/devel/VMs/isos"
 
-SELECT=$(echo $(ls $ISO_PATH) | tr " " "\n" | sort | dmenu -i -l 10 -p "Enter the desired ISO")
-echo "Selected $SELECT"
-qemu-system-x86_64 \
--boot order=d \
--cdrom $ISO_PATH/$SELECT \
-# TODO: Dynamically create boot image
--hda linux.img \ 
--m 3G \
---enable-kvm \
--machine smm=off \
--usb -device usb-kbd
+# Functions
+print_banner()
+{
+   echo "Welcome to QVM, the automated script for QEMU"
+   printf "%s\n\n" "============================================="
+}
+
+get_architecture()
+{
+   i=0
+   INSTALLED="$(pacman -Qqs qemu-system)"
+
+   for PKG in $INSTALLED
+   do
+      i=$((i+1)) # POSIX compliant, unlike ((i++))
+      set -- "$@" $(echo $PKG | sed s/qemu-system-//) # POSIX compliant method of adding elements to an array
+      echo "[$i] $PKG"
+   done
+   echo "Please select the target architecture: "; read -r SELECTION
+   ARCH=$(eval "echo \${${SELECTION}}")
+
+   echo "You selected $ARCH"
+}
+
+select_machine()
+{
+   i=0
+   CHOICES=
+
+   case $ARCH in
+   x86)
+      CHOICES=$(qemu-system-x86_64 -machine help)
+      ;;
+   arm)
+      CHOICES=$(qemu-system-arm -machine help)
+      ;;
+   aarch64)
+      CHOICES=$(qemu-system-aarch64 -machine help)
+      ;;
+   esac
+
+   MACHINE=$(echo $CHOICES | awk '{if (NR>1) {print $1}}' | tr " " "\n" | dmenu -i -l 100 -p "Enter the desired machine")
+   echo "You selected $MACHINE"
+}
+
+select_hardware_accelerator()
+{
+   echo "Did you want to use hardware acceleration e.g. KVM?"
+   exit
+}
+
+check_machine()
+{
+   echo "Would you like to select which machine to use (usually required for arm/aarch64)?"
+   echo "[y/n]"
+   read -r SELECTION
+   [ $SELECTION = y ] && select_machine && select_hardware_accelerator
+   [ $SELECTION = n ] && select_hardware_accelerator || echo "Invalid selection"; check_machine
+}
+
+# Invoke functions
+print_banner
+get_architecture
+check_machine
+
+#SELECT=$(echo $(ls $ISO_PATH) | tr " " "\n" | sort | dmenu -i -l 10 -p "Enter the desired ISO")
+#echo "Selected $SELECT"
+#qemu-system-x86_64 \
+#-boot order=d \
+#-cdrom $ISO_PATH/$SELECT \
+## TODO: Dynamically create boot image
+#-hda linux.img \
+#-m 3G \
+#--enable-kvm \
+#-machine smm=off \
+#-usb -device usb-kbd
