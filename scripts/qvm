@@ -59,7 +59,7 @@ select_machine()
 
 select_hardware_accelerator()
 {
-   echo "Did you want to use hardware acceleration e.g. KVM?"
+   echo "Did you want to use hardware acceleration e.g. KVM (you will almost certainly want this. Hardware virtualization must be enabled in your BIOS/UEFI)?"
    exit
 }
 
