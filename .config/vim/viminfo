@@ -11,27 +11,105 @@
 # hlsearch on (H) or off (h):
 ~h
 # Last Search Pattern:
-~MSle0~/pkg
+~MSle0~/The capacity
 
 # Last Substitute Search Pattern:
-~MSle0& 
+~MSle0&sofia_int
 
 # Last Substitute String:
 $
 
 # Command Line History (newest to oldest):
 :wq
-|2,0,1654464458,,"wq"
+|2,0,1655439240,,"wq"
+:w
+|2,0,1655431212,,"w"
 :q
-|2,0,1654464444,,"q"
+|2,0,1655430773,,"q"
+:e MainBuffer.c
+|2,0,1655423572,,"e MainBuffer.c"
+:vsplit
+|2,0,1655423567,,"vsplit"
+:bn
+|2,0,1655421978,,"bn"
+:e Compilers.h
+|2,0,1655421924,,"e Compilers.h"
+:e Buffer.h
+|2,0,1655421847,,"e Buffer.h"
+:cs add /home/neil/devel/Nuget/cscope.out
+|2,0,1655419146,,"cs add /home/neil/devel/Nuget/cscope.out"
+:autoload help
+|2,0,1655419258,,"autoload help"
+:cs add /home/neil/.config/vim/cscope_maps.vim
+|2,0,1655419100,,"cs add /home/neil/.config/vim/cscope_maps.vim"
+:cs help
+|2,0,1655419066,,"cs help"
+:cscope s
+|2,0,1655418737,,"cscope s"
+:copen
+|2,0,1655418685,,"copen"
+:so
+|2,0,1655416360,,"so"
+:'<,'>
+|2,0,1655416293,,"'<,'>"
+:143
+|2,0,1654983239,,"143"
+:tabnew
+|2,0,1654982360,,"tabnew"
+:q!
+|2,0,1654980464,,"q!"
+:71
+|2,0,1654973955,,"71"
+:538
+|2,0,1654973093,,"538"
+:437
+|2,0,1654972788,,"437"
+:105
+|2,0,1654972737,,"105"
+:108
+|2,0,1654972710,,"108"
+:247
+|2,0,1654972625,,"247"
+:536
+|2,0,1654971867,,"536"
+:523
+|2,0,1654971839,,"523"
+:tabnew Buffer.c
+|2,0,1654970171,,"tabnew Buffer.c"
+:bufLoad
+|2,0,1654969889,,"bufLoad"
+:e Compilers.c
+|2,0,1654965353,,"e Compilers.c"
+:26
+|2,0,1654980361,,"26"
+:123
+|2,0,1654980166,,"123"
+:50
+|2,0,1654977694,,"50"
+:filetype detect
+|2,0,1654976695,,"filetype detect"
+:% s/sofia_int/raziz_int_t/g
+|2,0,1654919827,,"% s/sofia_int/raziz_int_t/g"
+:% s/sofia_bol/raziz_bol_t/g
+|2,0,1654917038,,"% s/sofia_bol/raziz_bol_t/g"
+:% s/sofia_flg/raziz_flg_t/g
+|2,0,1654914670,,"% s/sofia_flg/raziz_flg_t/g"
+:% s/sofia_chr/raziz_chr_t/g
+|2,0,1654914642,,"% s/sofia_chr/raziz_chr_t/g"
+:% s/sofia_int/raziz_int_t
+|2,0,1654913649,,"% s/sofia_int/raziz_int_t"
+:% s/sofia_chr/raziz_char_t/g
+|2,0,1654913568,,"% s/sofia_chr/raziz_char_t/g"
+:% s/sofia_lng/raziz_long_t/g
+|2,0,1654913550,,"% s/sofia_lng/raziz_long_t/g"
+:% s/sofia_nul/raziz_void_t/g
+|2,0,1654913421,,"% s/sofia_nul/raziz_void_t/g"
+:59
+|2,0,1654659679,,"59"
 :56
 |2,0,1654464361,,"56"
 :30
 |2,0,1654464352,,"30"
-:w
-|2,0,1654464331,,"w"
-:q!
-|2,0,1654462576,,"q!"
 :78
 |2,0,1654461129,,"78"
 :70
@@ -40,68 +118,110 @@ $
 |2,0,1654459586,,"32"
 :e ../includes/common.h
 |2,0,1654353715,,"e ../includes/common.h"
-:vsplit
-|2,0,1654353705,,"vsplit"
 :e
 |2,0,1654353702,,"e"
-:e error.c
-|2,0,1654353494,,"e error.c"
-:% s/ /&nbsp;/g
-|2,0,1654302531,,"% s/ /&nbsp;/g"
-:% s/ /&#x02fd;/g
-|2,0,1654298674,,"% s/ /&#x02fd;/g"
-:326
-|2,0,1653613436,,"326"
 
 # Search String History (newest to oldest):
 ? \s\+$
-|2,1,1654464458,,"\\s\\+$"
-?/sed
-|2,1,1654462400,47,"sed"
-?/pkg
-|2,1,1654460709,47,"pkg"
-?/$$
-|2,1,1654458923,47,"$$"
-?/scli
-|2,1,1654446447,47,"scli"
-?/EDITOR
-|2,1,1654446415,47,"EDITOR"
-?/wrap
-|2,1,1654396063,47,"wrap"
-?/INPUT
-|2,1,1654355463,47,"INPUT"
-?/ \__,_|___/\___|
-|2,1,1654352765,47," \\__,_|___/\\___|"
-?/ _` / __|/ __|
-|2,1,1654352763,47," _` / __|/ __|"
-?/current
-|2,1,1654308409,47,"current"
-?/working
-|2,1,1654308403,47,"working"
-?/DIRECTORY
-|2,1,1654308351,47,"DIRECTORY"
-?/OUTPUT
-|2,1,1654308349,47,"OUTPUT"
-?/foo
-|2,1,1654303154,47,"foo"
-?  
-|2,1,1654302531,," "
-?/ |_
-|2,1,1654302490,47," |_"
-?/ _` |/ _ \ __|
-|2,1,1654302490,47," _` |/ _ \\ __|"
+|2,1,1655439240,,"\\s\\+$"
+?/memset
+|2,1,1655431204,47,"memset"
+?/bufGetSize
+|2,1,1655424762,47,"bufGetSize"
+?/bufChkFul
+|2,1,1655424165,47,"bufChkFul"
+?/bufAddChar
+|2,1,1655423999,47,"bufAddChar"
+?/The capacity
+|2,1,1655424751,47,"The capacity"
+?/Error in 
+|2,1,1655423936,47,"Error in "
+?/bufClear
+|2,1,1655423795,47,"bufClear"
+?/size
+|2,1,1655423761,47,"size"
+?/reset
+|2,1,1655423545,47,"reset"
+?/create
+|2,1,1655422729,47,"create"
+?/bufRecover
+|2,1,1655422434,47,"bufRecover"
+?/bufGetChar
+|2,1,1655422273,47,"bufGetChar"
+?/bufChkFull
+|2,1,1655421545,47,"bufChkFull"
 ? @$
-|2,1,1654224489,,"@$"
-?/JAVADOC_AUTOBRIEF
-|2,1,1654223333,47,"JAVADOC_AUTOBRIEF"
-?/JComboBox
-|2,1,1653613454,47,"JComboBox"
-?/rstudio
-|2,1,1653611675,47,"rstudio"
-?/load_config
-|2,1,1653527256,47,"load_config"
-?/read
-|2,1,1652997021,47,"read"
+|2,1,1655419673,,"@$"
+?/autoload
+|2,1,1655419252,47,"autoload"
+? **
+|2,1,1655416360,,"**"
+?/startBuffer
+|2,1,1654987554,47,"startBuffer"
+?/The value 
+|2,1,1654987023,47,"The value "
+?/Set
+|2,1,1654986102,47,"Set"
+?/set
+|2,1,1654986088,47,"set"
+?/Full
+|2,1,1654985891,47,"Full"
+?/bGetMode
+|2,1,1654985267,47,"bGetMode"
+?/mode
+|2,1,1654982384,47,"mode"
+?/The oper
+|2,1,1654982149,47,"The oper"
+?/The capa
+|2,1,1654982034,47,"The capa"
+?/realloc
+|2,1,1654981773,47,"realloc"
+?/Chk
+|2,1,1654981733,47,"Chk"
+?/bChkFul
+|2,1,1654981729,47,"bChkFul"
+?/bIsFull
+|2,1,1654981696,47,"bIsFull"
+?/malloc
+|2,1,1654981609,47,"malloc"
+?/TODO
+|2,1,1654981392,47,"TODO"
+?/GetChar
+|2,1,1654981000,47,"GetChar"
+?/GetMode
+|2,1,1654980984,47,"GetMode"
+?/getMode
+|2,1,1654980981,47,"getMode"
+?/The capac
+|2,1,1654980893,47,"The capac"
+?/invalid next size
+|2,1,1654980406,47,"invalid next size"
+?/bufCreate
+|2,1,1654974382,47,"bufCreate"
+?/Create
+|2,1,1654974363,47,"Create"
+?/The opera
+|2,1,1654974300,47,"The opera"
+?/raziz_error
+|2,1,1654974148,47,"raziz_error"
+?/Usage
+|2,1,1654974004,47,"Usage"
+?/option
+|2,1,1654973766,47,"option"
+?/long
+|2,1,1654973673,47,"long"
+?/Wrte
+|2,1,1654973624,47,"Wrte"
+?/ld
+|2,1,1654973584,47,"ld"
+?/lu
+|2,1,1654973526,47,"lu"
+?/BUFFER
+|2,1,1654973428,47,"BUFFER"
+?/char
+|2,1,1654973370,47,"char"
+?/isNumber
+|2,1,1654973355,47,"isNumber"
 
 # Expression History (newest to oldest):
 
@@ -110,219 +230,218 @@ $
 # Debug Line History (newest to oldest):
 
 # Registers:
-"0	CHAR	0
-	 | tr " " "\n"
-|3,0,0,0,1,0,1654461703," | tr \" \" \"\\n\""
+"0	LINE	0
+	
+	" CSCOPE FOR SOURCE NAVIGATION
+	
+	if has("csope")
+	   " Look for a 'cscope.out' file starting from the current directory going up
+	   " to the root directory
+	   let s:dirs = split(getcwd(), "/")
+	   while s:dirs != []
+	      let s:path = "/" . join(s:dirs, "/")
+	      if (filereadable(s:path . "/cscope.out"))
+	         execute "cs add " . s:path . "/cscope.out " . s:path . " -v"
+	         break
+	      endif
+	      let s:dirs = s:dirs[:-2]
+	   endwhile
+	
+	   set csto=0  " Use cscope first, then ctags
+	   set cst     " Only search cscope
+	   set csverb  " Make cs verbose
+	
+	   nmap `<C-\>`s :cs find s `<C-R>`=expand("`<cword>`")`<CR>``<CR>`
+	   nmap `<C-\>`g :cs find g `<C-R>`=expand("`<cword>`")`<CR>``<CR>`
+	   nmap `<C-\>`c :cs find c `<C-R>`=expand("`<cword>`")`<CR>``<CR>`
+	   nmap `<C-\>`t :cs find t `<C-R>`=expand("`<cword>`")`<CR>``<CR>`
+	   nmap `<C-\>`e :cs find e `<C-R>`=expand("`<cword>`")`<CR>``<CR>`
+	   nmap `<C-\>`f :cs find f `<C-R>`=expand("`<cfile>`")`<CR>``<CR>`
+	   nmap `<C-\>`i :cs find i ^`<C-R>`=expand("`<cfile>`")`<CR>`$`<CR>`
+	   nmap `<C-\>`d :cs find d `<C-R>`=expand("`<cword>`")`<CR>``<CR>`
+	   nmap <F6> :cnext <CR>
+	   nmap <F5> :cprev <CR>
+	
+	   " Open a quickfix window for the following queries
+	   set cscopequickfix=s-,c-,d-,i-,t-,e-,g-
+	endif
+|3,0,0,1,34,0,1655419673,"","\" CSCOPE FOR SOURCE NAVIGATION","","if has(\"csope\")","   \" Look for a 'cscope.out' file starting from the current directory going up","   \" to the root directory","   let s:dirs = split(getcwd(), \"/\")","   while s:dirs != []","      let s:path = \"/\" . join(s:dirs, \"/\")","      if (filereadable(s:path . \"/cscope.out\"))","         execute \"cs add \" . s:path . \"/cscope.out \" . s:path . \" -v\"","         break",>13
+|<"      endif","      let s:dirs = s:dirs[:-2]","   endwhile","","   set csto=0  \" Use cscope first, then ctags","   set cst     \" Only search cscope","   set csverb  \" Make cs verbose","","   nmap `<C-\\>`s :cs find s `<C-R>`=expand(\"`<cword>`\")`<CR>``<CR>`","   nmap `<C-\\>`g :cs find g `<C-R>`=expand(\"`<cword>`\")`<CR>``<CR>`","   nmap `<C-\\>`c :cs find c `<C-R>`=expand(\"`<cword>`\")`<CR>``<CR>`","   nmap `<C-\\>`t :cs find t `<C-R>`=expand(\"`<cword>`\")`<CR>``<CR>`",>72
+|<"   nmap `<C-\\>`e :cs find e `<C-R>`=expand(\"`<cword>`\")`<CR>``<CR>`","   nmap `<C-\\>`f :cs find f `<C-R>`=expand(\"`<cfile>`\")`<CR>``<CR>`","   nmap `<C-\\>`i :cs find i ^`<C-R>`=expand(\"`<cfile>`\")`<CR>`$`<CR>`","   nmap `<C-\\>`d :cs find d `<C-R>`=expand(\"`<cword>`\")`<CR>``<CR>`","   nmap <F6> :cnext <CR>","   nmap <F5> :cprev <CR>","","   \" Open a quickfix window for the following queries","   set cscopequickfix=s-,c-,d-,i-,t-,e-,g-","endif"
 ""1	LINE	0
-	   echo "$CHOICES" > file.log
-|3,1,1,1,1,0,1654464452,"   echo \"$CHOICES\" > file.log"
+	      /* TODO: This needs to get checked earlier*/
+|3,1,1,1,1,0,1655430743,"      /* TODO: This needs to get checked earlier*/"
 "2	LINE	0
-	   # Seems to break
-|3,0,2,1,1,0,1654464165,"   # Seems to break"
+	      /* If allowed, adjust the new buffer content */
+	      if (newSize > BUFFER_MAX_SIZE)
+	      {
+	         raziz_error(__FILE__, __LINE__);
+	         fprintf(stderr, "newSize greater than BUFFER_MAX_SIZE... Setting newSize to BUFFER_MAX_SIZE\n");
+	         newSize = BUFFER_MAX_SIZE;
+	         pBuffer->size = newSize;
+	      }
+	
+|3,0,2,1,9,0,1655430695,"      /* If allowed, adjust the new buffer content */","      if (newSize > BUFFER_MAX_SIZE)","      {","         raziz_error(__FILE__, __LINE__);","         fprintf(stderr, \"newSize greater than BUFFER_MAX_SIZE... Setting newSize to BUFFER_MAX_SIZE\\n\");","         newSize = BUFFER_MAX_SIZE;","         pBuffer->size = newSize;","      }",""
 "3	LINE	0
 	
-|3,0,3,1,1,0,1654461766,""
+|3,0,3,1,1,0,1655424345,""
 "4	LINE	0
-	
-|3,0,4,1,1,0,1654461729,""
+		/* Check if buffer is full */
+|3,0,4,1,1,0,1655424344,"	/* Check if buffer is full */"
 "5	LINE	0
-	
-|3,0,5,1,1,0,1654461729,""
+	   }
+|3,0,5,1,1,0,1655424344,"   }"
 "6	LINE	0
-	   for PC in $CHOICES
-	   do
-	      i=$((i+1))
-	      set -- "$@" $(echo $PC | awk '{print $1}')
-	      echo "[$i] $PC"
-	   done
-|3,0,6,1,6,0,1654461724,"   for PC in $CHOICES","   do","      i=$((i+1))","      set -- \"$@\" $(echo $PC | awk '{print $1}')","      echo \"[$i] $PC\"","   done"
+	      return NULL;
+|3,0,6,1,1,0,1655424343,"      return NULL;"
 "7	LINE	0
-	   echo "Please select the desired machine: "; read -r SELECTION
-|3,0,7,1,1,0,1654461722,"   echo \"Please select the desired machine: \"; read -r SELECTION"
+	      fprintf(stderr, "Buffer is full. Cannot add any more characters
+|3,0,7,1,1,0,1655424343,"      fprintf(stderr, \"Buffer is full. Cannot add any more characters"
 "8	LINE	0
-	
-|3,0,8,1,1,0,1654461020,""
+	      raziz_error(__FILE__, __LINE__);
+|3,0,8,1,1,0,1655424343,"      raziz_error(__FILE__, __LINE__);"
 "9	LINE	0
-	check_machine()
-	{
-	   echo "Would you like to select which machine to use (usually required for arm/aarch64)?"
-	   echo "[y/n]"
-	   read -r SELECTION
-	   [ $SELECTION = y ] && select_machine()
-	   [ $SELECTION = n ] && select_hardware_accelerator() || echo "Invalid selection" && check_machine()
-	}
-	
-|3,0,9,1,9,0,1654460395,"check_machine()","{","   echo \"Would you like to select which machine to use (usually required for arm/aarch64)?\"","   echo \"[y/n]\"","   read -r SELECTION","   [ $SELECTION = y ] && select_machine()","   [ $SELECTION = n ] && select_hardware_accelerator() || echo \"Invalid selection\" && check_machine()","}",""
+	   {
+|3,0,9,1,1,0,1655424342,"   {"
 "j	CHAR	0
 	jjkkkkjjkkkkkkkkjjjjIset kjlllkjA€kb€kb€kb€kb€kb€kb€kb€kb€kb == €kb€kb€kb-- "@"€kl€kl$€kr€kr $ikj€ýa
 |3,0,19,0,1,0,1654458251,"jjkkkkjjkkkkkkkkjjjjIset kjlllkjA€kb€kb€kb€kb€kb€kb€kb€kb€kb == €kb€kb€kb-- \"@\"€kl€kl$€kr€kr $ikj€ýa"
 "k	CHAR	0
 	kkkkjjjjjlkkjllllllllllllllllli"llllllllli"kkkkkkkkkkkkkkkjjjjjjjjjjkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkkkkhhhhhhhhhhhhi"ji"hhhhhhhhhhhli"ki"kkkkkkkkkk:w s
 |3,0,20,0,1,0,1654464351,"kkkkjjjjjlkkjllllllllllllllllli\"llllllllli\"kkkkkkkkkkkkkkkjjjjjjjjjjkkkkkkkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkkkkhhhhhhhhhhhhi\"ji\"hhhhhhhhhhhli\"ki\"kkkkkkkkkk:w s"
-"p	LINE	0
+"p@	LINE	0
 	 * @param[in] dims_p Pointer to a dimensions struct
 	 * @param[in] page_p Pointer to a page struct
-|3,0,25,1,2,0,1654306295," * @param[in] dims_p Pointer to a dimensions struct"," * @param[in] page_p Pointer to a page struct"
-"q@	CHAR	0
+|3,2,25,1,2,0,1654306295," * @param[in] dims_p Pointer to a dimensions struct"," * @param[in] page_p Pointer to a page struct"
+"q	CHAR	0
 	f;a€ýalx€ýa
-|3,2,26,0,1,0,1654302803,"f;a€ýalx€ýa"
+|3,0,26,0,1,0,1654302803,"f;a€ýalx€ýa"
 "z	CHAR	0
 	QZQ€ýa€ýa€ýa€ýa
 |3,0,35,0,1,0,1630286931,"QZQ€ýa€ýa€ýa€ýa"
 "-	CHAR	0
-	1
-|3,0,36,0,1,0,1654463392,"1"
+	memset
+|3,0,36,0,1,0,1655431198,"memset"
 
 # Buffer list:
-%~/scripts/qvm	55	0
+%~/down/Compilers_A12_Ramses_Aziz_040915215/Buffer.h	50	37
 
 # History of marks within files (newest to oldest):
 
-> ~/scripts/qvm
-	*	1654464457	0
-	"	55	0
-	^	56	90
-	.	56	89
-	+	75	0
-	+	30	20
-	+	35	27
-	+	25	9
-	+	30	13
-	+	25	0
-	+	26	0
-	+	35	19
-	+	26	11
-	+	30	13
-	+	35	19
-	+	34	21
-	+	35	3
-	+	34	3
-	+	30	53
-	+	34	22
-	+	34	37
-	+	35	0
-	+	26	0
-	+	39	1
-	+	39	2
-	+	39	5
-	+	39	91
-	+	39	18
-	+	39	14
-	+	39	62
-	+	40	1
-	+	44	0
-	+	61	1
-	+	62	0
-	+	39	0
-	+	66	0
-	+	53	7
-	+	54	6
-	+	45	6
-	+	43	0
-	+	42	10
-	+	46	47
-	+	49	0
-	+	52	34
-	+	49	30
-	+	56	6
-	+	41	5
-	+	56	15
-	+	56	24
-	+	27	9
-	+	30	28
-	+	31	20
-	+	56	13
-	+	56	24
-	+	56	0
-	+	56	47
-	+	56	45
-	+	56	46
-	+	56	0
-	+	78	12
-	+	56	0
-	+	57	30
-	+	56	9
-	+	10	7
-	+	56	8
-	+	56	27
-	+	56	20
-	+	57	0
-	+	62	13
-	+	72	99
-	+	71	39
-	+	72	52
-	+	62	59
-	+	3	87
-	+	71	69
-	+	46	61
-	+	49	45
-	+	52	49
-	+	56	0
-	+	56	58
-	+	57	0
-	+	56	28
-	+	46	47
-	+	49	45
-	+	52	49
-	+	56	76
-	+	72	80
+> ~/down/Compilers_A12_Ramses_Aziz_040915215/Buffer.c
+	*	1655431216	0
+	"	195	9
+	^	196	10
+	.	196	9
+	+	55	3
+	+	59	3
+	+	56	35
+	+	57	73
+	+	57	77
+	+	72	13
+	+	81	0
 	+	72	0
-	+	72	80
-	+	63	7
-	+	72	94
-	+	63	0
-	+	56	41
-	+	12	6
-	+	56	88
-	+	56	0
-	+	56	15
-	+	56	27
-	+	71	15
-	+	72	5
-	+	71	5
-	+	30	54
-	+	56	0
-	+	56	89
+	+	113	3
+	+	113	0
+	+	570	21
+	+	539	16
+	+	532	16
+	+	410	0
+	+	413	12
+	+	362	28
+	+	363	4
+	+	367	0
+	+	364	35
+	+	365	51
+	+	366	14
+	+	371	0
+	+	373	0
+	+	372	0
+	+	368	0
+	+	371	19
+	+	366	19
+	+	371	19
+	+	380	20
+	+	371	17
+	+	366	19
+	+	195	0
+	+	197	42
+	+	196	49
+	+	57	111
+	+	196	0
+	+	88	0
+	+	87	12
+	+	54	11
+	+	197	0
+	+	87	0
+	+	113	3
+	+	113	7
+	+	113	35
+	+	113	68
+	+	113	0
+	+	120	25
+	+	146	0
+	+	113	0
+	+	137	0
+	+	196	9
 
-> ~/scripts/file.log
-	*	1654464444	0
-	"	12	14
+> ~/down/Compilers_A12_Ramses_Aziz_040915215/Buffer.h
+	*	1655431196	0
+	"	50	37
+	^	50	38
+	.	50	37
+	+	85	0
+	+	48	0
+	+	47	0
+	+	50	37
 
-> ~/scripts/bt
-	*	1654462574	0
-	"	9	0
-	^	19	40
-	.	9	0
+> ~/down/Compilers_A12_Ramses_Aziz_040915215/Compilers.h
+	*	1655430772	0
+	"	37	0
+
+> ~/down/Compilers_A12_Ramses_Aziz_040915215/MainBuffer.c
+	*	1655430758	0
+	"	176	2
+
+> ~/devel/github/Nuget/src/nuget.c
+	*	1655425055	0
+	"	34	1
+
+> ~/down/Compilers_A12_Ramses_Aziz_040915215/tests/big-f-100-10.out
+	*	1655422818	0
+	"	16	8
+
+> ~/down/Compilers_A12_Ramses_Aziz_040915215/tests/big-m-100-10.out
+	*	1655422810	0
+	"	14	19
+
+> ~/devel/github/Nuget/src/tests/display_test.c
+	*	1655420749	0
+	"	13	11
+	^	12	0
+	.	13	0
+	+	1	16
+	+	5	18
+	+	8	1
 	+	9	0
+	+	11	7
+	+	14	1
+	+	15	15
+	+	20	26
+	+	24	17
+	+	26	77
+	+	28	49
+	+	30	1
+	+	30	0
+	+	13	0
 
-> ~/scripts/emoji
-	*	1654462395	0
-	"	1	0
+> ~/devel/github/Nuget/src/TODO
+	*	1655420313	0
+	"	3	0
 
-> ~/scripts/printctl
-	*	1654462389	0
-	"	1	0
-
-> ~/scripts/gotourl
-	*	1654462385	0
-	"	1	0
-	^	8	14
-	.	5	0
-	+	8	13
-	+	5	0
-
-> ~/scripts/pullgit
-	*	1654462379	0
-	"	16	22
-
-> ~/scripts/yt-audio
-	*	1654462366	0
-	"	17	48
-
-> /usr/share/vim/vim82/doc/help.txt
-	*	1654457662	0
-	"	1	0
-
-> ~/qr
-	*	1654447828	0
-	"	1	0
+> ~/devel/github/Nuget/.git/MERGE_MSG
+	*	1655420255	0
+	"	7	7
+	^	7	8
+	.	7	7
+	+	7	7
