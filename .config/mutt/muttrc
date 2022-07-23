@@ -12,5 +12,5 @@ set postponed = "+Drafts"
 
 mailboxes =INBOX =Sent =Trash =Drafts =Junk
 
-source neomuttrc
-source colors.muttrc
+source /home/neil/.config/mutt/neomuttrc
+source /home/neil/.config/mutt/colors.muttrc

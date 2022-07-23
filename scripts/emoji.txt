@@ -1,7 +1,7 @@
 😀 happy face
 😃 happy face with big eyes
 😄 happy face with eyes closed
-😁 say cheese 
+😁 say cheese
 😆 grinning squinting face
 😅 grinning face with sweat
 🤣 rolling on the floor laughing
@@ -20,34 +20,34 @@
 😚 kissing face with blush
 😙 kissing face with eyes closed
 🥲 smiley face with tear
-😋 yummy 
+😋 yummy
 😛 happy face with tongue out
 😜 winking face with tongue out
 🤪 wacky face
-😝 XD 
+😝 XD
 🤑 happy face with money
 🤗 hugging face
-🤭 giggling with hand over mouth 
+🤭 giggling with hand over mouth
 🤫 shhhh face
 🤔 thinking face
-🤐 mouth zipped shut 
-🤨 confused 
+🤐 mouth zipped shut
+🤨 confused
 😐 neutral face
-😑 -_- 
-😶 expressionless 
-😏 sexy smiley face 
-😒 unimpressed 
-🙄 eye roll 
-😬 wincing face 
+😑 -_-
+😶 expressionless
+😏 sexy smiley face
+😒 unimpressed
+🙄 eye roll
+😬 wincing face
 🤥 lying face
 😌 relieved face
-😔 frowny face with eyes closed 
+😔 frowny face with eyes closed
 😪 frowny face with tear and eyes closed
 🤤 drooling face
 😴 sleeping face
-😷 contagious 
-🤒 fever 
-🤕 headache 
+😷 contagious
+🤒 fever
+🤕 headache
 🤢 nauseated face
 🤮 vomiting
 🤧 sneezing face
@@ -58,49 +58,49 @@
 🤯 exploding head
 🤠 cowboy hat face
 🥳 partying face
-🥸 disguise 
+🥸 disguise
 😎 smiling face with sunglasses
 🤓 nerd face
-🧐 confused with monicle 
-😕 mild frowny face 
+🧐 confused with monicle
+😕 mild frowny face
 😟 worried face
 🙁 slightly frowny face
 ☹️  frowny face
-😮 OoO 
-😯 speechless 
-😲 amazed face 
+😮 OoO
+😯 speechless
+😲 amazed face
 😳 embarassed face
-🥺 puppy eyes 
+🥺 puppy eyes
 😦 frowny face with open mouth
 😧 anguished face
 😨 anxious face
 😰 anxious face with sweat
-😥 frowny face with tear 
-😢 puppy eyes with tear 
-😭 crying a river 
+😥 frowny face with tear
+😢 puppy eyes with tear
+😭 crying a river
 😱 scream
-😖 >w< 
-😣 frowny face with squinty eyes 
+😖 >w<
+😣 frowny face with squinty eyes
 😞 disappointed face
 😓 frowny face with sweat
-😩 whiney face  
+😩 whiney face
 😫 whiney face with squinty eyes
 🥱 yawning face
-😤 livid with steam out of nose 
+😤 livid with steam out of nose
 😡 angry face (red)
 😠 angry face
-🤬 swearing 
-😈 happy demon 
-👿 angry demon 
+🤬 swearing
+😈 happy demon
+👿 angry demon
 💀 skull
 ☠️  skull and crossbones
-💩 poo 
+💩 poo
 🤡 clown face
 👹 ogre
 👺 goblin
 👻 ghost
 👽 alien
-👾 space-invaders 
+👾 space-invaders
 🤖 robot
 😺 happy cat face
 😸 happy cat face with eyes closed
@@ -111,7 +111,7 @@
 🙀 screaming cat face
 😿 crying cat face
 😾 pouting cat face
-🙈 monkey with hands over eyes 
+🙈 monkey with hands over eyes
 🙉 monkey with hands over ears
 🙊 monkey with hands over mouth
 💋 kiss
@@ -137,27 +137,27 @@
 🤍 white heart
 💯 100
 💢 anger symbol
-💥 bang 
+💥 bang
 💫 dazed stars
 💦 water droplets
-💨 smoke puff 
+💨 smoke puff
 🕳️ hole
 💣 bomb
 💬 speech bubble ...
 🗨️ speech bubble
-🗯️ exclamation speech bubble 
+🗯️ exclamation speech bubble
 💭 thought bubble
 💤 zzz
 👋 waving hand
 🤚 back of hand
-🖐️ hi-five 
+🖐️ hi-five
 ✋ stop hand
-🖖 live long in prosper 
+🖖 live long in prosper
 👌 OK hand
 🤌 italian hand
 🤏 pinching fingers
 ✌️ peace hand
-🤞 fingers crossed 
+🤞 fingers crossed
 🤟 rock hand with thumb out
 🤘 rock hand
 🤙 call me hand
@@ -442,7 +442,7 @@
 🍒 cherries
 🍓 strawberry
 🫐 blueberries
-🥝 kiwi 
+🥝 kiwi
 🍅 tomato
 🫒 olive
 🥥 coconut

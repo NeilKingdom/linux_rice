@@ -2,14 +2,18 @@
 #
 # Purpose: Connect bluetooth headphones
 #
-# Dependencies: bluetoothctl, bluez5
+# Dependencies: bluez, bluez-utils, bluez-libs
 #
 # If you consistently have troubles connecting, even after using bt off, you will
-# need to restart your audio manager, enter bluetoothctl manually, remove device,
-# power off, scan off, and reset device list on headphones.
+# need to restart your audio manager, reset device list on headphones (if applicable), put headphones
+# in pairing mode, run bluetoothctl, power on, agent on, default-agent, scan on, pair $MAC, trust
+# $MAC, connect $MAC
 #
-# If you recieve error "Could not find default agent", try removing bluetooth dongle
+# If you receive error "Could not find default agent", try removing bluetooth dongle
 # from USB port and plug back in.
+#
+# If you receive error "Failed to connect: org.bluez.Error.Failed br-connection-profile-unavailable"
+# and you are using pipewire-pulse, try running: wireplumber & disown
 
 SELECTION=$1
 MAC=28:11:A5:44:BE:B0

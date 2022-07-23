@@ -4,25 +4,24 @@ if [ -x /usr/bin/gpg-agent ]; then
 fi
 
 #Manage terminal transparency and background
-wal -i "$HOME/pics/bkgnds/$(ls $HOME/pics/bkgnds | sort -R | sort -n 1)" &
-picom -o -0.9 --no-fading-openclose --vsync --backend glx --xrender-sync-fence &
+#wal -i "$HOME/pics/bkgnds/$(ls $HOME/pics/bkgnds | sort -R | sort -n 1)" &
+#picom -o -0.9 --no-fading-openclose --vsync --backend glx --xrender-sync-fence &
+feh -z $HOME/pics/bkgnds --bg-fill &
+picom -o -0.9 --no-fading-openclose &
 
 #Sync hwclock to Real Time Clock (RTC) with chrony
 chrony trimrtc &
 
+# Pipewire session/policy manager
+wireplumber & disown
 #Start pipewire audio server
 /usr/bin/pipewire &
 /usr/bin/pipewire-pulse &
-/usr/bin/pipewire-media-session &
-#Start Music Player Daemon (MPD)
+#Start Music Player Daemon (MPD) (used by ncmpcpp)
 mpd &
 
 #Mouse Config
 solaar --window=hide &
-
-# Polkit authentication (primarily for vscodium to save as sudo)
-/usr/lib/polkit-1/polkitd &
-/usr/bin/polkit-dumb-agent &
 
 #Notifications
 dunst &

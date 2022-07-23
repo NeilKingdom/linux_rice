@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =5
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/home/neil/.config/vim'
+let g:netrw_dirhist_6='/home/neil/.config/newsboat'
 let g:netrw_dirhist_5='/home/neil/devel/school/2021_Fall/Compilers_Term4/Assignment12'
 let g:netrw_dirhist_4='/home/neil/.config/gnupg'
 let g:netrw_dirhist_3='/usr/share/terminfo'

@@ -1,0 +1,14 @@
+#!/bin/sh
+# Take a screenshot of the entire window
+
+EXISTING=$(ls screenshot?.png)
+
+i=0
+for FILE in $EXISTING; do
+   i=$((i+1))
+   ! [ $(ls | grep "screenshot$i.png") ] && break
+done
+
+OUT_FILE=screenshot$i.png
+import -window root $OUT_FILE
+notify-send "Captured screenshot $OUT_FILE"
