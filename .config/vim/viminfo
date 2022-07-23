@@ -21,7 +21,7 @@ $
 
 # Command Line History (newest to oldest):
 :q
-|2,0,1658551429,,"q"
+|2,0,1658551967,,"q"
 :wq
 |2,0,1658467180,,"wq"
 :e Scanner.c
@@ -123,7 +123,7 @@ $
 
 # Search String History (newest to oldest):
 ? \s\+$
-|2,1,1658467180,,"\\s\\+$"
+|2,1,1658552256,,"\\s\\+$"
 ?/nextState
 |2,1,1658465971,47,"nextState"
 ?/EOF
@@ -233,9 +233,9 @@ $
 "0	LINE	0
 		{ 11,   11,   11,   11,   11,   11,   11,   ES,  ES,   ES,   ES,   ES,    ES,    13,    ES,   ES,   ES,   ES,   11 }, /* NOAS */
 |3,0,0,1,1,0,1658465466,"	{ 11,   11,   11,   11,   11,   11,   11,   ES,  ES,   ES,   ES,   ES,    ES,    13,    ES,   ES,   ES,   ES,   11 }, /* NOAS */"
-""1	LINE	0
+"1	LINE	0
 	      currentToken = (*finalStateTable[ES])(lexeme);
-|3,1,1,1,1,0,1658465757,"      currentToken = (*finalStateTable[ES])(lexeme);"
+|3,0,1,1,1,0,1658465757,"      currentToken = (*finalStateTable[ES])(lexeme);"
 "2	LINE	0
 	      funcKEY(lexeme);
 |3,0,2,1,1,0,1658465753,"      funcKEY(lexeme);"
@@ -295,14 +295,21 @@ $
 "z	CHAR	0
 	QZQ€ýa€ýa€ýa€ýa
 |3,0,35,0,1,0,1630286931,"QZQ€ýa€ýa€ýa€ýa"
-"-	CHAR	0
-	read
-|3,0,36,0,1,0,1658466151,"read"
+""-	CHAR	0
+	configdump
+|3,1,36,0,1,0,1658552253,"configdump"
 
 # Buffer list:
-%~/.config/dconf/user	1	0
+%~/.gitignore	1	21
 
 # History of marks within files (newest to oldest):
+
+> ~/.gitignore
+	*	1658552266	0
+	"	1	21
+	^	1	12
+	.	1	0
+	+	1	0
 
 > ~/.config/dconf/user
 	*	1658551428	0
@@ -698,7 +705,3 @@ $
 	+	165	3
 	+	80	0
 	+	84	0
-
-> /usr/share/vim/vim90/doc/windows.txt
-	*	1658459020	0
-	"	1250	44
