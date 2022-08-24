@@ -2,7 +2,7 @@
 #
 # Purpose: Connect bluetooth headphones
 #
-# Dependencies: bluez, bluez-utils, bluez-libs
+# Dependencies: bluez, bluez-utils, bluez-libs, pipewire, pipewire-pulse, wireplumber
 #
 # If you consistently have troubles connecting, even after using bt off, you will
 # need to restart your audio manager, reset device list on headphones (if applicable), put headphones
@@ -11,9 +11,6 @@
 #
 # If you receive error "Could not find default agent", try removing bluetooth dongle
 # from USB port and plug back in.
-#
-# If you receive error "Failed to connect: org.bluez.Error.Failed br-connection-profile-unavailable"
-# and you are using pipewire-pulse, try running: wireplumber & disown
 
 SELECTION=$1
 MAC=28:11:A5:44:BE:B0
@@ -28,24 +25,27 @@ signal_handler() {
 turnon() {
    trap signal_handler INT
 
-	echo "Please run this script before turning headphones on."
-   echo "Wait a moment until headphones are connected and press Ctrl+C once paired."
-	bluetoothctl power on
-	bluetoothctl scan on
-	bluetoothctl connect $MAC
+   echo "Please wait until headphones are in pairing mode and then run this script"
+   bluetoothctl power on
+   bluetoothctl connect $MAC
 
+   wireplumber & disown
+
+   # Wait for interrupt signal (Ctrl+c)
    for i in {1..100}
    do
       sleep 1 &
    done
 
    wait
+
+   rm -rf ~/wireplumber
 }
 
 turnoff() {
 	bluetoothctl disconnect $MAC
-	bluetoothctl power off
-	bluetoothctl quit
+   bluetoothctl power off
+   bluetoothctl quit
 	echo "Disconnected from $MAC"
 }
 

@@ -1,7 +1,15 @@
 # Z-Shell Config
 
+# Colors
 autoload -U colors && colors
-PS1="%B%{$fg[magenta]%}[%{$fg[cyan]%}%n%{$fg[blue]%}@%{$fg[cyan]%M %1d%{$fg[magenta]%}]%{$fg[cyan]%}$%{$reset_color%} "
+RED="%{$fg[red]%}"
+GREEN="%{$fg[green]%}"
+YELLOW="%{$fg[yellow]%}"
+BLUE="%{$fg[blue]%}"
+MAGENTA="%{$fg[magenta]%}"
+CYAN="%{$fg[cyan]%}"
+
+PS1="%B${RED}[${YELLOW}%n${BLUE}@${YELLOW}%M %1d${RED}]${YELLOW}$%{$reset_color%} "
 
 # History settings
 HISTSIZE=5000
@@ -41,8 +49,8 @@ export XDG_DOCUMENTS_DIR="$HOME/docs"
 export XDG_DOWNLOAD_DIR="$HOME/down"
 export XDG_MUSIC_DIR="$HOME/music"
 export XDG_PICTURES_DIR="$HOME/pics"
+export XDG_DESKTOP_DIR="$HOME"
 export XDG_STATE_HOME=
-export XDG_DESKTOP_DIR=
 export XDG_VIDEOS_DIR=
 
 # XDG compliant application env vars
@@ -67,13 +75,11 @@ export GPG_TTY
 
 # Aliases for XDG compliant config files
 alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts --config=$XDG_CONFIG_HOME/wgetrc"
-alias mbsync="mbsync -c $XDG_CONFIG_HOME/isync/mbsyncrc"
-alias code='vscodium --extensions-dir "$XDG_DATA_HOME/vscode"'
+alias mbsync="mbsync -c $XDG_CONFIG_HOME/isync/mbsyncrc --all"
 
 # Abbreviations
 alias cddev="cd $DEVEL_DIR"
-alias paint="mtpaint"
-alias scli="scli -n -f --color=high"
+alias scli="scli -nfs --color=high"
 alias scim="sc-im"
 alias ap="absolutely-proprietary -f"
 alias rstudio="rstudio-bin --no-sandbox"
@@ -91,4 +97,4 @@ alias mount="sudo mount"
 alias umount="sudo umount"
 
 # Source zsh syntax highlight plugin. Should be last
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2> /dev/null
