@@ -5,7 +5,7 @@
 # in a given file, they are piped to dmenu. The script opens the URL in a specified
 # program according to the extension of the URL.
 #
-# This script could be significantly improved using xdg-open and MIME types
+# TODO: This script could be significantly improved using xdg-open and MIME types
 
 OPEN_PIC=sxiv
 OPEN_GIF=mpv
