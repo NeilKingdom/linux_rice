@@ -1,12 +1,15 @@
 #!/bin/sh
-
+#
 # Configure my stupid HP DeskJet printer
+# TODO: Fix eval command
 
-echo_and_run() {
-   echo "$@"
-   eval $(printf '%q ' "$@") < /dev/tty
+echo_and_run()
+{
+   echo "$1"
+   #eval "$(printf '%q ' "$@")" < /dev/tty
+   eval "$(printf '%s\n' "$1" | sed "s/'/'\\\\''/g; 1 s/^/'/; $ s/$/'/")" < /dev/tty
 }
 
-read -p "Enter IP address: " IP
+echo "Enter IP address: " && read -r IP
 CMD="lpadmin -p HP_DeskJet_Plus_4152 -E -v ipp://$IP/ipp/print -m everywhere"
-echo_and_run $CMD
+echo_and_run "$CMD"

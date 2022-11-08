@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# NOTE: This script heavily assumes that all project files
+# are located under one central development directory. It
+# has been tailored to my needs and will need to be edited
+# to suit yours
+
+[ -f README.md ] && echo "README.md already exists!" && exit
+
+# Change '6' to be the number of directories between / (root) and your project's root directory (both inclusive)
+# e.g. If your project is /home/user/devel/project, then the number would be 5
+PROJECT_ROOT=$(pwd | cut -d '/' -f-6)
+echo "test" > "$PROJECT_ROOT"/README.md

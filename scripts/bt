@@ -12,44 +12,48 @@
 # If you receive error "Could not find default agent", try removing bluetooth dongle
 # from USB port and plug back in.
 
-SELECTION=$1
+SELECTION="$1"
 MAC=28:11:A5:44:BE:B0
 
-signal_handler() {
+signal_handler()
+{
    echo
-   PAIR_STAT=$(bluetoothctl info $MAC | sed '9q;d' | awk '{print $2}')
+   PAIR_STAT="$(bluetoothctl info $MAC | sed '9q;d' | awk '{print $2}')"
    [ "$PAIR_STAT" = "yes" ] && echo "Successfully paired with $MAC!" || echo "Failed to pair with $MAC..."
    kill -TERM -$$
 }
 
-turnon() {
+turnon()
+{
    trap signal_handler INT
 
    echo "Please wait until headphones are in pairing mode and then run this script"
    bluetoothctl power on
    bluetoothctl connect $MAC
 
-   wireplumber & disown
+   #wireplumber & disown
+   wireplumber &
 
    # Wait for interrupt signal (Ctrl+c)
-   for i in {1..100}
-   do
+   for i in {1..100}; do
       sleep 1 &
    done
 
    wait
 
+   # TODO: Setup wireplumber config and remove this line
    rm -rf ~/wireplumber
 }
 
-turnoff() {
+turnoff()
+{
 	bluetoothctl disconnect $MAC
    bluetoothctl power off
    bluetoothctl quit
 	echo "Disconnected from $MAC"
 }
 
-case $SELECTION in
+case "$SELECTION" in
 on)
    turnon
    ;;
@@ -57,10 +61,8 @@ off)
    turnoff
    ;;
 *)
-   echo "Options:"
-   echo
-   echo "    on) Attempts to connect with headphones."
-   echo "    off) Terminates connection between headphones and bluetooth dongle."
-   echo
+   print "Options:\n\n" \
+   "\ton) Attempts to connect with headphones." \
+   "\toff) Terminates connection between headphones and bluetooth dongle.\n"
 	;;
 esac

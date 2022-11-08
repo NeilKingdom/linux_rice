@@ -31,6 +31,7 @@ for ((i = 1; i <= $#; i++)); do
 			exit 0
 			;;
 		*)
+         # Use --force-ipv4 because ipv6 is extremely slow
 			! [ -z $(echo "$URL" | grep "www.youtube.com") ] && yt-dlp -f bestaudio --extract-audio --force-ipv4 "$URL" || echo "Invalid URL"
 			exit 0
 			;;

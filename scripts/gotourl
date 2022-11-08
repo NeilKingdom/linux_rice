@@ -1,119 +1,70 @@
-#!/bin/bash
-
-# This script parses input for valid URLs. Input can include the user's .bash_history,
-# direct input from stdin, or input from a given file. If more than one URLs are found
-# in a given file, they are piped to dmenu. The script opens the URL in a specified
-# program according to the extension of the URL.
+#!/bin/sh
 #
-# TODO: This script could be significantly improved using xdg-open and MIME types
+# This script parses input for valid URIs. Input can include the user's history file,
+# direct input from stdin, or input from a given file. If more than one URIs are found
+# in a given file, they are piped to dmenu. The script opens the located resource using
+# xdg-open
 
-OPEN_PIC=sxiv
-OPEN_GIF=mpv
-OPEN_PDF=zathura
-OPEN_OTHER=$BROWSER
+REGEX="https\?://\S*\.[A-Za-z]\+\S*"
+HIST_LOCATION="$HOME/.history"
 
-# Get last parameter (Posix compliant)
-for TARG in $@; do :; done
-
-function failure {
-
-	echo "Could not find file or url $1"
-	echo "Exiting..."
-	rm "/tmp/url" >& "/dev/null"
-	rm "tmp/hist_tail" >& "/dev/null"
+failure()
+{
+	printf "Could not find file or URI\nExiting...\n"
 	exit 1
 }
 
-function parameters {
-
+parameters()
+{
 	# Check for help flag
 	for ARG in $1; do
-		if [ $ARG = "-h" ]; then
-			# Must redirect to /dev/tty, otherwise the text is returned as one big string
-			echo "Usage: gotourl [options] [file | url]" > "/dev/tty"
-			echo "-h: help menu" > "/dev/tty"
-			echo "-b: bash history - Looks at the tail of your .bash_history for URLs (/home/user/.bash_history is the default search location)" > "/dev/tty"
-			echo "-l: point to the location of your .bash_history file" > "/dev/tty"
+		if [ "$ARG" = "-h" ]; then
+			printf
+         "Usage: gotourl [options] [file | url]\n" \
+			"-h: help menu\n" \
+			"-y: Use this option to search\n" \
+         "\tthe last 10 commands in your history file for URIs\n" \
+         "\t(/home/\$USER/.history is the default search location)\n" \
+			"-f <path_to_history_file>: Enter the absolute path to your history file\n"
 		fi
 	done
 
-	HIST_LOCATION="$HOME/.bash_history"
-
-	# Check for bash history location flag
-	for ((i = 1; i <= $2; i++)); do
-		eval ARG=\$$i
-		eval NEXT_ARG=\$$((i+1))
-		[ "$ARG" = '-l' ] && HIST_LOCATION="$NEXT_ARG"
-		# If -l is supplied, but NEXT_ARG is empty, HIST_LOCATION remains as the default
-		[ -z "$NEXT_ARG" ] && HIST_LOCATION="$HOME/.bash_history"
+	# Check for history file location flag
+   # Keep in mind that $1 expands to $@
+	for i in $1; do
+		eval ARG=\$"$i"
+		eval NEXT_ARG=\$"$((i+1))"
+		# If -f is supplied, but NEXT_ARG is empty, HIST_LOCATION remains as the default
+		[ "$ARG" = '-f' ] && [ -n "$NEXT_ARG" ] && HIST_LOCATION="$NEXT_ARG" || HIST_LOCATION="$HOME/.history"
 	done
 
-	SEARCH="$TARG"
+	SOURCE="$LAST_ARG"
 
-	# Check for bash history flag (takes precedence over file or url if both are provided)
+	# Check for history flag (takes precedence over file or url if both are provided)
 	for ARG in $1; do
-		if [ $ARG = "-b" ]; then
-			# Refresh history and output last 10 lines to /tmp/hist_tail
-			history -r > "/dev/null"
-			tail $HIST_LOCATION > "/tmp/hist_tail"
-			SEARCH="/tmp/hist_tail"
+		if [ "$ARG" = "-y" ]; then
+         SOURCE="$(tail "$HIST_LOCATION")"
 			break
 		fi
 	done
 
 	# Hacky way to return local variable
-	echo $SEARCH
+	echo "$SOURCE"
 }
 
 ### Script Begin ###
 
+# Get the final user argument (POSIX compliant)
+for LAST_ARG in "$@"; do :; done
+
 # If no arguments are supplied, request the name of the file, otherwise check parameters
-[ $# -eq 0 ] && read -p "Please enter a file that you would like to parse or a direct URL: " TARG && SEARCH="$(parameters $@ $#)" || SEARCH="$(parameters $@ $#)"
+echo "Please enter a file that you would like to parse or a direct URL: "
+[ $# -eq 0 ] && read -r LAST_ARG
+SOURCE="$(parameters "$@")"
 
-URL=
-REGEX="https\?://\S*\.[A-Za-z]\+\S*"
-# If user supplied a file, grep the file
-if [ -f $SEARCH ]; then
-	# Pipe to dmenu if more than 1 url were found
-	[ $(grep $REGEX $SEARCH | wc -l) -gt 1 ] && URL="$(grep $REGEX $SEARCH | dmenu -p "Select the URL you'd like to open" -l 10)" || URL="$(grep -o $REGEX $SEARCH)"
-# Else, grep the URL
-else
-	URL="$(echo $SEARCH | grep "https\?://\S*\.[A-Za-z]\+\S*")"
-fi
+# Pipe to dmenu if more than 1 URI were found
+[ "$(grep -c "$REGEX" "$SOURCE")" -gt 1 ] \
+&& URI="$(grep "$REGEX" "$SOURCE" | dmenu -p "Select the URL you'd like to open" -l 10)" \
+|| URI="$(grep -o "$REGEX" "$SOURCE")"
 
-# Check that a URL was found
-[ -z "$URL" ] && echo "Could not find any valid URLs" && exit 0
-
-# Assumes that only one extension will be found in URL
-EXT=
-! [ -z "$(echo $URL | grep "png")" ] && wget -q -O "/tmp/url" $URL && EXT=1
-! [ -z "$(echo $URL | grep "jpe\?g")" ] && wget -q -O "/tmp/url" $URL && EXT=2
-! [ -z "$(echo $URL | grep "gif")" ] && wget -q -O "/tmp/url" $URL && EXT=3
-! [ -z "$(echo $URL | grep "pdf")" ] && wget -q -O "/tmp/url" $URL && EXT=4
-
-# Ensure that wget downloaded the file, otherwise throw exception
-! [ -f "/tmp/url" ] && ! [ -z "$EXT" ] && failure "/tmp/url"
-
-# Note: The use of $TERMINAL env var with -e option has only been tested with st term. emu.
-case $EXT in
-	1)
-		$TERMINAL -e $OPEN_PIC "/tmp/url"
-		;;
-	2)
-		$TERMINAL -e $OPEN_PIC "/tmp/url"
-		;;
-	3)
-		$TERMINAL -e $OPEN_GIF --loop-file=inf "/tmp/url"
-		;;
-	4)
-		$TERMINAL -e $OPEN_PDF "/tmp/url"
-		;;
-	*)
-		$TERMINAL -e $OPEN_OTHER $URL
-		;;
-esac
-
-#rm "/tmp/hist_tail" >& "/dev/null"
-rm "/tmp/url" >& "/dev/null"
-
-exit 0
+xdg-open "$URI"

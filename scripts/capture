@@ -1,13 +1,8 @@
 #!/bin/sh
 # Take a screenshot of the entire window
 
-EXISTING=$(ls capture?.png)
-
-i=0
-for FILE in $EXISTING; do
-   i=$((i+1))
-done
-
+i=$(ls --format=vertical capture?.png | wc -l)
+i=$((i+1))
 OUT_FILE=capture$i.png
 import -window root $OUT_FILE
-notify-send "Captured screenshot $OUT_FILE"
+notify-send "Capture" "Captured screenshot $OUT_FILE"
