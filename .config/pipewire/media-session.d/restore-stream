@@ -1,0 +1,6 @@
+{
+ "restore.stream.Audio/Sink.node.name:alsa_output.pci-0000_0b_00.1.hdmi-stereo-extra2": { "volume": 1.000000, "mute": false, "volumes": [ 1.000000, 1.000000 ], "channels": [ "FL", "FR" ] },
+ "restore.stream.Audio/Sink.node.name:alsa_output.pci-0000_0d_00.3.iec958-stereo": { "volume": 1.000000, "mute": false, "volumes": [ 1.000000, 1.000000 ], "channels": [ "FL", "FR" ] },
+ "restore.stream.Output/Audio.application.name:Brave": { "volume": 1.000000, "mute": false, "volumes": [ 1.000000, 1.000000 ], "channels": [ "FL", "FR" ] },
+ "restore.stream.Audio/Sink.node.name:bluez_output.28_11_A5_44_BE_B0.a2dp-sink": { "volume": 1.000000, "mute": false, "volumes": [ 0.081223, 0.081223 ], "channels": [ "FL", "FR" ] }
+}
