@@ -3,13 +3,16 @@ if [ -x /usr/bin/gpg-agent ]; then
 	eval "$(/usr/bin/gpg-agent --daemon)"
 fi
 
+# Start dbus daemon
+dbus-daemon --session --nofork --nopidfile --address="unix:path=$XDG_RUNTIME_DIR/bus" &
+
 # Manage terminal transparency and background
 # wal -i "$HOME/pics/bkgnds/$(ls $HOME/pics/bkgnds | sort -R | sort -n 1)" &
-feh -z $HOME/pics/bkgnds --bg-fill &
-picom -o -0.9 --no-fading-openclose &
+feh -z $HOME/pics/bkgnds --bg-fill --no-fehbg &
+picom -o 0.9 --no-fading-openclose &
 
 # Sync hwclock to Real Time Clock (RTC) with chrony
-chrony trimrtc &
+chronyc trimrtc &
 
 # Enable numlock at boot
 numlockx &

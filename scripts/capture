@@ -2,7 +2,6 @@
 # Take a screenshot of the entire window
 
 i=$(ls --format=vertical capture?.png | wc -l)
-i=$((i+1))
 OUT_FILE=capture$i.png
-import -window root $OUT_FILE
+import -window root "$OUT_FILE"
 notify-send "Capture" "Captured screenshot $OUT_FILE"

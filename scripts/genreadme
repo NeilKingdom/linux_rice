@@ -10,4 +10,4 @@
 # Change '6' to be the number of directories between / (root) and your project's root directory (both inclusive)
 # e.g. If your project is /home/user/devel/project, then the number would be 5
 PROJECT_ROOT=$(pwd | cut -d '/' -f-6)
-echo "test" > "$PROJECT_ROOT"/README.md
+cp ./README_SKEL.md "$PROJECT_ROOT"/README.md

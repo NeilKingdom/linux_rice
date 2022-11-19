@@ -31,8 +31,7 @@ turnon()
    bluetoothctl power on
    bluetoothctl connect $MAC
 
-   #wireplumber & disown
-   wireplumber &
+   wireplumber & disown
 
    # Wait for interrupt signal (Ctrl+c)
    for i in {1..100}; do

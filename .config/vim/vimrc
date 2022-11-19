@@ -1,5 +1,4 @@
 " PATH VARIABLES
-
 set runtimepath^=$XDG_CONFIG_HOME/vim
 set packpath^=$XDG_CONFIG_HOME/vim/plugged
 set viminfo=%,<800,'10,/50,:100,h,f0,n~/.config/vim/viminfo
