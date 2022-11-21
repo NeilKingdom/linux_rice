@@ -4,22 +4,32 @@
 # NOTE: The URL must be surrounded in double quotes, otherwise your terminal will
 # interpret special characters such as '?' as a regex pattern
 
-MUSIC_DIR=$HOME/music
+i=1
+MUSIC_DIR="$HOME"/music
 
 # Get last parameter (POSIX compliant)
 for URL in "$@"; do :; done
 
-for ((i = 1; i <= $#; i++)); do
+while [ "$i" -le "$#" ]; do
 	eval ARG=\$"$i"
-	case $ARG in
+	case "$ARG" in
 		"-d")
 			printf "Enter the directory you'd like to place the file in (default is %s)\n" "$MUSIC_DIR"; read -r DIR
 			printf "Enter the new name of the file (default is to keep file name unchanged)\n"; read -r NAME
-         [ "$(grep -q "www.youtube.com")" ] && yt-dlp -f bestaudio --extract-audio --force-ipv4 "$URL" || echo "Invalid URL"; exit 0
+
+         if echo "$URL" | grep -q "www.youtube.com"
+         then
+            # Use --force-ipv4 because ipv6 is extremely slow
+            yt-dlp -f bestaudio --extract-audio --force-ipv4 "$URL"
+         else
+            echo "Invalid URL"
+            exit 1
+         fi
+
          FILE="$(yt-dlp --get-filename "$URL" | sed 's/webm/opus/g')"
-			[ -n "$NAME" ] && mv "$FILE" "$NAME.opus" || NAME="$FILE"
-			[ -z "$DIR" ] && DIR="$MUSIC_DIR"
-			mv "$NAME.opus" "$DIR"
+			[ "$NAME" = "" ] && NAME="$FILE" || mv "$FILE" "$NAME.opus"
+			[ "$DIR" = "" ] && DIR="$MUSIC_DIR"
+			mv "$NAME" "$DIR"
 			exit 0
 			;;
 		"-h")
@@ -30,9 +40,15 @@ for ((i = 1; i <= $#; i++)); do
 			exit 0
 			;;
 		*)
-         # Use --force-ipv4 because ipv6 is extremely slow
-			[ "$(grep -q "www.youtube.com")" ] && yt-dlp -f bestaudio --extract-audio --force-ipv4 "$URL" || echo "Invalid URL"
-			exit 0
+         if echo "$URL" | grep -q "www.youtube.com"
+         then
+            yt-dlp -f bestaudio --extract-audio --force-ipv4 "$URL"
+         else
+            echo "Invalid URL"
+            exit 1
+         fi
+         exit 0
 			;;
 	esac
+   i=$((i+1))
 done
