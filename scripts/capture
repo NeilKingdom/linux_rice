@@ -1,7 +1,8 @@
 #!/bin/sh
 # Take a screenshot of the entire window
+# TODO: Could suppress shell error on initial capture
 
-i=$(ls --format=vertical capture?.png | wc -l)
+i="$(find ./*.png | wc -l)"
 OUT_FILE=capture$i.png
 import -window root "$OUT_FILE"
 notify-send "Capture" "Captured screenshot $OUT_FILE"

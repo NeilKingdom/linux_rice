@@ -1,13 +1,46 @@
 #!/bin/sh
 #
-# NOTE: This script heavily assumes that all project files
-# are located under one central development directory. It
-# has been tailored to my needs and will need to be edited
-# to suit yours
+# NOTE: This script assumes the existence of an environment
+# variable "$DEVEL_DIR" which contains the absolute path
+# towards the user's development directory where projects
+# are stored. If you do not have this directory you may
+# export it manually. Note that DEVEL_DIR should not be the
+# project root directory, but rather, the directory above
+# it. For example, if your project's root directory is
+# located at /home/user/foo/bar, then you should export
+# DEVEL_DIR as /home/user/foo before running this script.
 
-[ -f README.md ] && echo "README.md already exists!" && exit
+RDME_SRC="$HOME/scripts"
 
-# Change '6' to be the number of directories between / (root) and your project's root directory (both inclusive)
-# e.g. If your project is /home/user/devel/project, then the number would be 5
-PROJECT_ROOT=$(pwd | cut -d '/' -f-6)
-cp ./README_SKEL.md "$PROJECT_ROOT"/README.md
+# Get the name of the root directory
+ROOT_NAME="${PWD#$(echo "$DEVEL_DIR/")}"
+ROOT_NAME="$(echo $ROOT_NAME | cut -d '/' -f1)"
+# Get the absolute path to the root directory
+PROJECT_ROOT="$(pwd | sed "s/\($ROOT_NAME\).*/\1/")"
+
+if [ -f "$PROJECT_ROOT"/README.md ]
+then
+   echo "README.md already exists in project root. Overwrite?"; read -r ANS
+   [ "$ANS" != "y" ] && \
+   [ "$ANS" != "Y" ] && \
+   [ "$ANS" != "yes" ] && \
+   [ "$ANS" != "YES" ] && \
+   [ "$ANS" != "Yes" ] && echo "Exiting..." && exit 0
+fi
+
+# Use figlet to output banner name into README.md
+i=1
+BANNER="$(figlet "$ROOT_NAME")"
+LINES="$(echo "$BANNER" | wc -l)"
+
+printf "<pre><code>" > "$PROJECT_ROOT"/README.md
+while [ "$i" -lt "$LINES" ]
+do
+   LINE="$(echo "$BANNER" | sed "$i"q\;d)"
+   printf "\n %s" "$LINE" >> "$PROJECT_ROOT"/README.md
+   i=$((i+1))
+done
+printf "\n</code></pre>\n\n" >> "$PROJECT_ROOT"/README.md
+
+cat "$RDME_SRC"/README_SKEL.md >> "$PROJECT_ROOT"/README.md
+exit 0
