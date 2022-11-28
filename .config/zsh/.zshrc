@@ -41,7 +41,7 @@ bindkey -v '^?' backward-delete-char
 export EDITOR="vim"
 export TERMINAL="st"
 export BROWSER="firefox"
-export DEBUGINFOD_URLS="https://debuginfod.artixlinux.org"
+export DEBUGINFOD_URLS="https://debuginfod.elfutils.org/"
 
 # XDG environment variables
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -87,6 +87,7 @@ alias mbsync="mbsync -c $XDG_CONFIG_HOME/isync/mbsyncrc --all"
 
 # Abbreviations
 alias cddev="cd $DEVEL_DIR"
+alias grep="grep --color"
 alias scli="scli -nfs --color=high"
 alias scim="sc-im"
 alias ap="absolutely-proprietary -f"

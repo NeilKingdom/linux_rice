@@ -9,12 +9,14 @@
 # it. For example, if your project's root directory is
 # located at /home/user/foo/bar, then you should export
 # DEVEL_DIR as /home/user/foo before running this script.
+#
+# Dependencies: figlet
 
 RDME_SRC="$HOME/scripts"
 
 # Get the name of the root directory
-ROOT_NAME="${PWD#$(echo "$DEVEL_DIR/")}"
-ROOT_NAME="$(echo $ROOT_NAME | cut -d '/' -f1)"
+ROOT_NAME="${PWD#"$DEVEL_DIR"/}"
+ROOT_NAME="$(echo "$ROOT_NAME" | cut -d '/' -f1)"
 # Get the absolute path to the root directory
 PROJECT_ROOT="$(pwd | sed "s/\($ROOT_NAME\).*/\1/")"
 
