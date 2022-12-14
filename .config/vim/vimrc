@@ -8,8 +8,8 @@ set viminfo=%,<800,'10,/50,:100,h,f0,n~/.config/vim/viminfo
 
 syntax on
 let mapleader=" "
-" Use degraded 256 colorscheme
-let g:solarized_termcolors=256
+" let g:solarized_termcolors=256                Use degraded 256 colorscheme
+let g:gruvbox_termcolors=256
 
 " PLUGGINS
 
@@ -19,16 +19,18 @@ call plug#begin('~/.config/vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'altercation/vim-colors-solarized'
+Plug 'morhetz/gruvbox'
 call plug#end()
 
 " SETS
 
 set background=dark
-set encoding=utf-8
-set pastetoggle=<F12>
-set clipboard=unnamedplus
+set encoding=utf-8                           " Set the default encoding to UTF-8
+set pastetoggle=<F12>                        " Required when pasting code with comments to avoid strange line indenting behavior
+set clipboard=unnamedplus                    " Copy to the system clipboard when using the '+' register
 set splitbelow splitright                    " Window split directions
-set number relativenumber
+set number relativenumber                    " Line that cursor is on will be the actual line number. Other numbers are relative positions to the current line
+set autoindent
 set smartindent
 set expandtab
 set tabstop=3
@@ -37,8 +39,9 @@ set shiftwidth=3
 set scrolloff=8                              " # of lines between cursor before screen scrolls
 set ignorecase
 set smartcase
-set nohlsearch                               " GOTO words as the pattern is being typed
-set incsearch
+set nohlsearch
+set incsearch                                " GOTO words as the pattern is being matched
+set nowrap                                   " Set line wrap off by default
 set noswapfile
 set nobackup
 set undodir=~/.config/vim/undodir
@@ -54,12 +57,25 @@ set ttimeoutlen=20
 
 " MAPPINGS
 
-nnoremap <leader>c :set signcolumn=yes <CR>
-nnoremap <leader>C :set signcolumn=no <CR>
-nnoremap <leader>s :!clear && shellcheck %<CR>
+nnoremap <leader>c :set signcolumn=yes<CR>
+nnoremap <leader>C :set signcolumn=no<CR>
+nnoremap <leader>sh :!clear<CR>:!shellcheck %<CR>
 nnoremap <leader>so :so %<CR>
-" Toggle smartcase
-nnoremap <leader>/ :set smartcase!<CR>:set smartcase?<CR> " Toggle smartcase
+nnoremap <leader>sc :set smartcase!<CR>:set smartcase?<CR> " Toggle smartcase
+nnoremap <leader>lw :set wrap!<CR>:set wrap?<CR>           " Toggle line wrap
+
+" Copy and paste (in visual mode)
+
+" unmap <C-y>
+vnoremap <C-y> "+y                                         " Yank highlighted
+nnoremap <C-y> "+yy                                        " Yank entire line
+" unmap <C-x>
+vnoremap <C-x> "+d                                         " Delete highlighted
+nnoremap <C-x> "+dd                                        " Delete entire line
+" unmap <C-p>
+nnoremap <C-p> "+p
+vnoremap <C-p> <ESC>"+p
+inoremap <C-p> <ESC>"+pa
 
 " Switching windows
 nnoremap <C-h> <C-w>h
@@ -67,23 +83,19 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-" Copy and paste (in visual mode)
-vnoremap <A-c> "+y
-vnoremap <A-x> "+c
-vnoremap <A-v> "+p
-inoremap <A-v> <ESC>"+p
-
 " Resizing windows
 nnoremap <Up> 5<C-w><S-+>
 nnoremap <Down> 5<C-w><S-->
 nnoremap <Left> 10<C-w><S->>
 nnoremap <Right> 10<C-w><S-<>
 
-" Center page on word search or Ctrl + d/u
+" Center page on movements
 nnoremap n nzz
 nnoremap N Nzz
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
+nnoremap <S-[> <S-[>zz
+nnoremap <S-]> <S-]>zz
 
 " AUTO COMMANDS
 
@@ -101,4 +113,4 @@ autocmd BufWritePre * %s/\s\+$//e
 
 " OTHER
 
-colorscheme solarized
+colorscheme gruvbox
