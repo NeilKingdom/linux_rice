@@ -4,12 +4,11 @@ set runtimepath^=$XDG_CONFIG_HOME/vim
 set packpath^=$XDG_CONFIG_HOME/vim/plugged
 set viminfo=%,<800,'10,/50,:100,h,f0,n~/.config/vim/viminfo
 
-" CONFIG START
+" VARIABLE DECLS
 
-syntax on
 let mapleader=" "
-" let g:solarized_termcolors=256                Use degraded 256 colorscheme
 let g:gruvbox_termcolors=256
+let b:signcolumn_on=0
 
 " PLUGGINS
 
@@ -18,20 +17,19 @@ source $XDG_CONFIG_HOME/vim/cscope.vim
 call plug#begin('~/.config/vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
-Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
 call plug#end()
 
 " SETS
 
-set background=dark
+set background=dark                          " Does not set the background. Just tells vim to use the dark theme for solarized
 set encoding=utf-8                           " Set the default encoding to UTF-8
 set pastetoggle=<F12>                        " Required when pasting code with comments to avoid strange line indenting behavior
 set clipboard=unnamedplus                    " Copy to the system clipboard when using the '+' register
 set splitbelow splitright                    " Window split directions
 set number relativenumber                    " Line that cursor is on will be the actual line number. Other numbers are relative positions to the current line
-set autoindent
-set smartindent
+" set autoindent
+" set smartindent
 set expandtab
 set tabstop=3
 set softtabstop=3
@@ -57,22 +55,19 @@ set ttimeoutlen=20
 
 " MAPPINGS
 
-nnoremap <leader>c :set signcolumn=yes<CR>
-nnoremap <leader>C :set signcolumn=no<CR>
+nnoremap <leader>SC :call ToggleSignColumn()<CR>
 nnoremap <leader>sh :!clear<CR>:!shellcheck %<CR>
 nnoremap <leader>so :so %<CR>
 nnoremap <leader>sc :set smartcase!<CR>:set smartcase?<CR> " Toggle smartcase
 nnoremap <leader>lw :set wrap!<CR>:set wrap?<CR>           " Toggle line wrap
+" TODO: Make this a function that toggles between hi Normal ctermbg=none and set background=dark
+" nnoremap <leader>bg :highlight Normal ctermbg=none
 
-" Copy and paste (in visual mode)
-
-" unmap <C-y>
+" Copy and paste
 vnoremap <C-y> "+y                                         " Yank highlighted
 nnoremap <C-y> "+yy                                        " Yank entire line
-" unmap <C-x>
 vnoremap <C-x> "+d                                         " Delete highlighted
 nnoremap <C-x> "+dd                                        " Delete entire line
-" unmap <C-p>
 nnoremap <C-p> "+p
 vnoremap <C-p> <ESC>"+p
 inoremap <C-p> <ESC>"+pa
@@ -94,8 +89,8 @@ nnoremap n nzz
 nnoremap N Nzz
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
-nnoremap <S-[> <S-[>zz
-nnoremap <S-]> <S-]>zz
+nnoremap } }zz
+nnoremap { {zz
 
 " AUTO COMMANDS
 
@@ -111,6 +106,20 @@ autocmd InsertEnter * norm zz
 " Clear trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 
+" FUNCTIONS
+
+" Toggle signcolumn. Works on vim>=8.1 or NeoVim
+function! ToggleSignColumn()
+	if !exists("b:signcolumn_on") || b:signcolumn_on
+   	set signcolumn=no
+      let b:signcolumn_on=0
+   else
+   	set signcolumn=yes
+      let b:signcolumn_on=1
+   endif
+endfunction
+
 " OTHER
 
+syntax on
 colorscheme gruvbox
