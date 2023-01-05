@@ -1,0 +1,237 @@
+#!/bin/sh
+#
+# Dependencies: pacman, qemu-system-x86, qemu-system-arm, qemu-system-aarch64, qemu-img, libvirt
+#
+# Auto setup for qemu
+
+# Global Variables
+ISO_PATH="$HOME/devel/VMs/isos"
+LANG=en-us
+SELECTION=
+SMP=
+ARCH=
+MACHINE=
+ACCEL=
+CMD=
+
+print_banner()
+{
+   echo "Welcome to QVM, the automated script for QEMU"
+   printf "%s\n\n" "============================================="
+}
+
+get_architecture()
+{
+   i=0
+   INSTALLED="$(pacman -Qqs qemu-system)"
+
+   if [ -z $INSTALLED ]
+   then
+      echo "You do not have any installations of qemu. Exiting..."
+      exit -1
+   else
+      for PKG in $INSTALLED
+      do
+         i=$((i+1)) # POSIX compliant, unlike ((i++))
+         set -- "$@" "$(echo $PKG | sed s/qemu-system-//)" # POSIX compliant method of adding elements to an array
+         echo "[$i] $PKG"
+      done
+
+      echo "Please select the target architecture (note that x86 is really x86_64): "; read -r SELECTION
+      ARCH=$(eval "echo \${${SELECTION}}")
+
+      [ "$ARCH" != "x86" && "$ARCH" != "arm" && "$ARCH" != "aarch64" ] && echo "Sorry, but the architecture you've selected is not supported by this script. Exiting..."; exit -1 || echo "You selected $ARCH"
+   fi
+}
+
+select_machine()
+{
+   i=0
+   CHOICES=
+
+   case $ARCH in
+   x86)
+      CHOICES=$(qemu-system-x86_64 -machine help)
+      ;;
+   arm)
+      CHOICES=$(qemu-system-arm -machine help)
+      ;;
+   aarch64)
+      CHOICES=$(qemu-system-aarch64 -machine help)
+      ;;
+   esac
+
+   MACHINE=$(echo "$CHOICES" | awk '{if (NR>1) {print $1}}' | tr " " "\n" | dmenu -i -l 50 -p "Enter the desired machine")
+   echo "You selected $MACHINE"
+}
+
+select_hardware_accelerator()
+{
+   # From QEMU's documentation:  "Depending on the target architecture, kvm, xen, hax, hvf, nvmm, whpx or tcg can be available"
+   # x86 supports - hax, kvm, nvmm, tcg, xen
+   # x86_64 supports - hax, hvf, kvm, nvmm, tcg, whpx, xen
+   # arm supports - tcg, xen
+   # aarch64 supports - kvm, tcg, xen
+
+   echo "Did you want to use hardware acceleration e.g. KVM (you will almost certainly want this. Hardware virtualization must be enabled in your BIOS/UEFI)?"
+   echo "[y/n]"
+   read -r SELECTION
+   [ "$SELECTION" = y ] && echo "Please enter one of kvm, xen, hax, hvf, nvmm, whpx, or tcg"; read -r SELECTION
+   ACCEL="$SELECTION"
+
+   case $ACCEL in
+   kvm)
+      echo "You selected kvm"
+      ;;
+   xen)
+      echo "You selected xen"
+      ;;
+   hax)
+      echo "You selected hax"
+      ;;
+   hvf)
+      echo "You selected hvf"
+      ;;
+   nvmm)
+      echo "You selected nvmm"
+      ;;
+   whpx)
+      echo "You selected whpx"
+      ;;
+   tcg)
+      echo "You selected tcg"
+      ;;
+   *)
+      echo "The selected hardware accelerator is invalid. Exiting..."
+      exit -1
+      ;;
+   esac
+}
+
+select_cpu()
+{
+   i=0
+   CHOICES=
+
+   case $ARCH in
+   x86)
+      CHOICES=$(qemu-system-x86_64 -cpu help)
+      ;;
+   arm)
+      CHOICES=$(qemu-system-arm -cpu help)
+      ;;
+   aarch64)
+      CHOICES=$(qemu-system-aarch64 -cpu help)
+      ;;
+   esac
+
+   CPU=$(echo "$CHOICES" | awk '{if (NR>1) {print $2}}' | tr " " "\n" | dmenu -i -l 50 -p "Enter the desired CPU")
+   echo "You selected $CPU"
+   CPU="-cpu $CPU"
+}
+
+check_machine()
+{
+   echo "Would you like to select which machine to use (usually required for arm/aarch64)?"
+   echo "[y/n]"
+   read -r SELECTION
+   [ "$SELECTION" = y ] && select_machine && select_hardware_accelerator
+   [ "$SELECTION" = n ] && select_hardware_accelerator || echo "Invalid selection"; check_machine
+}
+
+check_cpu()
+{
+   echo "Would you like to select which cpu to use?"
+   echo "[y/n]"
+   read -r SELECTION
+   [ "$SELECTION" = y ] && select_cpu
+}
+
+check_smp()
+{
+   CPUS=
+   MAX_CPUS=
+   SOCKETS=
+   DIES=
+   CLUSTERS=
+   CORES=
+   THREADS=
+
+   echo "Would you like to enable Symetrical Multi-Processing i.e. multiple cores?"
+   echo "[y/n]"
+   read -r SELECTION
+
+   if [ "$SELECTION" = y ]
+   then
+      echo "Please enter a value for each of the following or nothing if you're unsure"
+      echo "Enter the number of CPUs: "; read -r SELECTION && CPUS="$SELECTION"
+      echo "Enter the maximum number of CPUS: "; read -r SELECTION && MAX_CPUS="$SELECTION"
+      echo "Enter the number of CPU sockets: "; read -r SELECTION && SOCKETS="$SELECTION"
+      echo "Enter the number of dies per CPU: "; read -r SELECTION && DIES="$SELECTION"
+      echo "Enter the number of clusters per socket: "; read -r SELECTION && SOCKET="$SELECTION"
+      echo "Enter the number of cores per socket: "; read -r SELECTION && CORES="$SELECTION"
+      echo "Enter the number of threads per core: "; read -r SELECTION && THREADS="$SELECTION"
+
+      SMP="-smp cpus=$CPUS, maxcpus=$MAX_CPUS, sockets=$SOCKETS, dies=$DIES, clusters=$CLUSTERS, cores=$CORES, threads=$THREADS"
+   fi
+}
+
+set_boot_order()
+{
+   # Boot drives are specified with letters. These letters depend on architecture:
+   # x86/x64 - (a, b) = (floppy 1, floppy2), (c) = (first hard disk), (d) = (first CD-ROM), (n/p) = (etherboot)
+
+   echo "Drive device letters: (a, b) = (floppy1, floppy2), (c) = (first hard disk), (d) = (first CD-ROM), (n/p) = (etherboot)"
+   echo "Please enter the boot order as a sequence of characters without spaces or commas"
+   echo "For example, to try and boot from network, then hard disk, enter nc"
+   read -r SELECTION
+
+   BOOT_ORDER="-boot order=$SELECTION"
+}
+
+set_ram_size()
+{
+   echo "Please enter the amount of RAM you'd like to reserve for the virtual machine (in MB): "; read -r SELECTION
+   RAM="-m ${SELECTION}M"
+}
+
+select_hd_image()
+{
+   # Up to 4 hard drives can either be specified with -hda, -hdb, -hdc, and -hdd, or alternatively
+   # you may do something like -drive file=file,index=0 where the index numbers correspond as follows:
+   # hda = 0
+   # hdb = 1
+   # hdc = 2
+   # hdd = 3
+   #
+   # Also, instead of using -cdrom, you can specify the media type of a drive with media=cdrom or if=floppy
+   # For example, qemu-system-x86_64 -hdc file -cdrom file is the same as qemu-system-x86_64 -drive file=file,index=2,media=cdrom
+
+   echo "Do you have an existing disk image that you'd like to use for the hard drive?"
+   echo "[y/n] "; read -r SELECTION
+
+   if [ "$SELECTION" = y ]
+   then
+
+   else
+
+   fi
+}
+
+# Invoke functions
+print_banner
+get_architecture
+check_machine
+check_cpu
+
+#SELECT=$(echo $(ls $ISO_PATH) | tr " " "\n" | sort | dmenu -i -l 10 -p "Enter the desired ISO")
+#echo "Selected $SELECT"
+#qemu-system-x86_64 \
+#-boot order=d \
+#-cdrom $ISO_PATH/$SELECT \
+## TODO: Dynamically create boot image
+#-hda linux.img \
+#-m 3G \
+#--enable-kvm \
+#-machine smm=off \
+#-usb -device usb-kbd

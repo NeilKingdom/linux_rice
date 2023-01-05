@@ -13,7 +13,7 @@ ncmpcpp_directory = ~/.config/ncmpcpp
 ## MPD clients (eg. ncmpc) also use that location.
 ##
 #
-lyrics_directory =
+lyrics_directory = ""
 #
 ##### connection settings #####
 #
@@ -94,19 +94,19 @@ visualizer_in_stereo = "yes"
 #
 ## Available values: spectrum, wave, wave_filled, ellipse.
 ##
-visualizer_type = "wave"
+visualizer_type = "spectrum"
 #
-#visualizer_fps = 60
+visualizer_fps = 60
 #
-#visualizer_autoscale = no
+visualizer_autoscale = yes
 #
 visualizer_look = "+|"
 #
-visualizer_color = "blue, cyan, green, yellow, magenta, red"
+#visualizer_color = "blue, cyan, green, yellow, magenta, red"
 #
 ## Alternative subset of 256 colors for terminals that support it.
 ##
-#visualizer_color = 47, 83, 119, 155, 191, 227, 221, 215, 209, 203, 197, 161
+visualizer_color = 47, 83, 119, 155, 191, 227, 221, 215, 209, 203, 197, 161
 #
 ##
 ## Note: The next few visualization options apply to the spectrum visualizer.
@@ -117,13 +117,13 @@ visualizer_color = "blue, cyan, green, yellow, magenta, red"
 ## and visualizer_in_stereo set, artifacts may be visible on the bottom half of
 ## the visualization.
 #
-#visualizer_spectrum_smooth_look = yes
+visualizer_spectrum_smooth_look = yes
 #
 ## A value between 1 and 5 inclusive. Specifying a larger value makes the
 ## visualizer look at a larger slice of time, which results in less jumpy
 ## visualizer output.
 #
-#visualizer_spectrum_dft_size = 2
+visualizer_spectrum_dft_size = 5
 #
 #visualizer_spectrum_gain = 10
 #
@@ -315,7 +315,7 @@ current_item_inactive_column_suffix = $/r$(end)
 ## Note: Custom command that will be executed each time song changes. Useful for
 ## notifications etc.
 ##
-#execute_on_song_change = ""
+execute_on_song_change = ""
 #
 ##
 ## Note: Custom command that will be executed each time player state
@@ -323,7 +323,7 @@ current_item_inactive_column_suffix = $/r$(end)
 ## state (either unknown, play, pause, or stop) for its duration.
 ##
 #
-#execute_on_player_state_change = ""
+execute_on_player_state_change = "state-change"
 #
 #playlist_show_mpd_host = no
 #
@@ -403,11 +403,11 @@ media_library_albums_split_by_date = no
 #
 #lyrics_fetchers = azlyrics, genius, musixmatch, sing365, metrolyrics, justsomelyrics, jahlyrics, plyrics, tekstowo, zeneszoveg, internet
 #
-follow_now_playing_lyrics = "yes"
+#follow_now_playing_lyrics = "yes"
 #
-#fetch_lyrics_for_current_song_in_background = no
+fetch_lyrics_for_current_song_in_background = no
 #
-#store_lyrics_in_song_dir = no
+store_lyrics_in_song_dir = no
 #
 #generate_win32_compatible_filenames = yes
 #

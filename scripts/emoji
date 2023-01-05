@@ -1,7 +1,0 @@
-#!/bin/sh
-#
-# A script for copying emojis using dmenu
-
-EMOJILIST=~/scripts/emoji.txt
-grep -v "#" "$EMOJILIST" | dmenu -i -l 15 | awk '{print $1}' | tr -d '\n' | xclip -selection clipboard
-pgrep -x dunst > /dev/null && notify-send "Emoji Copy" "$(xclip -o -selection clipboard) copied to clipboard"
