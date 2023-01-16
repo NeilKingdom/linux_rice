@@ -45,4 +45,4 @@ export KEYTIMEOUT=5
 source "$XDG_CONFIG_HOME/zsh/aliases"
 
 # Source ZSH syntax highlight plugin. Should be the last line in the config file.
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2> /dev/null
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

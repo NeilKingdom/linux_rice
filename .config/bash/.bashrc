@@ -1,11 +1,6 @@
-#!/bin/sh
-#
-# Description: My ~/.bashrc
+#!/bin/bash
 
-# If not running interactively, don't do anything
-#[[ $- != *i* ]] && return
-
-# Activate vi mode with <Escape>:
+# vi mode
 set -o vi
 
 RED="\[$(tput setaf 1)\]"
@@ -23,14 +18,16 @@ HISTFILESIZE=
 HISTCONTROL=ignoreboth:erasedups
 PROMPT_COMMAND="history -a; history -r"
 
-#### Env Vars ####
-
 # Personal environment variables
+
 export EDITOR="vim"
 export TERMINAL="st"
 export BROWSER="firefox"
+# Used by GDB
+export DEBUGINFOD_URLS="https://debuginfod.elfutils.org/"
+# Personal development directory
+export DEVEL_DIR="$HOME/devel/github"
 
-# XDG environment variables
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -38,50 +35,28 @@ export XDG_DOCUMENTS_DIR="$HOME/docs"
 export XDG_DOWNLOAD_DIR="$HOME/down"
 export XDG_MUSIC_DIR="$HOME/music"
 export XDG_PICTURES_DIR="$HOME/pics"
+export XDG_DESKTOP_DIR="$HOME"
 export XDG_STATE_HOME=
-export XDG_DESKTOP_DIR=
 export XDG_VIDEOS_DIR=
 
-# XDG compliant application env vars
+# Alternative XDG-compliant config file locations
+
 export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
-export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch-config"
-export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
-export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+export GOPATH="$XDG_DATA_HOME/go"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
-export MPLAYER_HOME="$XDG_DATA_HOME/mplayer"
-export _JAVA_OPTIONS="-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java"
-export SSB_HOME="$XDG_DATA_HOME/zoom"
+export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.vim" | so $MYVIMRC'
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
 
-# Fixes graphical issues with IDEA software
+# Other
+
+# Used by all applications that rely on dbus
+export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
+# Disable C# telemetry
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+# Fixes GUI applications written in Java
 export _JAVA_AWT_WM_NONREPARENTING=1
-# For personal developement use
-export DEVEL_DIR="$HOME/devel/github"
+# GNU Privacy Guard
 GPG_TTY=$(tty)
 export GPG_TTY
-
-#### Aliases ####
-
-# Aliases for XDG compliant config files
-alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts --config=$XDG_CONFIG_HOME/wgetrc" 
-alias mbsync="mbsync -c $XDG_CONFIG_HOME/isync/mbsyncrc"
-alias code='vscodium --extensions-dir "$XDG_DATA_HOME/vscode"'
-
-# Abbreviations
-alias cddev="cd $DEVEL_DIR"
-alias paint="mtpaint"
-alias scli="scli -s -n -f --color=high"
-alias scim="sc-im"
-alias ap="absolutely-proprietary -f"
-alias rstudio="rstudio-bin"
-alias za="zathura"
-alias tc="transmission-cli"
-alias lf="$XDG_CONFIG_HOME/lf/lfub"
-alias nvim="neovim"
-alias neomutt="neomutt -F $XDG_CONFIG_HOME/mutt/muttrc"
-alias mc="minecraft-launcher"
-alias reboot="sudo reboot"
-alias shutdown="sudo shutdown -h now"
-alias mount="sudo mount"
-alias umount="sudo umount"
-

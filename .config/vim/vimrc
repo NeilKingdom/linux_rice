@@ -25,7 +25,6 @@ call plug#end()
 set mouse=a                                  " Allows scrolling with the mouse wheel
 set background=dark                          " Does not set the background. Just tells vim to use the dark theme for solarized
 set encoding=utf-8                           " Set the default encoding to UTF-8
-set pastetoggle=<F12>                        " Required when pasting code with comments to avoid strange line indenting behavior
 set clipboard=unnamedplus                    " Copy to the system clipboard when using the '+' register
 set splitbelow splitright                    " Window split directions
 set number relativenumber                    " Line that cursor is on will be the actual line number. Other numbers are relative positions to the current line
@@ -53,6 +52,8 @@ set updatetime=100                           " Realtime update delay for Git-Gut
 set timeout ttimeout
 set timeoutlen=500
 set ttimeoutlen=20
+set iskeyword-=_                             " Mark underscores as word separators under normal circumstances
+set iskeyword-=-                             " Mark hyphens as word separators under normal circumstances
 
 " MAPPINGS
 
@@ -95,7 +96,11 @@ nnoremap } }zz
 nnoremap { {zz
 
 " General purpose
-nnoremap d- 0d^i<BS><Space><ESC>j0w                      " One of the greatest bindings I ever thought up!!!!!
+
+" Mark current position, goto beginning of line,
+" delete any whitespace, move text to previous line,
+" insert a space, jump back to marked position
+nnoremap d- mm0d^i<BS><Space><ESC>`m
 
 " AUTO COMMANDS
 
@@ -110,6 +115,11 @@ autocmd InsertEnter * norm zz
 
 " Clear trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
+
+" Certain language types override behavior of iskeyword. Force them to abide
+" by the same rules as regular files.
+autocmd Filetype c,css setlocal iskeyword-=-
+autocmd Filetype c setlocal iskeyword-=_
 
 " FUNCTIONS
 
