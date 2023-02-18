@@ -1,4 +1,4 @@
--- Require remap.lua and set.lua
+-- Require Lua modules
 
 require("remap")
 require("set")

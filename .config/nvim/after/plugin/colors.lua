@@ -1,4 +1,5 @@
 -- Turn background transparancy on
+
 function BgAlphaOn(color)
 	color = color or "rose-pine"
 	vim.cmd.colorscheme(color)

@@ -1,2 +1,1 @@
-" Require init.lua file
-lua require("init")
+lua require('init')
