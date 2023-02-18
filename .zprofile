@@ -13,6 +13,7 @@ export PATH="$JAVA_HOME/bin:$HOME/.dotnet/tools:$PATH"
 #export JAVA_HOME="/usr/lib/jvm/java-default"
 #export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
 #export JAVA_HOME="/usr/lib/jvm/java-11/openjdk"
+#export JAVA_HOME="/usr/lib/jvm/java-17-openjdk"
 export JAVA_HOME="/usr/lib/jvm/java-19-openjdk"
 
 # Personal environment variables
@@ -42,9 +43,9 @@ export XDG_VIDEOS_DIR=
 
 export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+export NVIM_LOG_FILE="$XDG_CACHE_HOME/nvim/log"
 export GOPATH="$XDG_DATA_HOME/go"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
-export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.vim" | so $MYVIMRC'
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 

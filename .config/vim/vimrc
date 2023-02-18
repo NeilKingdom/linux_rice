@@ -60,7 +60,8 @@ set iskeyword-=-                             " Mark hyphens as word separators u
 " Special functions
 nnoremap <leader>SC :call ToggleSignColumn()<CR>
 nnoremap <leader>sh :!clear<CR>:!shellcheck %<CR>
-nnoremap <leader>so :so %<CR>
+nnoremap <leader>so :so<CR>
+nnoremap <leader>ex :Ex<CR>
 nnoremap <leader>sc :set smartcase!<CR>:set smartcase?<CR> " Toggle smartcase
 nnoremap <leader>lw :set wrap!<CR>:set wrap?<CR>           " Toggle line wrap
 " TODO: Make this a function that toggles between hi Normal ctermbg=none and set background=dark

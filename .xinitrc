@@ -25,7 +25,7 @@ feh -z "$HOME/pics/bkgnds" --bg-fill --no-fehbg &
 # wal -i "$HOME/pics/bkgnds/$(ls $HOME/pics/bkgnds | sort -R | sort -n 1)" &
 
 # Start Picom compositor (for window transparency)
-picom -o 0.9 --no-fading-openclose &
+picom -o 0.9 --no-fading-openclose --no-vsync &
 
 # Sync hwclock to Real Time Clock (RTC) with chrony
 chronyc trimrtc &
