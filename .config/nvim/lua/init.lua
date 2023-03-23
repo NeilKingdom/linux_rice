@@ -1,4 +1,5 @@
 -- Require Lua modules
 
-require("remap")
-require("set")
+require('plugins')
+require('remap')
+require('set')

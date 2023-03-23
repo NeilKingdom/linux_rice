@@ -47,6 +47,7 @@ export GOPATH="$XDG_DATA_HOME/go"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.vim" | so $MYVIMRC'
 
 # Other
 
