@@ -2,4 +2,4 @@
 
 # Images
 
-<img src="rice.png" alt="Desktop Tiles"/>
+<img src="./rice.png" alt="Desktop Tiles"/>
