@@ -2,7 +2,7 @@
 # Take a screenshot of the entire window
 # TODO: Could suppress shell error on initial capture
 
-i="$(find ./*.png | wc -l)"
+i="$(find ./capture?.png | wc -l | awk '{print $0 + 1}')"
 OUT_FILE=capture$i.png
 import -window root "$OUT_FILE"
 notify-send "Capture" "Captured screenshot $OUT_FILE"
