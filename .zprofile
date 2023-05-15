@@ -8,14 +8,6 @@ export ZDOTDIR="$HOME/.config/zsh"
 # $PATH
 export PATH="$JAVA_HOME/bin:$HOME/.dotnet/tools:$PATH"
 
-# JDK (on Arch, you also need to select the JDK using archlinux-java)
-
-#export JAVA_HOME="/usr/lib/jvm/java-default"
-#export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
-#export JAVA_HOME="/usr/lib/jvm/java-11/openjdk"
-#export JAVA_HOME="/usr/lib/jvm/java-17-openjdk"
-export JAVA_HOME="/usr/lib/jvm/java-19-openjdk"
-
 # Personal environment variables
 
 export EDITOR="vim"
@@ -51,6 +43,8 @@ export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$X
 
 # Other
 
+# Make pass copy to clipboard for 5 minutes
+export PASSWORD_STORE_CLIP_TIME=300
 # Used by all applications that rely on dbus
 export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
 # Disable C# telemetry

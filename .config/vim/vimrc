@@ -102,11 +102,15 @@ nnoremap { {zz
 " delete any whitespace, move text to previous line,
 " insert a space, jump back to marked position
 nnoremap d- mm0d^i<BS><Space><ESC>`m
+nnoremap d_ mm0d^i<BS><ESC>`m
 
 " AUTO COMMANDS
 
 " Detect latex files properly
 autocmd BufRead,BufNewFile *.tex set filetype=tex
+
+" Compile latex files on file write
+autocmd BufWritePost *.tex silent! !pdflatex %
 
 " Set spellcheck on for tex, latex, markdown
 " autocmd FileType tex,latex,markdown setlocal spell! spelllang=en_us
