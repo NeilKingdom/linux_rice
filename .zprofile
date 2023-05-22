@@ -14,7 +14,7 @@ export EDITOR="vim"
 export TERMINAL="st"
 export BROWSER="firefox"
 # Used by GDB
-export DEBUGINFOD_URLS="https://debuginfod.elfutils.org/"
+export DEBUGINFOD_URLS="https://debuginfod.archlinux.org"
 # Personal development directory
 export DEVEL_DIR="$HOME/devel/github"
 
