@@ -38,16 +38,16 @@ lsp.on_attach(function(client, bufnr)
 
    -- Jump to definition
 	vim.keymap.set("n", "<leader>jd", function() vim.lsp.buf.definition() end, opts)
-   -- Function help
+   -- Function/variable help
 	vim.keymap.set("n", "<leader>fh", function() vim.lsp.buf.hover() end, opts)
    -- A less useful version of hover()
 	vim.keymap.set("n", "<leader>sh", function() vim.lsp.buf.signature_help() end, opts)
-   -- Rename variable
-	vim.keymap.set("n", "<leader>rv", function() vim.lsp.buf.rename() end, opts)
-   -- List all references to a symbol
-	vim.keymap.set("n", "<leader>vr", function() vim.lsp.buf.references() end, opts)
+   -- Rename function/variable
+	vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
+   -- List all references to a symbol (unused in my config because we have word search)
+	--vim.keymap.set("n", "<leader>lr", function() vim.lsp.buf.references() end, opts)
    -- Query a symbol in the current workspace
-	vim.keymap.set("n", "<leader>qw", function() vim.lsp.buf.workspace_symbol() end, opts)
+	vim.keymap.set("n", "<leader>ls", function() vim.lsp.buf.workspace_symbol() end, opts)
    -- Trigger a specified action at the current cursor position
 	vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
 

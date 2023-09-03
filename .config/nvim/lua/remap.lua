@@ -19,12 +19,12 @@ vim.keymap.set("n", "<C-p>", "+p")
 vim.keymap.set("n", "<C-p>", "<ESC>\"+p")
 vim.keymap.set("n", "<C-p>", "<ESC>\"+pa")
 
--- Switching windows
+-- Switching windows (Conflicts with harpoon)
 
-vim.keymap.set("n", "<C-h>", "<C-w>h")
-vim.keymap.set("n", "<C-j>", "<C-w>j")
-vim.keymap.set("n", "<C-k>", "<C-w>k")
-vim.keymap.set("n", "<C-l>", "<C-w>l")
+--vim.keymap.set("n", "<C-h>", "<C-w>h")
+--vim.keymap.set("n", "<C-j>", "<C-w>j")
+--vim.keymap.set("n", "<C-k>", "<C-w>k")
+--vim.keymap.set("n", "<C-l>", "<C-w>l")
 
 -- Resizing windows
 
