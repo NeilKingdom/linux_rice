@@ -56,8 +56,7 @@ xset r rate 200 45 &
 # Start dunst notification daemon
 dunst &
 
-# Open a new terminal and send a welcome notification
-st &
+# Send a welcome notification
 notify-send "Welcome $USER 😎"
 
 # Start taskbar
