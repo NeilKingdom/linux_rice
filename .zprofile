@@ -46,6 +46,8 @@ export TEXMFCONFIG="$XDG_CONFIG_HOME/texlive/texmf-config"
 
 # Other
 
+# Set calcurse's default editor as neovim
+export CALCURSE_EDITOR="nvim"
 # Make pass copy to clipboard for 5 minutes
 export PASSWORD_STORE_CLIP_TIME=300
 # Used by all applications that rely on dbus

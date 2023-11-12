@@ -25,7 +25,7 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 })
 
 lsp.set_preferences({
-	sign_icons = { }
+	sign_icons = {}
 })
 
 lsp.setup_nvim_cmp({
@@ -44,10 +44,10 @@ lsp.on_attach(function(client, bufnr)
 	vim.keymap.set("n", "<leader>sh", function() vim.lsp.buf.signature_help() end, opts)
    -- Rename function/variable
 	vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
-   -- List all references to a symbol (unused in my config because we have word search)
-	--vim.keymap.set("n", "<leader>lr", function() vim.lsp.buf.references() end, opts)
-   -- Query a symbol in the current workspace
-	vim.keymap.set("n", "<leader>ls", function() vim.lsp.buf.workspace_symbol() end, opts)
+   -- Find references to the current symbol
+	vim.keymap.set("n", "<leader>fr", function() vim.lsp.buf.references() end, opts)
+   -- Find symbols at the workspace level e.g. structs or classes
+	vim.keymap.set("n", "<leader>fwr", function() vim.lsp.buf.workspace_symbol() end, opts)
    -- Trigger a specified action at the current cursor position
 	vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
 

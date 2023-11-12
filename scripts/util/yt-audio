@@ -33,10 +33,10 @@ while [ "$i" -le "$#" ]; do
 			exit 0
 			;;
 		"-h")
-			print "Usage: yt-dlaudio [Options...] \"<URL>\"\n" \
-			"Options:\n" \
-			"-d Specify output directory\n" \
-			"-h Help menu\n"
+			printf "Usage: yt-audio [Options...] \"<URL>\"\n%s\n%s\n%s\n" \
+			"Options:" \
+			"-d Specify output directory" \
+			"-h Help menu"
 			exit 0
 			;;
 		*)

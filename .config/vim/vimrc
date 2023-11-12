@@ -38,7 +38,7 @@ set scrolloff=8                              " # of lines between cursor before 
 set ignorecase
 set smartcase
 set nohlsearch
-set incsearch                                " GOTO words as the pattern is being matched
+set incsearch                                " Incrementally hightlight matching patterns
 set nowrap                                   " Set line wrap off by default
 set noswapfile
 set nobackup

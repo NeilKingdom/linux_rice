@@ -56,6 +56,9 @@ xset r rate 200 45 &
 # Start dunst notification daemon
 dunst &
 
+# Open a browser session
+"$BROWSER" &
+
 # Send a welcome notification
 notify-send "Welcome $USER 😎"
 

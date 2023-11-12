@@ -6,7 +6,8 @@ vim.opt.tabstop = 3
 vim.opt.softtabstop = 3
 vim.opt.shiftwidth = 3
 vim.opt.expandtab = true
-vim.opt.smartindent = true
+vim.opt.autoindent = false
+vim.opt.smartindent = false
 vim.opt.wrap = false
 vim.opt.clipboard = "unnamedplus"
 vim.opt.swapfile = false
@@ -20,3 +21,6 @@ vim.opt.scrolloff = 8
 vim.opt.signcolumn = "no"
 vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 100
+vim.opt.termguicolors = true
+vim.opt.splitbelow = true
+vim.opt.splitright = true
