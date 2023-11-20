@@ -20,12 +20,6 @@ vim.cmd([[
 ]])
 
 vim.cmd([[
-   " Disable autoindent for comments
-   autocmd FileType * setlocal comments-=b:*
-   autocmd FileType * setlocal formatoptions-=ro
-]])
-
-vim.cmd([[
    autocmd Filetype c,css setlocal iskeyword-=-
    autocmd FileType c setlocal iskeyword-=_
 ]])
