@@ -35,7 +35,9 @@ fi
 # Use figlet to output banner name into README.md
 i=1
 BANNER="$(figlet -lp $(echo "$ROOT_NAME" | sed "s/_//g"))"
-echo -e "$BANNER\n" > "$PROJECT_ROOT"/README.md
+echo "<pre>" > "$PROJECT_ROOT"/README.md
+echo "$BANNER" >> "$PROJECT_ROOT"/README.md
+echo -e "</pre>\n\n" >> "$PROJECT_ROOT"/README.md
 
 cat "$README_SKEL" >> "$PROJECT_ROOT"/README.md
 exit 0
