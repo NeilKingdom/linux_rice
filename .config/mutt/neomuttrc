@@ -70,9 +70,9 @@ bind pager \031 previous-line    # Mouse wheel
 bind pager \005 next-line     # Mouse wheel
 bind editor <Tab> complete-query
 
-macro index,pager gi "<change-folder>=INBOX<enter>" "go to inbox"
-macro index,pager Mi ";<save-message>=INBOX<enter>" "move mail to inbox"
-macro index,pager Ci ";<copy-message>=INBOX<enter>" "copy mail to inbox"
+macro index,pager gi "<change-folder>=Inbox<enter>" "go to inbox"
+macro index,pager Mi ";<save-message>=Inbox<enter>" "move mail to inbox"
+macro index,pager Ci ";<copy-message>=Inbox<enter>" "copy mail to inbox"
 macro index,pager gd "<change-folder>=Drafts<enter>" "go to drafts"
 macro index,pager Md ";<save-message>=Drafts<enter>" "move mail to drafts"
 macro index,pager Cd ";<copy-message>=Drafts<enter>" "copy mail to drafts"

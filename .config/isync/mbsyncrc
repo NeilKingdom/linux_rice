@@ -2,7 +2,7 @@ IMAPStore neil-remote
 Host mail.neilkingdom.xyz
 Port 993
 User neil@neilkingdom.xyz
-PassCmd "pass email/neil@neilkingdom.xyz"
+PassCmd "pass server/neil@neilkingdom.xyz"
 AuthMechs LOGIN
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
