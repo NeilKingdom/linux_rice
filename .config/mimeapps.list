@@ -16,6 +16,7 @@ application/x-extension-xhtml=firefox.desktop
 application/x-extension-xht=firefox.desktop
 image/jpeg=sxiv.desktop
 image/png=sxiv.desktop
+image/ppm=sxiv.desktop
 application/pdf=org.pwmt.zathura.desktop
 
 [Added Associations]

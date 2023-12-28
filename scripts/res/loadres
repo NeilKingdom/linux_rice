@@ -1,6 +1,0 @@
-#!/bin/sh
-
-export SCRIPT_RES="$HOME/scripts/res"
-# The parent shell sourcing this script will expand
-# $(basename $0) as the name of that file (not this file)
-export RES_SUBDIR="$(basename "$0")"

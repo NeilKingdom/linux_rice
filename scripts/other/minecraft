@@ -1,8 +1,0 @@
-#!/bin/sh
-
-source "$HOME/scripts/res/loadres"
-RESOURCE="server.jar"
-JAR="$SCRIPT_RES/$RES_SUBDIR/$RESOURCE"
-
-/bin/minecraft-launcher
-/bin/java -Xmx1024M -Xms1024M -jar "$JAR" nogui

@@ -16,7 +16,7 @@ export BROWSER="firefox"
 # Used by GDB
 export DEBUGINFOD_URLS="https://debuginfod.artixlinux.org"
 # Personal development directory
-export DEVEL_DIR="$HOME/devel/github"
+export DEVEL_DIR="$HOME/devel/projects"
 
 # XDG environment variables
 
