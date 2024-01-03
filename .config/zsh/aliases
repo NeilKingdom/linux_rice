@@ -1,5 +1,4 @@
 #!/bin/zsh
-# Z-Shell aliases
 
 # Aliases for XDG-compliant config files
 
@@ -14,8 +13,8 @@ alias cddev="cd $DEVEL_DIR"
 alias scim="sc-im"
 alias ap="absolutely-proprietary -f"
 alias za="zathura"
-alias trc="tremc"
 alias mc="minecraft"
+alias py="python3"
 
 # Overrides
 alias sudo="doas"
@@ -24,10 +23,8 @@ alias shutdown="doas /usr/bin/shutdown -h now"
 alias reboot="doas /usr/bin/reboot"
 alias mount="doas /usr/bin/mount"
 alias umount="doas /usr/bin/umount"
-alias rstudio="rstudio-bin --no-sandbox"
 alias history="history 1"
 alias ls="ls --color"
 alias grep="grep --color"
 alias scli="scli -nfs --color=high"
 alias lualatex="lltex"
-alias py="python3"

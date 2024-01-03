@@ -18,6 +18,7 @@
 .config/dconf
 .config/eclipse
 .config/filezilla
+.config/.keymapp
 .config/git
 .config/gnupg
 .config/gtk-2.0/
@@ -42,7 +43,7 @@
 .config/pki
 .config/pulse
 .config/retroarch
-.config/rstudio
+.config/R
 .config/soarqin
 .config/solaar
 .config/transmission

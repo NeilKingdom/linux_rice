@@ -1,0 +1,10 @@
+{
+    "initial_working_directory": "~/devel/r_projects",
+    "posix_terminal_shell": "zsh",
+    "num_spaces_for_tab": 4,
+    "python_type": "system",
+    "python_version": "3.11.6",
+    "python_path": "/usr/bin/python3.11",
+    "editor_theme": "Material",
+    "pdf_previewer": "none"
+}
