@@ -3,14 +3,14 @@
 Directory Structure
 ===
 
-All script directories (except for res) are managed by stow.
+* All script directories (except for res) are managed by stow.
 
-Each directory is referred to by stow as a **package**. The parent directory (scripts) is the **stow 
-directory**.
+* Each directory is referred to by stow as a _package_. The parent directory (scripts) is the _stow 
+directory_.
 
-Each package is symlinked to the **target directory** (/usr/local/bin).
+* Each package is symlinked to the _target directory_ (/usr/local/bin).
 
-/usr/local/bin should already be present in your $PATH environment variable, meaning that the symlinks should 
+* /usr/local/bin should already be present in your $PATH environment variable, meaning that the symlinks should 
 be executable by default.
 
 Usage
