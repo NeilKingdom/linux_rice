@@ -17,6 +17,8 @@ export BROWSER="firefox"
 export DEBUGINFOD_URLS="https://debuginfod.artixlinux.org"
 # Personal development directory
 export DEVEL_DIR="$HOME/devel/projects"
+# Personal scripts directory
+export SCRIPT_DIR="$HOME/devel/scripts"
 
 # XDG environment variables
 
@@ -61,6 +63,8 @@ export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 # Fixes GUI applications written in Java
 export _JAVA_AWT_WM_NONREPARENTING=1
+# Android SDK location
+export ANDROID_HOME="$HOME/devel/android/sdk"
 # GNU Privacy Guard
 GPG_TTY=$(tty)
 export GPG_TTY

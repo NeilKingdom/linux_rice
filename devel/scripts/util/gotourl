@@ -1,0 +1,66 @@
+#!/bin/sh
+#
+# Purpose: This script parses input for valid URIs. Input can include the user's history file,
+# direct input from stdin, or input from a given file. If more than one URIs are found
+# in a given file, they are piped to dmenu. The script opens the located resource using xdg-open.
+#
+# Dependencies: xdg-open
+
+REGEX="https\?://\S*\.[A-Za-z]\+\S*"
+HIST_LOCATION="$HOME/.history"
+
+failure() {
+    printf "Could not find file or URI\nExiting...\n"
+    exit 1
+}
+
+parameters() {
+    # Check for help flag
+    for ARG in $1; do
+        if [ "$ARG" = "-h" ]; then
+            echo -e "Usage: gotourl [options] [file | url]\n" \
+                "-h: help menu\n" \
+                "-y: Use this option to search\n" \
+                "\tthe last 10 commands in your history file for URIs\n" \
+                "\t(/home/\$USER/.history is the default search location)\n" \
+                "-f <path_to_history_file>: Enter the absolute path to your history file\n"
+        fi
+    done
+
+    # Check for history file location flag
+    # Keep in mind that $1 expands to $@
+    for i in $1; do
+        eval ARG=\$"$i"
+        eval NEXT_ARG=\$"$((i+1))"
+        # If -f is supplied, but NEXT_ARG is empty, HIST_LOCATION remains as the default
+        [ "$ARG" = '-f' ] && [ -n "$NEXT_ARG" ] && HIST_LOCATION="$NEXT_ARG" || HIST_LOCATION="$HOME/.history"
+    done
+
+    SOURCE="$LAST_ARG"
+
+    # Check for history flag (takes precedence over file or url if both are provided)
+    for ARG in $1; do
+        if [ "$ARG" = "-y" ]; then
+            SOURCE="$(tail "$HIST_LOCATION")"
+            break
+        fi
+    done
+
+    # Hacky way to return local variable
+    echo "$SOURCE"
+}
+
+# Get the final user argument (POSIX compliant)
+for LAST_ARG in "$@"; do :; done
+
+# If no arguments are supplied, request the name of the file, otherwise check parameters
+echo "Please enter a file that you would like to parse or a direct URL: "
+[ $# -eq 0 ] && read -r LAST_ARG
+SOURCE="$(parameters "$@")"
+
+# Pipe to dmenu if more than 1 URI were found
+[ "$(grep -c "$REGEX" "$SOURCE")" -gt 1 ] \
+    && URI="$(grep "$REGEX" "$SOURCE" | dmenu -p "Select the URL you'd like to open" -l 10)" \
+    || URI="$(grep -o "$REGEX" "$SOURCE")"
+
+xdg-open "$URI"

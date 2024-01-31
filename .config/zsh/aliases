@@ -9,7 +9,8 @@ alias lf="$XDG_CONFIG_HOME/lf/lfub"
 
 # Abbreviations
 
-alias cddev="cd $DEVEL_DIR"
+alias cdd="cd $DEVEL_DIR"
+alias cds="cd $SCRIPT_DIR"
 alias scim="sc-im"
 alias ap="absolutely-proprietary -f"
 alias za="zathura"
@@ -17,6 +18,7 @@ alias mc="minecraft"
 alias py="python3"
 
 # Overrides
+
 alias sudo="doas"
 alias diff="diff --color --suppress-common-lines -y"
 alias shutdown="doas /usr/bin/shutdown -h now"

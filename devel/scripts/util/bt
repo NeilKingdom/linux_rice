@@ -1,0 +1,80 @@
+#!/bin/sh
+#
+# Purpose: Connect bluetooth headphones
+#
+# Dependencies: bluez, bluez-utils, bluez-libs, pipewire, pipewire-pulse, wireplumber
+#
+# Troubleshooting:
+#
+# - If you consistently have troubles connecting, even after using bt off, you will
+# need to restart your audio manager, reset device list on headphones (if applicable), put headphones
+# in pairing mode and run the following:
+#
+# 1)  bluetoothctl devices (to get MAC address)
+# 2)  bluetoothctl 
+# 3)  remove $MAC
+# 4)  power on
+# 5)  agent on
+# 6)  default-agent 
+# 7)  scan on 
+# 8)  pair $MAC 
+# 9)  trust $MAC
+# 10) connect $MAC
+# 11) scan off
+# 12) exit
+#
+# - If you receive error "Could not find default agent", try removing bluetooth dongle
+# from USB port and plug back in.
+#
+# - If the device does not automatically connect on startup, ensure that the device is trusted and you may 
+# try changing AutoEnable=true and ControllerMode = bredr in /etc/bluetooth/main.conf.
+#
+# - If the device works correctly, but certain applications have difficulty detecting the device e.g. online 
+# meeting apps, I've found the easiest solution to be installing pavucontrol and ensuring that an appropriate
+# profile is selected for the device under the Configuration tab. In my case, I had to select High Fidelity
+# Playback (A2DP Sink, codec AAC).
+
+SELECTION="$1"
+MAC="$(bluetoothctl devices | grep "Bose QC35 II" | awk '{print $2}')"
+
+signal_handler() {
+    PAIR_STAT="$(bluetoothctl info $MAC | sed '9q;d' | awk '{print $2}')"
+    [ "$PAIR_STAT" = "yes" ] && echo "Successfully paired with $MAC!" || echo "Failed to pair with $MAC..."
+    kill -TERM -$$
+}
+
+turnon() {
+    trap signal_handler INT
+
+    echo "Please wait until headphones are in pairing mode and then run this script"
+    bluetoothctl power on
+    bluetoothctl connect $MAC
+
+    # Wait for interrupt signal (Ctrl+C)
+    for i in {1..100}; do
+        sleep 1 &
+    done
+
+    wait
+}
+
+turnoff() {
+    bluetoothctl disconnect $MAC
+    bluetoothctl power off
+    bluetoothctl quit
+    echo "Disconnected from $MAC"
+}
+
+case "$SELECTION" in
+    on)
+        turnon
+        ;;
+    off)
+        turnoff
+        ;;
+    *)
+        echo -e "Options:\n" \
+            "\ton)\tAttempts to connect with headphones\n" \
+            "\toff)\tTerminates connection between headphones and bluetooth dongle\n"
+        ;;
+esac

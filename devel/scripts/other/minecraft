@@ -1,0 +1,6 @@
+#!/bin/sh
+
+JAR="$SCRIPT_DIR/res/$(basename $0)/server.jar"
+
+minecraft-launcher
+java -Xmx4096m -Xms4096m -jar "$JAR" nogui

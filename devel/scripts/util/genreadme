@@ -1,0 +1,32 @@
+#!/bin/sh
+#
+# Purpose: Generate a README file skeleton for personal projects
+#
+# Dependencies: figlet
+
+README_SKEL="$SCRIPT_DIR/res/$(basename $0)/README_SKEL.md"
+
+# Get the name of the root directory
+ROOT_NAME="${PWD#"$DEVEL_DIR"/}"
+ROOT_NAME="$(echo "$ROOT_NAME" | cut -d '/' -f1)"
+# Get the absolute path to the root directory
+PROJECT_ROOT="$(pwd | sed "s/\($ROOT_NAME\).*/\1/")"
+
+if [ -f "$PROJECT_ROOT"/README.md ]
+then
+   echo "README.md already exists in project root. Overwrite?"; read -r ANS
+   [ "$ANS" != "y" ] && \
+   [ "$ANS" != "Y" ] && \
+   [ "$ANS" != "yes" ] && \
+   [ "$ANS" != "YES" ] && \
+   [ "$ANS" != "Yes" ] && echo "Exiting..." && exit 0
+fi
+
+# Use figlet to output banner name into README.md
+i=1
+BANNER="$(figlet -lp $(echo "$ROOT_NAME" | sed "s/_//g"))"
+echo "<pre>" > "$PROJECT_ROOT"/README.md
+echo "$BANNER" >> "$PROJECT_ROOT"/README.md
+echo -e "</pre>\n\n" >> "$PROJECT_ROOT"/README.md
+
+cat "$README_SKEL" >> "$PROJECT_ROOT"/README.md
