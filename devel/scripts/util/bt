@@ -73,8 +73,9 @@ case "$SELECTION" in
         turnoff
         ;;
     *)
-        echo -e "Options:\n" \
-            "\ton)\tAttempts to connect with headphones\n" \
-            "\toff)\tTerminates connection between headphones and bluetooth dongle\n"
+        printf "%s\n%s\n%s\n" \
+            "Options:" \
+            "on)    Attempts to connect with headphones" \
+            "off)   Terminates connection between headphones and bluetooth dongle"
         ;;
 esac

@@ -4,7 +4,6 @@
 # 
 # Dependencies: lualatex, tex-live
 
-PDF_NAME="$(echo "$1" | sed s/\.tex/\.pdf/g)"
-echo "$PDF_NAME"
+PDF_NAME="$(echo "$1" | sed 's/\.tex/\.pdf/g')"
 lualatex --shell-escape --output-directory="$XDG_DATA_HOME/latex/output" "$1" && \
-   mv "$XDG_DATA_HOME/latex/output/$PDF_NAME" "$PWD"
+mv "$XDG_DATA_HOME/latex/output/$PDF_NAME" "$PWD"

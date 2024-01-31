@@ -18,12 +18,12 @@ parameters() {
     # Check for help flag
     for ARG in $1; do
         if [ "$ARG" = "-h" ]; then
-            echo -e "Usage: gotourl [options] [file | url]\n" \
-                "-h: help menu\n" \
-                "-y: Use this option to search\n" \
-                "\tthe last 10 commands in your history file for URIs\n" \
-                "\t(/home/\$USER/.history is the default search location)\n" \
-                "-f <path_to_history_file>: Enter the absolute path to your history file\n"
+            printf "%s\n\t%s\n\t%s%s\n\t%s\n" \
+                "Usage: gotourl [options] [file | url]" \
+                "-h: help menu" \
+                "-y: Use this option to search the last 10 commands in your history" \
+                " file for URIs (/home/\$USER/.history is the default search location)" \
+                "-f <path_to_history_file>: Enter the absolute path to your history file"
         fi
     done
 
@@ -55,7 +55,7 @@ for LAST_ARG in "$@"; do :; done
 
 # If no arguments are supplied, request the name of the file, otherwise check parameters
 echo "Please enter a file that you would like to parse or a direct URL: "
-[ $# -eq 0 ] && read -r LAST_ARG
+[ "$#" -eq 0 ]; read -r LAST_ARG
 SOURCE="$(parameters "$@")"
 
 # Pipe to dmenu if more than 1 URI were found

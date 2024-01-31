@@ -5,27 +5,26 @@
 # Note: The URL must be surrounded in double quotes, otherwise your terminal will
 # interpret special characters such as '?' as a regex pattern
 
-i=1
+i=0
 MUSIC_DIR="$HOME/music"
 
 # Get last parameter (POSIX compliant)
 for URL in "$@"; do :; done
 
 while [ "$i" -le "$#" ]; do
+    i=$((++i))
     eval ARG=\$"$i"
+
     case "$ARG" in
         "-d")
+            [ "$(echo "$URL" | grep "www.youtube.com")" = "" ] && \
+            echo "Invalid URL" && exit 1
+
             printf "Enter the directory you'd like to place the file in (default is %s)\n" "$MUSIC_DIR"; read -r DIR
             printf "Enter the new name of the file (default is to keep file name unchanged)\n"; read -r NAME
 
-            if echo "$URL" | grep -q "www.youtube.com"
-            then
-                # Use --force-ipv4 because ipv6 is extremely slow
-                yt-dlp -f bestaudio --extract-audio --force-ipv4 "$URL"
-            else
-                echo "Invalid URL"
-                exit 1
-            fi
+            # Use --force-ipv4 because ipv6 is extremely slow
+            yt-dlp -f bestaudio --extract-audio --force-ipv4 "$URL" || \
 
             FILE="$(yt-dlp --get-filename "$URL" | sed 's/webm/opus/g')"
             [ "$NAME" = "" ] && NAME="$FILE" || mv "$FILE" "$NAME.opus"
@@ -33,20 +32,15 @@ while [ "$i" -le "$#" ]; do
             mv "$NAME" "$DIR"
             ;;
         "-h")
-            echo -e "Usage: yt-audio [Options...] \"<URL>\"\n%s\n%s\n%s\n" \
+            printf "Usage: yt-audio [Options...] \"<URL>\"\n%s\n\t%s\n\t%s\n" \
                 "Options:" \
                 "-d Specify output directory" \
-                "-h Help menu"
+                "-h Help menu"; exit 0
             ;;
         *)
-            if echo "$URL" | grep -q "www.youtube.com"
-            then
-                yt-dlp -f bestaudio --extract-audio --force-ipv4 "$URL"
-            else
-                echo "Invalid URL"
-                exit 1
-            fi
+            [ "$(echo "$URL" | grep "www.youtube.com")" != "" ] && \
+            yt-dlp -f bestaudio --extract-audio --force-ipv4 "$URL" || \
+            echo "Invalid URL" && exit 1
             ;;
     esac
-    i=$((i+1))
 done

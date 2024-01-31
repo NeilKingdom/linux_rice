@@ -1,37 +1,37 @@
 #!/bin/sh
 #
-# Helper script for connecting printers
+# Purpose: Helper script for connecting printers
+#
+# Dependencies: lpadmin, dmenu
 #
 # TODO: sel_existing() does not validate
 # case where user exits dmenu via ESC
 
-. "$HOME/devel/scripts/res/loadres"
-CACHE="printers"
-CACHE_PATH="$SCRIPT_RES/$RES_SUBDIR/$CACHE"
+CACHE_PATH="$SCRIPT_DIR/res/$(basename "$0")/printers"
 
 add_new() {
    # Parse IP address
    while
-      echo "Enter IP address (xxx.xxx.xxx.xxx): " && read -r IP
-      echo "$IP" | grep -P "(\d{1,3})((\.\d{1,3}){3})" 2>&1 /dev/null
-      [ "$?" != "0" ]
+      printf "Enter IP address (xxx.xxx.xxx.xxx): "; read -r IP
+      [ "$(echo "$IP" | grep -P "(\d{1,3})((\.\d{1,3}){3})")" = "" ]
    do :; done
 
    # Parse printer name
    while
-      echo "Enter printer's name: " && read -r PNAME
+      printf "Enter printer's name: "; read -r PNAME
       [ "$PNAME" = "" ]
    do :; done
 
    # Append printer to cache (if it doesn't already exist)
-   grep "$PNAME $IP" "$CACHE_PATH" 2>&1 /dev/null
-   [ "$?" != "0" ] && echo "$PNAME $IP" >> "$CACHE_PATH"
+   ! [ -f "$CACHE_PATH" ] || \
+   [ "$(grep -x "$PNAME $IP" "$CACHE_PATH")" = "" ] && \
+   echo "$PNAME $IP" >> "$CACHE_PATH"
 }
 
 sel_existing() {
    # Open dmenu prompt with list of cached printers
    PNAME=$(dmenu -p "Printers" -l 15 -g 1 -nb "#222222" -nf "#bbbbbb" \
-                 -sb "#005577" -sf "#eeeeee" < "$CACHE_PATH")
+   -sb "#005577" -sf "#eeeeee" < "$CACHE_PATH")
 
    # Parse selection
    IP=$(echo "$PNAME" | awk '{print $2}')
@@ -39,44 +39,42 @@ sel_existing() {
 }
 
 del_cache() {
-   echo "Are you sure you'd like to delete the printer cache? [y/n]" \
-   && read -r OPT
+   printf "Are you sure you'd like to delete the printer cache? [y/n] "; read -r OPT
    [ "$OPT" = "y" ] || [ "$OPT" = "Y" ] && rm "$CACHE_PATH" && exit 0
    menu
 }
 
 menu() {
-   if [ -f "$CACHE_PATH" ]; then
-      while
-         printf "%s\n%s\n%s\n" \
-         "1) Create new printer" \
-         "2) Use existing printer" \
-         "3) Clear printer cache" \
-         && read -r OPT
-         [ "$OPT" != "1" ] && \
-         [ "$OPT" != "2" ] && \
-         [ "$OPT" != "3" ]
-      do :; done
+    if [ -f "$CACHE_PATH" ]; then
+        while
+            printf "%s\n%s\n%s\n%s\n" \
+                "1) Create new printer" \
+                "2) Use existing printer" \
+                "3) Clear printer cache" \
+                "4) Exit"; read -r OPT
+            [ "$OPT" != "1" ] && \
+            [ "$OPT" != "2" ] && \
+            [ "$OPT" != "3" ] && \
+            [ "$OPT" != "4" ]
+        do :; done
 
-      # Switch on user selection
-      case "$OPT" in
-         "1")
-            add_new
-            ;;
-         "2")
-            sel_existing
-            ;;
-         "3")
-            del_cache
-            ;;
-         *)
-            # Should not reach!!!
-            echo "Invalid option" && exit 1
-            ;;
-         esac
-   else
+        # Switch on user selection
+        case "$OPT" in
+            "1")
+                add_new
+                ;;
+            "2")
+                sel_existing
+                ;;
+            "3")
+                del_cache
+                ;;
+            "4")
+                exit 0
+          esac
+  else
       add_new
-   fi
+    fi
 }
 
 # Script start
