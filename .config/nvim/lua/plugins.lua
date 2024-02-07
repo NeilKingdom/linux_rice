@@ -26,7 +26,7 @@ return require("packer").startup(function(use)
    use("nvim-treesitter/nvim-treesitter", {run = ":TSUpdate"})
 
    -- Allows us to see the treesitter lexical analyser
-   use("nvim-treesitter/playground")
+   use("nvim-treesitter/playground", {commit = "9bfaf62e42bdcd042df1230e9188487e62a112c0"})
 
    -- The Primeagen's Harpoon plugin for quick file switching
    use("theprimeagen/harpoon")

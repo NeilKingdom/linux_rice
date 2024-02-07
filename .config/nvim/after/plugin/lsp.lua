@@ -7,10 +7,7 @@ lsp.setup()
 
 -- Language servers
 lsp.ensure_installed({
-   "csharp_ls",
    "clangd",
-	"tsserver",
-	"eslint",
 	"rust_analyzer",
 })
 
@@ -44,8 +41,8 @@ lsp.on_attach(function(client, bufnr)
 	vim.keymap.set("n", "<leader>sh", function() vim.lsp.buf.signature_help() end, opts)
    -- Rename function/variable
 	vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
-   -- Find references to the current symbol
-	vim.keymap.set("n", "<leader>fr", function() vim.lsp.buf.references() end, opts)
+   -- Find usages of the current symbol
+	vim.keymap.set("n", "<leader>fu", function() vim.lsp.buf.references() end, opts)
    -- Find symbols at the workspace level e.g. structs or classes
 	vim.keymap.set("n", "<leader>fwr", function() vim.lsp.buf.workspace_symbol() end, opts)
    -- Trigger a specified action at the current cursor position
