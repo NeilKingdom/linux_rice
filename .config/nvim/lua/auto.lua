@@ -4,7 +4,6 @@ vim.cmd([[
 ]])
 
 vim.cmd([[
-   " TODO: I don't think that lualatex is recognized as a valid command
    " Compile latex file on file write
    autocmd BufWritePost *.tex silent! !lualatex --output-directory='~/.local/share/latex/output' %
 ]])
@@ -16,7 +15,7 @@ vim.cmd([[
 
 vim.cmd([[
    " Clear trailing whitespace on save
-   autocmd BufWritePre * %s/\\s\\+$//e
+   autocmd BufWritePre * %s/\s\+$//e
 ]])
 
 vim.cmd([[
