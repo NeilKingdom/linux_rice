@@ -1,0 +1,68 @@
+#!/bin/sh
+#
+# Scaffold a working directory for a new C project
+#
+# Dependencies: genreadme, lynx, doxygen, git
+
+usage() {
+    printf "\n%s\n\n%s\n\n" \
+        "Usage: $0 <project_dir>" \
+        "Note: Use ./ to setup the environment in the current directory"
+    exit 0
+}
+
+[ "$1" = "" ] && usage
+[ "$(find . -maxdepth 1 -exec echo \; | wc -l)" -gt 1 ] && \
+    echo "The project directory is not empty. Exiting..." && exit 1
+
+PROJ_DIR="$1"
+! [ -d "$PROJ_DIR" ] && mkdir "$PROJ_DIR"
+cd "$PROJ_DIR" || exit 1
+
+# Git init (must proceed creation of .gitignore)
+git init > "/dev/null" 2>&1
+
+# .gitignore
+if [ -d ".git" ]
+then
+{
+echo ".clangd
+compile_flags.txt
+obj
+bin
+$(basename "${PWD#}/")"
+} > .gitignore
+fi
+
+# Check if the project will be a library
+while
+    printf "Is the project a library? [y/n] "; read -r IS_LIB
+    IS_LIB="$(echo "$IS_LIB" | tr '[:upper:]' '[:lower:]')"
+    [ "$IS_LIB" != "y" ] && \
+    [ "$IS_LIB" != "yes" ] && \
+    [ "$IS_LIB" != "n" ] && \
+    [ "$IS_LIB" != "no" ]
+do :; done
+
+# Make directories + files
+touch Makefile
+mkdir -p src include obj res/doc
+[ "$IS_LIB" = "y" ] || [ "$IS_LIB" = "yes" ] && mkdir bin test
+[ "$IS_LIB" = "n" ] || [ "$IS_LIB" = "no" ] && touch src/main.c
+
+# Download MIT license
+lynx -dump "https://mit-license.org" | sed -n "1,22p;22q" \
+    | sed "s/<.*>$/Neil Kingdom/g" | awk '{$1=$1};1' > LICENSE
+
+# Clangd files (used to resolve relative #includes)
+echo "AddIncludeDirectory: include" > compile_flags.txt
+{
+echo "CompileFlags:
+    Add: -Iinclude"
+} > .clangd
+
+# README
+genreadme
+
+# Doxyfile
+doxygen -g "res/doc/Doxyfile" > "/dev/null" 2>&1

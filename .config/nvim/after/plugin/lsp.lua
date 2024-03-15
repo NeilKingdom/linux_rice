@@ -58,6 +58,7 @@ end)
 
 lsp.setup()
 
+-- Add diagnostics (warnings, errors, etc.)
 vim.diagnostic.config({
    virtual_text = true,
    signs = true,
@@ -65,4 +66,14 @@ vim.diagnostic.config({
    underline = true,
    severity_sort = false,
    float = true,
+})
+
+-- Clangd setup
+local lspconfig = require("lspconfig")
+lspconfig.clangd.setup({
+    cmd = {
+        "clangd",
+        "--function-arg-placeholders",
+        "--header-insertion=never"
+    },
 })
