@@ -1,13 +1,4 @@
--- Neovim key remaps
-
 vim.g.mapleader = " "
--- Open netrw
-vim.keymap.set("n", "<leader>ex", vim.cmd.Ex)
--- Close netrw
-vim.keymap.set("n", "<leader>q", ":bd<CR>")
-vim.keymap.set("n", "<leader>sc", ":!clear<CR>:!shellcheck %<CR>")
-vim.keymap.set("n", "<leader>so", ":so<CR>")
-vim.keymap.set("n", "<leader>lw", ":set wrap!<CR>:set wrap?<CR>")
 
 -- Copy and paste
 
@@ -21,10 +12,10 @@ vim.keymap.set("n", "<C-p>", "<ESC>\"+pa")
 
 -- Switching windows
 
-vim.keymap.set("n", "<leader>H", "<C-w>h")
-vim.keymap.set("n", "<leader>J", "<C-w>j")
-vim.keymap.set("n", "<leader>K", "<C-w>k")
-vim.keymap.set("n", "<leader>L", "<C-w>l")
+vim.keymap.set("n", "<leader>h", "<C-w>h")
+vim.keymap.set("n", "<leader>j", "<C-w>j")
+vim.keymap.set("n", "<leader>k", "<C-w>k")
+vim.keymap.set("n", "<leader>l", "<C-w>l")
 
 -- Resizing windows
 
@@ -44,7 +35,22 @@ vim.keymap.set("n", "{", "{zz")
 
 -- General purpose
 
+-- Move the current line up to previous line (leaves a space)
 vim.keymap.set("n", "d-", "mm0d^i<BS><Space><ESC>`m")
+-- Move the current line up to previous line (no space)
 vim.keymap.set("n", "d_", "mm0d^i<BS><ESC>`m")
+-- Swap current line with line below
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+-- Swap current line with line above
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- Open netrw
+vim.keymap.set("n", "<leader>ex", vim.cmd.Ex)
+-- Close netrw
+vim.keymap.set("n", "<leader>q", ":bd<CR>")
+-- Shellcheck
+vim.keymap.set("n", "<leader>sc", ":!clear<CR>:!shellcheck %<CR>")
+-- Source file
+vim.keymap.set("n", "<leader>so", ":so<CR>")
+-- Enable text wrapping
+vim.keymap.set("n", "<leader>ew", ":set wrap!<CR>:set wrap?<CR>")

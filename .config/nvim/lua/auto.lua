@@ -1,24 +1,35 @@
-vim.cmd([[
-   " Detect latex files properly
-   autocmd BufRead,BufNewFile *.tex set filetype=tex
-]])
+-- Detect latex files properly
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = "*.tex",
+    command = "set filetype=tex"
+})
 
-vim.cmd([[
-   " Compile latex file on file write
-   autocmd BufWritePost *.tex silent! !lualatex --output-directory='~/.local/share/latex/output' %
-]])
+-- Compile latex files on buffer write
+vim.api.nvim_create_autocmd("BufWritePost", {
+    pattern = "*.tex",
+    command = "silent! !lualatex --output-directory=~/.local/share/latex/output %"
+})
 
-vim.cmd([[
-   " Center page on transition to insert mode
-   autocmd InsertEnter * norm zz
-]])
+-- Center page on transition to insert mode
+vim.api.nvim_create_autocmd("InsertEnter", {
+    pattern = "*",
+    command = "norm zz"
+})
 
-vim.cmd([[
-   " Clear trailing whitespace on save
-   autocmd BufWritePre * %s/\s\+$//e
-]])
+-- Clear trailing whitespace on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = "*",
+    command = "%s/\\s\\+$//e"
+})
 
-vim.cmd([[
-   autocmd Filetype c,css setlocal iskeyword-=-
-   autocmd FileType c setlocal iskeyword-=_
-]])
+-- Remove '-' as a keyword separator for CSS files
+vim.api.nvim_create_autocmd("Filetype", {
+    pattern = "css",
+    command = "setlocal iskeyword-=-"
+})
+
+-- Remove '_' as a keyword separator for C files
+vim.api.nvim_create_autocmd("Filetype", {
+    pattern = "c",
+    command = "setlocal iskeyword-=_"
+})
