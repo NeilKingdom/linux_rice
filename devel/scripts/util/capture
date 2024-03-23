@@ -1,7 +1,6 @@
 #!/bin/sh
-# 
-# Purpose: Take a screenshot of the current window
 #
+# Description: Take a screenshot of the current window
 # Dependencies: notify-send
 
 i="$(($(ls | grep -c "capture.\.jpg")+ 1))"

@@ -1,37 +1,36 @@
 #!/bin/sh
 #
 # Purpose: Helper script for connecting printers
-#
 # Dependencies: lpadmin, dmenu
 #
 # TODO: sel_existing() does not validate
 # case where user exits dmenu via ESC
 
-CACHE_PATH="$SCRIPT_DIR/res/$(basename "$0")/printers"
+CACHE_PATH="$XDG_CACHE_HOME/printctl"
 
 add_new() {
-   # Parse IP address
-   while
-      printf "Enter IP address (xxx.xxx.xxx.xxx): "; read -r IP
-      [ "$(echo "$IP" | grep -P "(\d{1,3})((\.\d{1,3}){3})")" = "" ]
-   do :; done
+    # Parse IP address
+    while
+        printf "Enter IP address (xxx.xxx.xxx.xxx): "; read -r IP
+        [ "$(echo "$IP" | grep -P "(\d{1,3})((\.\d{1,3}){3})")" = "" ]
+    do :; done
 
    # Parse printer name
    while
-      printf "Enter printer's name: "; read -r PNAME
-      [ "$PNAME" = "" ]
+       printf "Enter printer's name: "; read -r PNAME
+       [ "$PNAME" = "" ]
    do :; done
 
    # Append printer to cache (if it doesn't already exist)
    ! [ -f "$CACHE_PATH" ] || \
-   [ "$(grep -x "$PNAME $IP" "$CACHE_PATH")" = "" ] && \
-   echo "$PNAME $IP" >> "$CACHE_PATH"
-}
+       [ "$(grep -x "$PNAME $IP" "$CACHE_PATH")" = "" ] && \
+           echo "$PNAME $IP" >> "$CACHE_PATH"
+   }
 
-sel_existing() {
-   # Open dmenu prompt with list of cached printers
-   PNAME=$(dmenu -p "Printers" -l 15 -g 1 -nb "#222222" -nf "#bbbbbb" \
-   -sb "#005577" -sf "#eeeeee" < "$CACHE_PATH")
+   sel_existing() {
+       # Open dmenu prompt with list of cached printers
+       PNAME=$(dmenu -p "Printers" -l 15 -g 1 -nb "#222222" -nf "#bbbbbb" \
+           -sb "#005577" -sf "#eeeeee" < "$CACHE_PATH")
 
    # Parse selection
    IP=$(echo "$PNAME" | awk '{print $2}')
@@ -39,9 +38,9 @@ sel_existing() {
 }
 
 del_cache() {
-   printf "Are you sure you'd like to delete the printer cache? [y/n] "; read -r OPT
-   [ "$OPT" = "y" ] || [ "$OPT" = "Y" ] && rm "$CACHE_PATH" && exit 0
-   menu
+    printf "Are you sure you'd like to delete the printer cache? [y/n] "; read -r OPT
+    [ "$OPT" = "y" ] || [ "$OPT" = "Y" ] && rm "$CACHE_PATH" && exit 0
+    menu
 }
 
 menu() {
@@ -52,11 +51,11 @@ menu() {
                 "2) Use existing printer" \
                 "3) Clear printer cache" \
                 "4) Exit"; read -r OPT
-            [ "$OPT" != "1" ] && \
-            [ "$OPT" != "2" ] && \
-            [ "$OPT" != "3" ] && \
-            [ "$OPT" != "4" ]
-        do :; done
+                            [ "$OPT" != "1" ] && \
+                                [ "$OPT" != "2" ] && \
+                                [ "$OPT" != "3" ] && \
+                                [ "$OPT" != "4" ]
+                            do :; done
 
         # Switch on user selection
         case "$OPT" in
@@ -71,9 +70,9 @@ menu() {
                 ;;
             "4")
                 exit 0
-          esac
-  else
-      add_new
+        esac
+    else
+        add_new
     fi
 }
 

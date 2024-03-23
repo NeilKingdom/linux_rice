@@ -1,24 +1,18 @@
 #!/bin/sh
 #
-# Purpose: Generate a README file skeleton for personal projects
-#
+# Description: Generate a README file skeleton for personal projects
 # Dependencies: figlet
 
 README_SKEL="$SCRIPT_DIR/res/$(basename "$0")/README_SKEL.md"
 
-# Get the name of the root directory
-ROOT_NAME="${PWD#"$DEVEL_DIR"/}"
-ROOT_NAME="$(echo "$ROOT_NAME" | cut -d '/' -f1)"
+# Get the name of the current directory
+PROJ_DIR="$(basename "$PWD")"
 
-# Check if the path actually exists
-! [ -d "$DEVEL_DIR/$ROOT_NAME" ] && \
+# Ensure project exists in $DEVEL_DIR
+! [ -d "$DEVEL_DIR/$PROJ_DIR" ] && \
     echo "Genreadme: This script only works for projects in \$DEVEL_DIR" && exit 1
 
-# Get the absolute path to the root directory
-PROJECT_ROOT="$(pwd | sed "s/\($ROOT_NAME\).*/\1/")"
-
-if [ -f "$PROJECT_ROOT/README.md" ]
-then
+if [ -f "README.md" ]; then
     while
         printf "README.md already exists in project root. Overwrite? [y/n] "; read -r ANS
         ANS="$(echo "$ANS" | tr '[:upper:]' '[:lower:]')"
@@ -29,12 +23,15 @@ then
     do :; done
 fi
 
-[ "$ANS" = "n" ] || [ "$ANS" = "no" ] && echo "Exiting..." exit 0
+[ "$ANS" = "n" ] || [ "$ANS" = "no" ] && echo "Exiting..." && exit 0
 
 # Use figlet to output banner name into README.md
-BANNER="$(figlet -lp "$(echo "$ROOT_NAME" | sed 's/_//g')")"
-printf "%s\n" "<pre>" > "$PROJECT_ROOT/README.md"
-printf "%s\n" "$BANNER" >> "$PROJECT_ROOT/README.md"
-printf "%s\n\n" "</pre>" >> "$PROJECT_ROOT/README.md"
+PROJ_NAME="$(echo "$PROJ_DIR" | sed 's/_/ /g')"
+BANNER="$(figlet -lp "$PROJ_NAME")"
+{
+printf "%s\n" "<pre>"
+"%s\n" "$BANNER"
+"%s\n\n" "</pre>"
+} > "README.md"
 
-cat "$README_SKEL" >> "$PROJECT_ROOT/README.md"
+cat "$README_SKEL" >> "README.md"

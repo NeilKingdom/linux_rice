@@ -1,9 +1,18 @@
 #!/bin/sh
 #
-# Purpose: Extract the best audio quality from a youtube video
+# Description: Extract the best audio quality from a youtube video
+# Dependencies: yt-dlp
 #
 # Note: The URL must be surrounded in double quotes, otherwise your terminal will
 # interpret special characters such as '?' as a regex pattern
+
+usage() {
+    printf "Usage: yt-audio [Options...] \"<URL>\"\n%s\n\t%s\n\t%s\n" \
+        "Options:" \
+        "-d Specify output directory" \
+        "-h Help menu"
+    exit 0
+}
 
 i=0
 MUSIC_DIR="$HOME/music"
@@ -12,35 +21,37 @@ MUSIC_DIR="$HOME/music"
 for URL in "$@"; do :; done
 
 while [ "$i" -le "$#" ]; do
-    i=$((++i))
+    i=$((i + 1))
     eval ARG=\$"$i"
 
     case "$ARG" in
         "-d")
             [ "$(echo "$URL" | grep "www.youtube.com")" = "" ] && \
-            echo "Invalid URL" && exit 1
+                echo "Invalid URL" && exit 1
 
             printf "Enter the directory you'd like to place the file in (default is %s)\n" "$MUSIC_DIR"; read -r DIR
             printf "Enter the new name of the file (default is to keep file name unchanged)\n"; read -r NAME
 
-            # Use --force-ipv4 because ipv6 is extremely slow
-            yt-dlp -f bestaudio --extract-audio --force-ipv4 "$URL" || \
+            yt-dlp -f bestaudio --extract-audio --force-ipv4 "$URL"
 
             FILE="$(yt-dlp --get-filename "$URL" | sed 's/webm/opus/g')"
-            [ "$NAME" = "" ] && NAME="$FILE" || mv "$FILE" "$NAME.opus"
+            if [ "$NAME" = "" ]; then
+                NAME="$FILE"
+            else
+                mv "$FILE" "$NAME.opus"
+            fi
             [ "$DIR" = "" ] && DIR="$MUSIC_DIR"
             mv "$NAME" "$DIR"
             ;;
         "-h")
-            printf "Usage: yt-audio [Options...] \"<URL>\"\n%s\n\t%s\n\t%s\n" \
-                "Options:" \
-                "-d Specify output directory" \
-                "-h Help menu"; exit 0
+            usage
             ;;
         *)
-            [ "$(echo "$URL" | grep "www.youtube.com")" != "" ] && \
-            yt-dlp -f bestaudio --extract-audio --force-ipv4 "$URL" || \
-            echo "Invalid URL" && exit 1
+            if [ "$(echo "$URL" | grep "www.youtube.com")" != "" ]; then
+                yt-dlp -f bestaudio --extract-audio --force-ipv4 "$URL"
+            else
+                echo "Invalid URL" && exit 1
+            fi
             ;;
     esac
 done

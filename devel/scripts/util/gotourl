@@ -1,9 +1,8 @@
 #!/bin/sh
 #
-# Purpose: This script parses input for valid URIs. Input can include the user's history file,
+# Description: This script parses input for valid URIs. Input can include the user's history file,
 # direct input from stdin, or input from a given file. If more than one URIs are found
 # in a given file, they are piped to dmenu. The script opens the located resource using xdg-open.
-#
 # Dependencies: xdg-open
 
 REGEX="https\?://\S*\.[A-Za-z]\+\S*"

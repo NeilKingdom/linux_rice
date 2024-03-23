@@ -1,7 +1,6 @@
 #!/bin/sh
 #
-# Purpose: Send a push notification when transmission-daemon has finished downloading a torrent
-#
+# Description: Send a push notification when transmission-daemon has finished downloading a torrent
 # Dependencies: notify-send, transmission
 #
 # The following is a list of exports which are set by transmission-daemon:

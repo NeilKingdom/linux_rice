@@ -1,7 +1,6 @@
 #!/bin/sh
 #
-# Purpose: Connect bluetooth headphones
-#
+# Description: Connect bluetooth headphones
 # Dependencies: bluez, bluez-utils, bluez-libs, pipewire, pipewire-pulse, wireplumber
 #
 # Troubleshooting:
@@ -41,7 +40,7 @@ SELECTION="$1"
 MAC="$(bluetoothctl devices | grep "Bose QC35 II" | awk '{print $2}')"
 
 signal_handler() {
-    PAIR_STAT="$(bluetoothctl info $MAC | sed '9q;d' | awk '{print $2}')"
+    PAIR_STAT="$(bluetoothctl info "$MAC" | sed '9q;d' | awk '{print $2}')"
     [ "$PAIR_STAT" = "yes" ] && echo "Successfully paired with $MAC!" || echo "Failed to pair with $MAC..."
     kill -TERM -$$
 }
@@ -51,10 +50,10 @@ turnon() {
 
     echo "Please wait until headphones are in pairing mode and then run this script"
     bluetoothctl power on
-    bluetoothctl connect $MAC
+    bluetoothctl connect "$MAC"
 
     # Wait for interrupt signal (Ctrl+C)
-    for i in {1..100}; do
+    for i in $(seq 1 100); do
         sleep 1 &
     done
 
@@ -62,7 +61,7 @@ turnon() {
 }
 
 turnoff() {
-    bluetoothctl disconnect $MAC
+    bluetoothctl disconnect "$MAC"
     bluetoothctl power off
     bluetoothctl quit
     echo "Disconnected from $MAC"

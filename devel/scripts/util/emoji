@@ -1,10 +1,9 @@
 #!/bin/sh
 #
-# Purpose: Search and copy emojis to clipboard via dmenu
-#
+# Description: Search and copy emojis to clipboard via dmenu
 # Dependencies: notify-send, xclip, dmenu
 
-EMOJILIST="$SCRIPT_DIR/res/$(basename $0)/emoji.txt"
+EMOJILIST="$SCRIPT_DIR/res/$(basename "$0")/emoji.txt"
 
 grep -v "#" "$EMOJILIST" | dmenu -p "Emojis" -l 15 -g 1 -nb "#222222" -nf "#bbbbbb" -sb "#005577" \
 -sf "#eeeeee" | awk '{print $1}' | tr -d '\n' | xclip -selection clipboard

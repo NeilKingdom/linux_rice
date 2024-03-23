@@ -1,7 +1,6 @@
 #!/bin/sh
 #
-# Purpose: Wizard to help setup a qemu virtual machine
-#
+# Description: Wizard to help setup a qemu virtual machine
 # Dependencies: pacman, qemu-system-x86, qemu-system-arm, qemu-system-aarch64, qemu-img, libvirt
 
 # Global Variables
