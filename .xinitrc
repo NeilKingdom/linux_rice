@@ -7,7 +7,7 @@
 /usr/bin/gpg-agent --daemon
 
 # Start D-Bus message bus daemon
-dbus-daemon --session --nofork --nopidfile --address="unix:path=$XDG_RUNTIME_DIR/bus"
+dbus-daemon --session --nofork --nopidfile --address="unix:path=$XDG_RUNTIME_DIR/bus" &
 
 # Load .Xresources
 [ -f "$HOME/.Xresources" ] && xrdb -load "$HOME/.Xresources"
