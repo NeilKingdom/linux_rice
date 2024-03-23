@@ -4,17 +4,15 @@
 /bin/rm -rf /tmp/* /tmp/.* > /dev/null
 
 # Start GPG-agent (used by pam-gnupg)
-if [ -x /usr/bin/gpg-agent ]; then
-	eval "$(/usr/bin/gpg-agent --daemon)"
-fi
+/usr/bin/gpg-agent --daemon
 
-# Start dbus daemon
-dbus-daemon --session --nofork --nopidfile --address="unix:path=$XDG_RUNTIME_DIR/bus" &
+# Start D-Bus message bus daemon
+dbus-daemon --session --nofork --nopidfile --address="unix:path=$XDG_RUNTIME_DIR/bus"
 
-# Load Xresources through xrdb (merge only updates values that have been added since last load/merge)
+# Load .Xresources
 [ -f "$HOME/.Xresources" ] && xrdb -load "$HOME/.Xresources"
 
-# Set wallpaper
+# Set a random wallpaper
 #
 # wal: Written in Python. Sets the system color scheme based on the primary colors
 #      of the selected background image.
@@ -27,7 +25,7 @@ feh -z "$HOME/pics/bkgnds" --bg-fill --no-fehbg &
 # Start Picom compositor (for window transparency)
 picom -o 0.9 --no-fading-openclose --no-vsync &
 
-# Sync hwclock to Real Time Clock (RTC) with chrony
+# Sync Real Time Clock (RTC) with NTP server
 chronyc trimrtc &
 
 # Enable numlock at boot
@@ -44,25 +42,25 @@ xset r rate 200 45 &
 # it does not create the persistent storage directory in
 # my home folder (VERY annoying).
 (cd "$XDG_CONFIG_HOME"; wireplumber &)
-# Start PipeWire media server (Full path required for privillege reasons)
-# NOTE: I have set up my pipewire.conf to autostart pipewire-pulse. You
-# must either follow my lead or put "/usr/bin/pipewire-pulse &" after
-# "/usr/bin/pipewire &" below.
+# Start PipeWire media server
+# NOTE: I have set up my pipewire.conf to autostart pipewire-pulse.
+# Normally, you'd have to start pipewire-pulse after pipewire.
 /usr/bin/pipewire &
 
 # Start Music Player Daemon (used by ncmpcpp)
-[ ! -s "$XDG_CACHE_HOME/mpd/pid" ] && mpd &
+mpd &
 
 # Start dunst notification daemon
 dunst &
 
 # Open a browser session
-"$BROWSER" &
+eval "$BROWSER" &
 
 # Send a welcome notification
 notify-send "Welcome $USER 😎"
 
 # Start taskbar
 exec dwmblocks &
-# If exec dwm is not placed as the final command, written exactly as "exec dwm", DWM will crash
+
+# Start DWM (MUST be last command)
 exec dwm

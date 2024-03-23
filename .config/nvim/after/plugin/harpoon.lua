@@ -1,9 +1,7 @@
--- Marks up to 4 files that can be switched between using the quick menu, or key bindings
-
 local harpoon = require("harpoon")
 harpoon:setup({})
 
--- basic telescope configuration
+-- Basic telescope configuration
 local conf = require("telescope.config").values
 local function toggle_telescope(harpoon_files)
     local file_paths = {}
@@ -21,10 +19,9 @@ local function toggle_telescope(harpoon_files)
     }):find()
 end
 
-vim.keymap.set("n", "<leader>m", function() harpoon:list():append() end)
---vim.keymap.set("n", "<leader>h", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
--- Similar to quick ui but uses telescope
+-- Similar to toggle_quick_menu() but uses telescope instead
 vim.keymap.set("n", "<leader>h", function() toggle_telescope(harpoon:list()) end)
+vim.keymap.set("n", "<leader>m", function() harpoon:list():append() end)
 
 vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end)
 vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end)

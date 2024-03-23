@@ -1,1 +1,0 @@
--- Enables Git commands natively in nvim

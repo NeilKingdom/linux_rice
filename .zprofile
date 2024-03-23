@@ -1,16 +1,13 @@
 #!/bin/zsh
 
-#### Env Vars ####
+# System environment variables
 
-# Location of .zshrc
 export ZDOTDIR="$HOME/.config/zsh"
-
-# $PATH
 export PATH="$JAVA_HOME/bin:$HOME/.dotnet/tools:$PATH"
 
 # Personal environment variables
 
-export EDITOR="vim"
+export EDITOR="nvim"
 export TERMINAL="st"
 export BROWSER="firefox"
 # Used by GDB

@@ -45,6 +45,7 @@ require("mason-lspconfig").setup({
             local lua_opts = lsp_zero.nvim_lua_ls()
             require("lspconfig").lua_ls.setup(lua_opts)
         end,
+        -- TODO: Seems to break on_attach remaps for lsp
         --clangd = function()
         --    require("lspconfig").clangd.setup({
         --        filetypes = { "c", "cpp" },

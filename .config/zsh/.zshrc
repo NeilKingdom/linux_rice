@@ -1,16 +1,19 @@
 #!/bin/zsh
+#
 # Z-Shell Config
 
 # Colors
 
 autoload -Uz colors && colors
+WHITE="%{$fg[white]%}"
+BLACK="%{$fg[black]%}"
 RED="%{$fg[red]%}"
 GREEN="%{$fg[green]%}"
 YELLOW="%{$fg[yellow]%}"
 BLUE="%{$fg[blue]%}"
 MAGENTA="%{$fg[magenta]%}"
 CYAN="%{$fg[cyan]%}"
-# PS1 tag
+
 PS1="%B${RED}[${YELLOW}%n${BLUE}@${YELLOW}%M %1d${RED}]${YELLOW}$%{$reset_color%} "
 
 # ZSH history settings
@@ -41,8 +44,8 @@ bindkey -v '^?' backward-delete-char
 bindkey -v
 export KEYTIMEOUT=5
 
-### Aliases ###
+# Aliases
 source "$XDG_CONFIG_HOME/zsh/aliases"
 
-# Source ZSH syntax highlight plugin. Should be the last line in the config file.
+# Source ZSH syntax highlight plugin (MUST be the last line in the config file)
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

@@ -1,4 +1,3 @@
--- Disable line cursor (i.e., use block cursor always)
 vim.opt.guicursor = ""
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -21,6 +20,5 @@ vim.opt.scrolloff = 8
 vim.opt.signcolumn = "no"
 vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 100
-vim.opt.termguicolors = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true

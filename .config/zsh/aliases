@@ -1,5 +1,5 @@
 #!/bin/zsh
-
+#
 # Aliases for XDG-compliant config files
 
 alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts --no-config"

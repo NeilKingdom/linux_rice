@@ -1,9 +1,10 @@
--- Plugins are managed using Packer in my case
--- :PackerSync - Synchronize packages with upstream repos
--- :PackerUpdate - Update packages to the latest version available
--- :PackerInstall - Install a package
--- :PackerUninstall - Uninstall a package
--- :PackerCompile - Compile packer settings
+-- Plugins are managed using Packer
+--
+-- PackerSync:          Synchronize packages with upstream repos
+-- PackerUpdate:        Update packages to the latest version available
+-- PackerInstall:       Install a package
+-- PackerUninstall:     Uninstall a package
+-- PackerCompile:       Compile packer settings
 
 -- Only required if you have packer configured as 'opt'
 vim.cmd [[packadd packer.nvim]]
@@ -12,7 +13,7 @@ return require("packer").startup(function(use)
     -- The Packer plugin (manages itself)
     use("wbthomason/packer.nvim")
 
-    -- Telescope for file/word search
+    -- Telescope for file search/explorer
     use({
         "nvim-telescope/telescope.nvim",
         requires = "nvim-lua/plenary.nvim"
@@ -36,20 +37,20 @@ return require("packer").startup(function(use)
     -- Allows us to see the treesitter lexical analyser (AST/CST)
     use("nvim-treesitter/playground")
 
-    -- The Primeagen's Harpoon plugin for quick file switching
+    -- Harpoon for quick file navigation
     use({
         "ThePrimeagen/harpoon",
         branch = "harpoon2",
         dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" }
     })
 
-    -- Neogen for auto documentation
+    -- Neogen for generating documentation templates
     use("danymat/neogen")
 
-    -- Undotree for managing file changes
+    -- Undotree for managing file history
     use("mbbill/undotree")
 
-    -- Fugitive for running Git commands natively in nvim
+    -- Fugitive for running git commands natively in nvim
     use("tpope/vim-fugitive")
 
     -- LSP-Zero for LSP support
