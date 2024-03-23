@@ -37,8 +37,7 @@ require("lualine").setup {
             },
             {
                 "filetype",
-                -- NOTE: Icons don't work for this yet...
-                icon = { "📂", align = "right" }
+                icon = { align = "right" }
             }
         },
         -- Location of cursor relative to start of file (as a percentage)

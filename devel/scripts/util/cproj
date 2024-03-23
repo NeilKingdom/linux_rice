@@ -19,6 +19,16 @@ PROJ_DIR="$1"
 ! [ -d "$PROJ_DIR" ] && mkdir "$PROJ_DIR"
 cd "$PROJ_DIR" || exit 1
 
+# Check if the project will be a library
+while
+    printf "Is the project a library? [y/n] "; read -r IS_LIB
+    IS_LIB="$(echo "$IS_LIB" | tr '[:upper:]' '[:lower:]')"
+    [ "$IS_LIB" != "y" ] && \
+    [ "$IS_LIB" != "yes" ] && \
+    [ "$IS_LIB" != "n" ] && \
+    [ "$IS_LIB" != "no" ]
+do :; done
+
 # Git init (must proceed creation of .gitignore)
 git init > "/dev/null" 2>&1
 
@@ -34,17 +44,8 @@ $(basename "${PWD#}/")"
 } > .gitignore
 fi
 
-# Check if the project will be a library
-while
-    printf "Is the project a library? [y/n] "; read -r IS_LIB
-    IS_LIB="$(echo "$IS_LIB" | tr '[:upper:]' '[:lower:]')"
-    [ "$IS_LIB" != "y" ] && \
-    [ "$IS_LIB" != "yes" ] && \
-    [ "$IS_LIB" != "n" ] && \
-    [ "$IS_LIB" != "no" ]
-do :; done
-
 # Make directories + files
+# TODO: Makefile could probably be copied from a skel file
 touch Makefile
 mkdir -p src include obj res/doc
 [ "$IS_LIB" = "y" ] || [ "$IS_LIB" = "yes" ] && mkdir bin test

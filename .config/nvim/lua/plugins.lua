@@ -8,10 +8,7 @@
 -- Only required if you have packer configured as 'opt'
 vim.cmd [[packadd packer.nvim]]
 
-local packer = require("packer")
-packer.util = require("packer.util")
-
-return packer.startup(function(use)
+return require("packer").startup(function(use)
     -- The Packer plugin (manages itself)
     use("wbthomason/packer.nvim")
 
@@ -59,12 +56,10 @@ return packer.startup(function(use)
     use({
         "VonHeikemen/lsp-zero.nvim",
         requires = {
-            -- LSP Support
-            "neovim/nvim-lspconfig",
-
             -- Mason for managing language servers
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
+            "neovim/nvim-lspconfig",
 
             -- Autocompletion via nvim-cmp + autocomplete sources
             "hrsh7th/nvim-cmp",

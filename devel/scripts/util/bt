@@ -11,13 +11,13 @@
 # in pairing mode and run the following:
 #
 # 1)  bluetoothctl devices (to get MAC address)
-# 2)  bluetoothctl 
+# 2)  bluetoothctl
 # 3)  remove $MAC
 # 4)  power on
 # 5)  agent on
-# 6)  default-agent 
-# 7)  scan on 
-# 8)  pair $MAC 
+# 6)  default-agent
+# 7)  scan on
+# 8)  pair $MAC
 # 9)  trust $MAC
 # 10) connect $MAC
 # 11) scan off
@@ -26,13 +26,16 @@
 # - If you receive error "Could not find default agent", try removing bluetooth dongle
 # from USB port and plug back in.
 #
-# - If the device does not automatically connect on startup, ensure that the device is trusted and you may 
+# - If the device does not automatically connect on startup, ensure that the device is trusted and you may
 # try changing AutoEnable=true and ControllerMode = bredr in /etc/bluetooth/main.conf.
 #
-# - If the device works correctly, but certain applications have difficulty detecting the device e.g. online 
+# - If the device works correctly, but certain applications have difficulty detecting the device e.g. online
 # meeting apps, I've found the easiest solution to be installing pavucontrol and ensuring that an appropriate
 # profile is selected for the device under the Configuration tab. In my case, I had to select High Fidelity
 # Playback (A2DP Sink, codec AAC).
+#
+# - If after all that, you get org.bluez.Error.Failed br-connection-profile-unavailable, you may just have to
+# downgrade or wait until the next system update :(
 
 SELECTION="$1"
 MAC="$(bluetoothctl devices | grep "Bose QC35 II" | awk '{print $2}')"

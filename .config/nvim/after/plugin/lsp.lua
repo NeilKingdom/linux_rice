@@ -1,4 +1,5 @@
 local lsp_zero = require("lsp-zero")
+lsp_zero.preset("recommended")
 
 -- Executes when lsp is attached to buffer
 
@@ -16,7 +17,7 @@ lsp_zero.on_attach(function(client, bufnr)
     -- Find usages of the current symbol
     vim.keymap.set("n", "<leader>fu", function() vim.lsp.buf.references() end, opts)
     -- Find symbols at the workspace level e.g. structs or classes
-    vim.keymap.set("n", "<leader>fwr", function() vim.lsp.buf.workspace_symbol() end, opts)
+    vim.keymap.set("n", "<leader>fwu", function() vim.lsp.buf.workspace_symbol() end, opts)
     -- Trigger a specified action at the current cursor position
     --vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
 
@@ -28,7 +29,9 @@ lsp_zero.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>dp", function() vim.diagnostic.goto_prev() end, opts)
 end)
 
--- Manage language servers for Mason
+lsp_zero.setup({})
+
+-- Mason setup
 
 require("mason").setup({})
 require("mason-lspconfig").setup({
@@ -42,16 +45,17 @@ require("mason-lspconfig").setup({
             local lua_opts = lsp_zero.nvim_lua_ls()
             require("lspconfig").lua_ls.setup(lua_opts)
         end,
-        clangd = function()
-            require("lspconfig").clangd.setup({
-                cmd = {
-                    "clangd",
-                    "--function-arg-placeholders",
-                    "--header-insertion=never",
-                    "--header-insertion-decorators"
-                }
-            })
-        end
+        --clangd = function()
+        --    require("lspconfig").clangd.setup({
+        --        filetypes = { "c", "cpp" },
+        --        cmd = {
+        --            "clangd",
+        --            "--function-arg-placeholders",
+        --            "--header-insertion=never",
+        --            "--header-insertion-decorators"
+        --        }
+        --    })
+        --end
     }
 })
 
@@ -84,8 +88,8 @@ cmp.setup({
     mapping = cmp.mapping.preset.insert({
         ["<C-k>"] = cmp.mapping.select_prev_item(cmp_select),
         ["<C-j>"] = cmp.mapping.select_next_item(cmp_select),
-        --["<C-S-k>"] = cmp.mapping.scroll_docs(-1),
-        --["<C-S-j>"] = cmp.mapping.scroll_docs(1),
+        ["<A-k>"] = cmp.mapping.scroll_docs(-1),
+        ["<A-j>"] = cmp.mapping.scroll_docs(1),
         ["<CR>"] = cmp.mapping.confirm({ select = true }),
         -- Open the autocomplete window
         ["<C-Space>"] = cmp.mapping.complete(),
