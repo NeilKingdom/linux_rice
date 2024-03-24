@@ -46,7 +46,6 @@ export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/startup.py"
 export TEXMFHOME="$XDG_DATA_HOME/texmf"
 export TEXMFVAR="$XDG_CACHE_HOME/texlive/texmf-var"
 export TEXMFCONFIG="$XDG_CONFIG_HOME/texlive/texmf-config"
-export VIMINIT="source $XDG_CONFIG_HOME/vim/vimrc"
 
 # Other
 
