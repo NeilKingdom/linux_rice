@@ -1,25 +1,29 @@
-" PATH VARIABLES
+" Path variables
 
 set runtimepath^=$XDG_CONFIG_HOME/vim
 set packpath^=$XDG_CONFIG_HOME/vim/plugged
 set viminfo+=n~/.config/vim/viminfo
 
-" VARIABLE DECLS
+" Variable decls
 
 let mapleader=" "
-let g:gruvbox_termcolors=256
 let b:signcolumn_on=0
+let g:tokyonight_style='night'
+let g:tokyonight_enable_italic=1
+let g:tokyonight_transparent_background=1
+let g:airline_theme="tokyonight"
 
-" PLUGINS
+" Plugins
 
-call plug#begin('~/.config/vim/plugged')
+call plug#begin("~/.config/vim/plugged")
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
-Plug 'morhetz/gruvbox'
+Plug 'ghifarit53/tokyonight-vim'
 call plug#end()
 
-" SETS
+" Sets
 
+set termguicolors
 set mouse=a
 set background=dark
 set encoding=utf-8
@@ -51,7 +55,7 @@ set ttimeoutlen=20
 set iskeyword-=_
 set iskeyword-=-
 
-" MAPPINGS
+" Mappings
 
 " Special functions
 nnoremap <leader>SC :call ToggleSignColumn()<CR>
@@ -100,7 +104,7 @@ nnoremap { {zz
 nnoremap d- mm0d^i<BS><Space><ESC>`m
 nnoremap d_ mm0d^i<BS><ESC>`m
 
-" AUTO COMMANDS
+" Auto Commands
 
 " Detect latex files properly
 autocmd BufRead,BufNewFile *.tex set filetype=tex
@@ -122,21 +126,20 @@ autocmd BufWritePre * %s/\s\+$//e
 autocmd Filetype c,css setlocal iskeyword-=-
 autocmd Filetype c setlocal iskeyword-=_
 
-" FUNCTIONS
+" Functions
 
 " Toggle signcolumn. Works on vim >= 8.1 or NeoVim
 function! ToggleSignColumn()
-	if !exists("b:signcolumn_on") || b:signcolumn_on
-   	set signcolumn=no
-      let b:signcolumn_on=0
-   else
-   	set signcolumn=yes
-      let b:signcolumn_on=1
-   endif
+    if !exists("b:signcolumn_on") || b:signcolumn_on
+        set signcolumn=no
+        let b:signcolumn_on=0
+    else
+        set signcolumn=yes
+        let b:signcolumn_on=1
+    endif
 endfunction
 
-" OTHER
+" Other
 
 syntax on
-colorscheme gruvbox
-hi Normal ctermbg=none
+colorscheme tokyonight
