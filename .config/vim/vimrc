@@ -8,10 +8,10 @@ set viminfo+=n~/.config/vim/viminfo
 
 let mapleader=" "
 let b:signcolumn_on=0
-let g:tokyonight_style='night'
+let g:airline_theme="tokyonight"
+let g:tokyonight_style="night"
 let g:tokyonight_enable_italic=1
 let g:tokyonight_transparent_background=1
-let g:airline_theme="tokyonight"
 
 " Plugins
 
@@ -25,7 +25,6 @@ call plug#end()
 
 set termguicolors
 set mouse=a
-set background=dark
 set encoding=utf-8
 set clipboard=unnamedplus
 set splitbelow splitright
@@ -128,15 +127,8 @@ autocmd Filetype c setlocal iskeyword-=_
 
 " Functions
 
-" Toggle signcolumn. Works on vim >= 8.1 or NeoVim
 function! ToggleSignColumn()
-    if !exists("b:signcolumn_on") || b:signcolumn_on
-        set signcolumn=no
-        let b:signcolumn_on=0
-    else
-        set signcolumn=yes
-        let b:signcolumn_on=1
-    endif
+    exe "set signcolumn=" .. (&signcolumn == "yes" ? "no" : "yes")
 endfunction
 
 " Other
