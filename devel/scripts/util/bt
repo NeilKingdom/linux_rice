@@ -25,6 +25,8 @@
 # - If you receive error "Could not find default agent", try removing bluetooth dongle
 # from USB port and plug back in.
 #
+# - Try changing audio managers. If using pipewire, try switching to pulseaudio-bluetooth
+#
 # - If the device does not automatically connect on startup, ensure that the device is trusted and you may
 # try changing AutoEnable=true and ControllerMode = bredr in /etc/bluetooth/main.conf.
 #

@@ -41,11 +41,14 @@ xset r rate 200 45 &
 # NOTE: I start wireplumber from $XDG_CONFIG_HOME so that
 # it does not create the persistent storage directory in
 # my home folder (VERY annoying).
-(cd "$XDG_CONFIG_HOME"; wireplumber &)
+# (cd "$XDG_CONFIG_HOME"; wireplumber &)
+
 # Start PipeWire media server
 # NOTE: I have set up my pipewire.conf to autostart pipewire-pulse.
 # Normally, you'd have to start pipewire-pulse after pipewire.
-/usr/bin/pipewire &
+# /usr/bin/pipewire &
+
+pulseaudio &
 
 # Start Music Player Daemon (used by ncmpcpp)
 mpd &
