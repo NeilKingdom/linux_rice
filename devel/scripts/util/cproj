@@ -1,21 +1,23 @@
 #!/bin/sh
 #
 # Description: Scaffold a working directory for a new C project
-# Dependencies: genreadme, lynx, doxygen, git
+# Dependencies: genreadme, lynx, doxygen, git, clangd
 
 usage() {
-    printf "\n%s\n\n%s\n\n" \
-        "Usage: $0 <project_dir>" \
-        "Note: Use ./ to setup the environment in the current directory"
+    printf "%s\n%s\n\n" \
+        "Usage: $(basename "$0") [project_dir]" \
+        "Note: If project_dir is not specified, cproj will attempt to use the current directory if empty"
     exit 0
 }
 
-[ "$1" = "" ] && usage
-[ "$(find . -maxdepth 1 -exec echo \; | wc -l)" -gt 1 ] && \
-    echo "The project directory is not empty. Exiting..." && exit 1
-
 PROJ_DIR="$1"
-! [ -d "$PROJ_DIR" ] && mkdir "$PROJ_DIR"
+
+# If using current directory, check that it's empty
+[ -z "$PROJ_DIR" ] && \
+[ "$(find . -maxdepth 1 -exec echo \; | wc -l)" -gt 1 ] && \
+usage && exit 1
+
+[ -n "$PROJ_DIR" ] && ! [ -d "$PROJ_DIR" ] && mkdir "$PROJ_DIR"
 cd "$PROJ_DIR" || exit 1
 
 # Check if the project will be a library
@@ -28,17 +30,17 @@ while
     [ "$IS_LIB" != "no" ]
 do :; done
 
-# Git init (must proceed creation of .gitignore)
+# Git init
 git init > "/dev/null" 2>&1
 
 # .gitignore
 if [ -d ".git" ]; then
 {
-echo ".clangd
-compile_flags.txt
-obj
+echo \
+"obj
 bin
-$(basename "${PWD#}/")"
+$(basename "$PWD")
+compile_flags.txt"
 } > .gitignore
 fi
 
@@ -53,12 +55,12 @@ mkdir -p src include obj res/doc
 lynx -dump "https://mit-license.org" | sed -n "1,22p;22q" \
     | sed "s/<.*>$/Neil Kingdom/g" | awk '{$1=$1};1' > LICENSE
 
-# Clangd files (used to resolve relative #includes)
-echo "AddIncludeDirectory: include" > compile_flags.txt
+# Relative path to include directory for clangd
 {
-echo "CompileFlags:
-    Add: -Iinclude"
-} > .clangd
+echo \
+"-I
+include"
+} > compile_flags.txt
 
 # README
 genreadme

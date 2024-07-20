@@ -39,25 +39,6 @@ require("mason-lspconfig").setup({
         "clangd",
         "rust_analyzer"
     },
-    handlers = {
-        lsp_zero.default_setup,
-        lua_ls = function()
-            local lua_opts = lsp_zero.nvim_lua_ls()
-            require("lspconfig").lua_ls.setup(lua_opts)
-        end,
-        -- TODO: Seems to break on_attach remaps for lsp
-        --clangd = function()
-        --    require("lspconfig").clangd.setup({
-        --        filetypes = { "c", "cpp" },
-        --        cmd = {
-        --            "clangd",
-        --            "--function-arg-placeholders",
-        --            "--header-insertion=never",
-        --            "--header-insertion-decorators"
-        --        }
-        --    })
-        --end
-    }
 })
 
 -- nvim-cmp for autocompletion

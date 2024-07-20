@@ -1,10 +1,5 @@
 #!/bin/zsh
 
-# System environment variables
-
-export ZDOTDIR="$HOME/.config/zsh"
-export PATH="$JAVA_HOME/bin:$HOME/.dotnet/tools:$PATH"
-
 # Personal environment variables
 
 export EDITOR="nvim"
@@ -43,6 +38,7 @@ export R_PROFILE_USER="$XDG_CONFIG_HOME/R/profile"
 export R_HISTFILE="$XDG_CONFIG_HOME/R/history"
 export R_LIBS_USER="$XDG_DATA_HOME/R/%p-library/%v"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/startup.py"
+export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
 export TEXMFHOME="$XDG_DATA_HOME/texmf"
 export TEXMFVAR="$XDG_CACHE_HOME/texlive/texmf-var"
 export TEXMFCONFIG="$XDG_CONFIG_HOME/texlive/texmf-config"
@@ -61,6 +57,14 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export _JAVA_AWT_WM_NONREPARENTING=1
 # Android SDK location
 export ANDROID_HOME="$HOME/devel/android/sdk"
+# Clangd options
+export CLANGD_FLAGS="--header-insertion=never"
 # GNU Privacy Guard
 GPG_TTY=$(tty)
 export GPG_TTY
+
+# System environment variables
+
+export ZDOTDIR="$HOME/.config/zsh"
+export PATH="$JAVA_HOME/bin:$XDG_DATA_HOME/pyenv:$HOME/.dotnet/tools:$PATH"
+

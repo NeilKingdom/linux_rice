@@ -4,33 +4,27 @@
 # Dependencies: figlet
 
 README_SKEL="$SCRIPT_DIR/res/$(basename "$0")/README_SKEL.md"
-
-# Get the name of the current directory
 PROJ_DIR="$(basename "$PWD")"
-
-# Ensure project exists in $DEVEL_DIR
-! [ -d "$DEVEL_DIR/$PROJ_DIR" ] && \
-    echo "Genreadme: This script only works for projects in \$DEVEL_DIR" && exit 1
 
 if [ -f "README.md" ]; then
     while
-        printf "README.md already exists in project root. Overwrite? [y/n] "; read -r ANS
-        ANS="$(echo "$ANS" | tr '[:upper:]' '[:lower:]')"
-        [ "$ANS" != "y" ] && \
-        [ "$ANS" != "yes" ] && \
-        [ "$ANS" != "n" ] && \
-        [ "$ANS" != "no" ]
+        printf "README.md already exists in project root. Overwrite? [y/n] "; read -r INPUT
+        INPUT="$(echo "$INPUT" | tr '[:upper:]' '[:lower:]')"
+        [ "$INPUT" != "y" ] && \
+        [ "$INPUT" != "yes" ] && \
+        [ "$INPUT" != "n" ] && \
+        [ "$INPUT" != "no" ]
     do :; done
 fi
 
-[ "$ANS" = "n" ] || [ "$ANS" = "no" ] && echo "Exiting..." && exit 0
+[ "$INPUT" = "n" ] || [ "$INPUT" = "no" ] && echo "Exiting..." && exit 0
 
 # Use figlet to output banner name into README.md
 PROJ_NAME="$(echo "$PROJ_DIR" | sed 's/_/ /g')"
 BANNER="$(figlet -lp "$PROJ_NAME" | sed '/^\s*$/d')"
 printf "%s\n%s\n%s\n\n" \
-    "<pre>" \
+    "\`\`\`" \
     "$BANNER" \
-    "</pre>" > "README.md"
+    "\`\`\`" > "README.md"
 
 cat "$README_SKEL" >> "README.md"
