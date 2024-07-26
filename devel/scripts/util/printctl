@@ -29,12 +29,11 @@ add_new() {
 
    sel_existing() {
        # Open dmenu prompt with list of cached printers
-       PNAME=$(dmenu -p "Printers" -l 15 -g 1 -nb "#222222" -nf "#bbbbbb" \
-           -sb "#005577" -sf "#eeeeee" < "$CACHE_PATH")
+       PNAME="$(dmenu -p "Printers" -l 15 -g 1 < "$CACHE_PATH")"
 
    # Parse selection
-   IP=$(echo "$PNAME" | awk '{print $2}')
-   PNAME=$(echo "$PNAME" | awk '{print $1}')
+   IP="$(echo "$PNAME" | awk '{print $2}')"
+   PNAME="$(echo "$PNAME" | awk '{print $1}')"
 }
 
 del_cache() {
@@ -51,11 +50,12 @@ menu() {
                 "2) Use existing printer" \
                 "3) Clear printer cache" \
                 "4) Exit"; read -r OPT
-                            [ "$OPT" != "1" ] && \
-                                [ "$OPT" != "2" ] && \
-                                [ "$OPT" != "3" ] && \
-                                [ "$OPT" != "4" ]
-                            do :; done
+
+            [ "$OPT" != "1" ] && \
+            [ "$OPT" != "2" ] && \
+            [ "$OPT" != "3" ] && \
+            [ "$OPT" != "4" ]
+        do :; done
 
         # Switch on user selection
         case "$OPT" in

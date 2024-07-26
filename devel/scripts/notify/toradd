@@ -4,5 +4,9 @@
 # the daemon first if not running
 # Dependencies: notify-send, transmission
 
-pgrep -x transmission-daemon > /dev/null || (transmission-daemon && notify-send "Starting transmission daemon...")
+if [ -n "$(pidof transmission-daemon)" ]; then
+    notify-send "Starting transmission daemon..."
+    transmission-daemon &
+fi
+
 transmission-remote -a "$@" && notify-send "Transmission-daemon" "Torrent added."

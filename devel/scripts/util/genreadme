@@ -22,9 +22,6 @@ fi
 # Use figlet to output banner name into README.md
 PROJ_NAME="$(echo "$PROJ_DIR" | sed 's/_/ /g')"
 BANNER="$(figlet -lp "$PROJ_NAME" | sed '/^\s*$/d')"
-printf "%s\n%s\n%s\n\n" \
-    "\`\`\`" \
-    "$BANNER" \
-    "\`\`\`" > "README.md"
+printf "%s\n%s\n%s\n\n" "\`\`\`" "$BANNER" "\`\`\`" > "README.md"
 
 cat "$README_SKEL" >> "README.md"

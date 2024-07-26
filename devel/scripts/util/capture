@@ -3,7 +3,7 @@
 # Description: Take a screenshot of the current window
 # Dependencies: notify-send
 
-i="$(($(ls | grep -c "capture.\.jpg")+ 1))"
+i="$(($(ls | grep -c "capture.\.jpg") + 1))"
 
 OUT_FILE="capture$i.jpg"
 import -window root "$OUT_FILE" && \
