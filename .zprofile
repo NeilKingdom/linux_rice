@@ -67,4 +67,3 @@ export GPG_TTY
 
 export ZDOTDIR="$HOME/.config/zsh"
 export PATH="$JAVA_HOME/bin:$XDG_DATA_HOME/pyenv:$HOME/.dotnet/tools:$PATH"
-

@@ -53,6 +53,13 @@ return require("packer").startup(function(use)
     -- Fugitive for running git commands natively in nvim
     use("tpope/vim-fugitive")
 
+    -- Prettier
+    use({
+        "prettier/vim-prettier",
+        run = "npm install -g prettier",
+        ft = { "javascript", "typescript" }
+    })
+
     -- LSP-Zero for LSP support
     use({
         "VonHeikemen/lsp-zero.nvim",

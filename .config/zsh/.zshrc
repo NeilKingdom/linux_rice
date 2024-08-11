@@ -44,9 +44,6 @@ bindkey -v '^?' backward-delete-char
 bindkey -v
 export KEYTIMEOUT=5
 
-# Unsets
-unset ANDROID_SDK_ROOT
-
 # Aliases
 source "$XDG_CONFIG_HOME/zsh/aliases"
 
