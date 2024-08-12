@@ -46,11 +46,11 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Open netrw
 vim.keymap.set("n", "<leader>ex", vim.cmd.Ex)
--- Close netrw
+-- Delete buffer
 vim.keymap.set("n", "<leader>q", ":bd<CR>")
--- Shellcheck
-vim.keymap.set("n", "<leader>sc", ":!clear<CR>:!shellcheck %<CR>")
 -- Source file
 vim.keymap.set("n", "<leader>so", ":so<CR>")
+-- Shellcheck
+vim.keymap.set("n", "<leader>sc", ":!clear<CR>:!shellcheck %<CR>")
 -- Enable text wrapping
-vim.keymap.set("n", "<leader>ew", ":set wrap!<CR>:set wrap?<CR>")
+vim.keymap.set("n", "<leader>tw", ":set wrap!<CR>:set wrap?<CR>")
