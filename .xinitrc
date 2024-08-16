@@ -10,7 +10,7 @@
 dbus-daemon --session --nofork --nopidfile --address="unix:path=$XDG_RUNTIME_DIR/bus" &
 
 # Load .Xresources
-[ -f "$HOME/.Xresources" ] && xrdb -load "$HOME/.Xresources"
+[ -f "$XDG_CONFIG_HOME/xresources" ] && xrdb -load "$XDG_CONFIG_HOME/xresources"
 
 # Set a random wallpaper
 #
