@@ -1,18 +1,35 @@
-set selection-clipboard clipboard
+# Options
 
-set completion-group-bg         "#282828"
-set completion-group-fg         "#EBDBB2"
+set font                        "liberation sans 22"
+set database                    "sqlite"
+set selection-clipboard         "clipboard"
+set double-click-follow         false
+set window-title-home-tilde     true
+set statusbar-home-tilde        true
+
+# Color scheme
+
+set default-bg                  "#1D2021"
+set default-fg                  "#001512"
+set recolor-lightcolor          "#282828"
+set recolor-darkcolor           "#EBDBB2"
+
+set highlight-active-color      "rgba(128,255,0,0.5)"
+set highlight-color             "rgba(255,255,0,0.5)"
+
 set completion-bg               "#282828"
 set completion-fg               "#EBDBB2"
+set completion-group-bg         "#282828"
+set completion-group-fg         "#EBDBB2"
 set completion-highlight-bg     "#458588"
 set completion-highlight-fg     "#EBDBB2"
 
+set notification-fg             "#EBDBB2"
+set notification-bg             "#3C3836"
 set notification-error-bg       "#3C3836"
 set notification-error-fg       "#EBDBB2"
 set notification-warning-bg     "#3C3836"
 set notification-warning-fg     "#EBDBB2"
-set notification-bg             "#3C3836"
-set notification-fg             "#EBDBB2"
 
 set index-bg                    "#1D2021"
 set index-fg                    "#EBDBB2"
@@ -25,19 +42,7 @@ set inputbar-fg                 "#EBDBB2"
 set statusbar-bg                "#282828"
 set statusbar-fg                "#EBDBB2"
 
-set highlight-color             "#458588"
-set highlight-active-color      "#458588"
-
-set default-bg                  "#1D2021"
-set default-fg                  "#001512"
-set recolor-lightcolor          "#282828"
-set recolor-darkcolor           "#EBDBB2"
-
-set statusbar-h-padding 0
-set statusbar-v-padding 0
-set page-padding 1
-#set recolor
-#set recolor-keephue
+# Keyboard mappings
 
 map u scroll half-up
 map d scroll half-down
