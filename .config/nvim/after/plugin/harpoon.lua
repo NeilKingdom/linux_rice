@@ -21,7 +21,7 @@ end
 
 -- Similar to toggle_quick_menu() but uses telescope instead
 vim.keymap.set("n", "<leader>h", function() toggle_telescope(harpoon:list()) end)
-vim.keymap.set("n", "<leader>m", function() harpoon:list():append() end)
+vim.keymap.set("n", "<leader>m", function() harpoon:list():add() end)
 
 vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end)
 vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end)

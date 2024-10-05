@@ -23,7 +23,7 @@ feh -z "$HOME/pics/bkgnds" --bg-fill --no-fehbg &
 # wal -i "$HOME/pics/bkgnds/$(ls $HOME/pics/bkgnds | sort -R | sort -n 1)" &
 
 # Start Picom compositor (for window transparency)
-picom -o 0.9 --no-fading-openclose --no-vsync &
+picom -o 0.9 -b
 
 # Sync Real Time Clock (RTC) with NTP server
 chronyc trimrtc &
