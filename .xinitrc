@@ -22,8 +22,8 @@ dbus-daemon --session --nofork --nopidfile --address="unix:path=$XDG_RUNTIME_DIR
 feh -z "$HOME/pics/bkgnds" --bg-fill --no-fehbg &
 # wal -i "$HOME/pics/bkgnds/$(ls $HOME/pics/bkgnds | sort -R | sort -n 1)" &
 
-# Start Picom compositor (for window transparency)
-picom -o 0.9 -b
+# Start Picom compositor (primarily manages window transparency)
+picom -b
 
 # Sync Real Time Clock (RTC) with NTP server
 chronyc trimrtc &
