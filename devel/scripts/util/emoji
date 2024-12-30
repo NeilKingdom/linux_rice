@@ -5,7 +5,7 @@
 
 EMOJILIST="$SCRIPT_DIR/res/$(basename "$0")/emoji.txt"
 
-grep -v "#" "$EMOJILIST" | dmenu -p "Emojis" -l 15 -g 1 |
+grep -v "#" "$EMOJILIST" | dmenu -p "Emojis" -l 15 -g 3 |
 awk '{print $1}' | tr -d '\n' | xclip -selection clipboard
 [ -n "$(xclip -o -selection clipboard)" ] && notify-send "Emoji Copy" \
 "$(xclip -o -selection clipboard) copied to clipboard"
