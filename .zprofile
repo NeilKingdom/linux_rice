@@ -4,7 +4,7 @@
 
 export EDITOR="nvim"
 export TERMINAL="st"
-export BROWSER="firefox"
+export BROWSER="librewolf"
 # Used by GDB
 export DEBUGINFOD_URLS="https://debuginfod.artixlinux.org"
 # Personal development directory
@@ -68,4 +68,4 @@ export GPG_TTY
 # System environment variables
 
 export ZDOTDIR="$HOME/.config/zsh"
-export PATH="$JAVA_HOME/bin:$XDG_DATA_HOME/pyenv:$HOME/.dotnet/tools:$PATH"
+export PATH="$JAVA_HOME/bin:$GOPATH/bin:$PYENV_ROOT:$HOME/.dotnet/tools:$PATH"
