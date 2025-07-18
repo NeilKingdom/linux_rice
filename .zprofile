@@ -39,16 +39,16 @@ export R_HISTFILE="$XDG_CONFIG_HOME/R/history"
 export R_LIBS_USER="$XDG_DATA_HOME/R/%p-library/%v"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/startup.py"
 export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
-export TEXMFHOME="$XDG_DATA_HOME/texmf"
-export TEXMFVAR="$XDG_CACHE_HOME/texlive/texmf-var"
-export TEXMFCONFIG="$XDG_CONFIG_HOME/texlive/texmf-config"
+export TEXMFHOME="$XDG_DATA_HOME/texlive"
+export TEXMF_OUTPUT_DIRECTORY="$TEXMFHOME/output"
+export TEXMFCONFIG="$TEXMFHOME/texmf-config"
+export TEXMFCACHE="$XDG_CACHE_HOME/texlive"
+export TEXMFVAR="$TEXMFCACHE/texmf-var"
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
 export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
 
 # Other
 
-# Set calcurse's default editor as neovim
-export CALCURSE_EDITOR="nvim"
 # Make pass copy to clipboard for 5 minutes
 export PASSWORD_STORE_CLIP_TIME=300
 # Used by all applications that rely on dbus

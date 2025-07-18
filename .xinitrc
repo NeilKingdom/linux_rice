@@ -3,9 +3,6 @@
 # Clear /tmp (caution: you probably don't want this unless you know what you're doing)
 /bin/rm -rf /tmp/* /tmp/.* > /dev/null
 
-# Start GPG-agent (used by pam-gnupg)
-/usr/bin/gpg-agent --daemon
-
 # Start D-Bus message bus daemon
 dbus-daemon --session --nofork --nopidfile --address="unix:path=$XDG_RUNTIME_DIR/bus" &
 
@@ -37,17 +34,7 @@ solaar -w hide &
 # Set autorepeat delay and the repeat rate for key presses
 xset r rate 200 45 &
 
-# Start WirePlumber (session/policy manager for PipeWire)
-# NOTE: I start wireplumber from $XDG_CONFIG_HOME so that
-# it does not create the persistent storage directory in
-# my home folder (VERY annoying).
-# (cd "$XDG_CONFIG_HOME"; wireplumber &)
-
-# Start PipeWire media server
-# NOTE: I have set up my pipewire.conf to autostart pipewire-pulse.
-# Normally, you'd have to start pipewire-pulse after pipewire.
-# /usr/bin/pipewire &
-
+# Pulse works better than pipewire for my setup
 pulseaudio &
 
 # Start Music Player Daemon (used by ncmpcpp)

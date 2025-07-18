@@ -5,6 +5,6 @@
 
 i="$(($(ls | grep -c "capture.\.jpg") + 1))"
 
-OUT_FILE="capture$i.jpg"
+OUT_FILE="capture${i}.jpg"
 import -window root "$OUT_FILE" && \
 notify-send "Capture 📷" "Captured screenshot $OUT_FILE"

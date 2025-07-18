@@ -1,9 +1,0 @@
-#!/bin/sh
-#
-# Description: Used as an alias for lualatex so that all files except pdf are moved
-# Dependencies: lualatex, tex-live
-
-TEX_NAME="$1"
-PDF_NAME="$(echo "$TEX_NAME" | sed 's/\.tex/\.pdf/g')"
-lualatex --shell-escape --output-directory="$XDG_DATA_HOME/latex/output" "$TEX_NAME"
-mv "$XDG_DATA_HOME/latex/output/$PDF_NAME" "$PWD"
