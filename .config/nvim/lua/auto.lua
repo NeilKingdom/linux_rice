@@ -18,7 +18,13 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 -- Compile latex files on buffer write
 vim.api.nvim_create_autocmd("BufWritePost", {
     pattern = "*.tex",
-    command = "silent !xelatex %"
+    command = "silent !latexmk %"
+})
+
+-- Cleanup latex files on close
+vim.api.nvim_create_autocmd("VimLeavePre", {
+    pattern = "*.tex",
+    command = "silent !latexmk -c && rm -rf *.listing _minted"
 })
 
 -- Center page on transition to insert mode
