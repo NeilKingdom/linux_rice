@@ -34,9 +34,6 @@ return require("packer").startup(function(use)
         run = ":TSUpdate"
     })
 
-    -- Allows us to see the treesitter lexical analyser (AST/CST)
-    use("nvim-treesitter/playground")
-
     -- Harpoon for quick file navigation
     use({
         "ThePrimeagen/harpoon",
@@ -44,7 +41,7 @@ return require("packer").startup(function(use)
         dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" }
     })
 
-    -- Neogen for generating documentation templates
+    -- Neogen for generating annotations
     use("danymat/neogen")
 
     -- Undotree for managing file history
@@ -52,6 +49,15 @@ return require("packer").startup(function(use)
 
     -- Fugitive for running git commands natively in nvim
     use("tpope/vim-fugitive")
+
+    -- Render-Markdown for rendering markdown inline
+    use({
+        "MeanderingProgrammer/render-markdown.nvim",
+        dependencies = { "nvim-treesitter" },
+        config = function()
+            require("render-markdown").setup({})
+        end,
+    })
 
     -- LSP-Zero for LSP support
     use({
@@ -68,6 +74,7 @@ return require("packer").startup(function(use)
             "hrsh7th/cmp-nvim-lua",
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
+            "hrsh7th/cmp-cmdline",
             "saadparwaiz1/cmp_luasnip",
 
             -- Snippets

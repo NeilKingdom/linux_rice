@@ -1,6 +1,6 @@
 # Options
 
-set font                        "liberation sans 22"
+set font                        "Droid Sans Mono"
 set database                    "sqlite"
 set selection-clipboard         "clipboard"
 set double-click-follow         false

@@ -2,13 +2,13 @@ vim.g.mapleader = " "
 
 -- Copy and paste
 
-vim.keymap.set("n", "<C-y>", "+y")
-vim.keymap.set("n", "<C-y>", "+yy")
-vim.keymap.set("n", "<C-x>", "+d")
-vim.keymap.set("n", "<C-x>", "+dd")
-vim.keymap.set("n", "<C-p>", "+p")
-vim.keymap.set("n", "<C-p>", "<ESC>\"+p")
-vim.keymap.set("n", "<C-p>", "<ESC>\"+pa")
+--vim.keymap.set("n", "<C-y>", "+y")
+--vim.keymap.set("n", "<C-y>", "+yy")
+--vim.keymap.set("n", "<C-x>", "+d")
+--vim.keymap.set("n", "<C-x>", "+dd")
+--vim.keymap.set("n", "<C-p>", "+p")
+--vim.keymap.set("n", "<C-p>", "<ESC>\"+p")
+--vim.keymap.set("n", "<C-p>", "<ESC>\"+pa")
 
 -- Switching windows
 

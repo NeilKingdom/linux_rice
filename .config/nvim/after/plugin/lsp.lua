@@ -8,19 +8,14 @@ lsp_zero.on_attach(function(client, bufnr)
 
     -- Jump to definition
     vim.keymap.set("n", "<leader>jd", function() vim.lsp.buf.definition() end, opts)
+    -- Jump to declaration
+    vim.keymap.set("n", "<leader>jD", function() vim.lsp.buf.declaration() end, opts)
     -- Function/variable help
     vim.keymap.set("n", "<leader>fh", function() vim.lsp.buf.hover() end, opts)
     -- A less useful version of hover()
     vim.keymap.set("n", "<leader>sh", function() vim.lsp.buf.signature_help() end, opts)
     -- Rename function/variable
     vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
-    -- Find usages of the current symbol
-    vim.keymap.set("n", "<leader>fu", function() vim.lsp.buf.references() end, opts)
-    -- Find symbols at the workspace level e.g. structs or classes
-    vim.keymap.set("n", "<leader>fwu", function() vim.lsp.buf.workspace_symbol() end, opts)
-    -- Trigger a specified action at the current cursor position
-    --vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
-
     -- Open warning/error message in a floating window
     vim.keymap.set("n", "<leader>df", function() vim.diagnostic.open_float() end, opts)
     -- Jump to next warning/error message
@@ -34,12 +29,7 @@ lsp_zero.setup({})
 -- Mason setup
 
 require("mason").setup({})
-require("mason-lspconfig").setup({
-    ensure_installed = {
-        "clangd",
-        "rust_analyzer"
-    },
-})
+require("mason-lspconfig").setup({})
 
 -- nvim-cmp for autocompletion
 
@@ -51,14 +41,15 @@ require("luasnip.loaders.from_vscode").lazy_load()
 cmp.setup({
     -- Where suggestions come from
     sources = {
-        { name = "path" },
-        { name = "nvim_lsp" },
-        { name = "nvim_lua" },
-        { name = "luasnip" },
-        { name = "buffer" },
+        { name = "nvim_lsp" }, -- LSP
+        { name = "nvim_lua" }, -- Lua API
+        { name = "luasnip" },  -- Snippets
+        { name = "buffer" },   -- Words in current buffer
+        { name = "path" },     -- System path
+        { name = "cmdline" },  -- CLI programs
     },
     formatting = {
-        -- Kind: Type, Abbr: Desc, Menu: Nothing
+        -- Specifies what fields to display in autocomplete window
         fields = { "kind", "abbr", "menu" },
         -- Set max width
         format = function(entry, item)
@@ -73,11 +64,10 @@ cmp.setup({
         ["<A-k>"] = cmp.mapping.scroll_docs(-1),
         ["<A-j>"] = cmp.mapping.scroll_docs(1),
         ["<CR>"] = cmp.mapping.confirm({ select = true }),
-        -- Open the autocomplete window
         ["<C-Space>"] = cmp.mapping.complete(),
     }),
     window = {
-        -- The Autocomplete window
+        -- The autocomplete window
         completion = {
             zindex = 100
         },

@@ -4,7 +4,7 @@
 # the daemon first if not running
 # Dependencies: notify-send, transmission
 
-if [ -n "$(pidof transmission-daemon)" ]; then
+if [ -n "$(pgrep transmission-daemon)" ]; then
     notify-send "Starting transmission daemon..."
     transmission-daemon &
 fi
