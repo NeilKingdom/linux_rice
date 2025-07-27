@@ -1,0 +1,25 @@
+#!/bin/sh
+#
+# Purpose: Take file from www.unicode.org and parse it into
+# text file for use in my emoji script
+
+HTML_FILE="full-emoji-list.html"
+OUT_FILE="emoji.txt"
+
+if ! [ -f "$HTML_FILE" ]; then
+    echo "Downloading emoji list. This may take a while..."
+    wget "https://www.unicode.org/emoji/charts/full-emoji-list.html"
+fi
+
+RAW_DATA=$(grep "class='chars'\|class='name'" full-emoji-list.html | sed 's/<[^>]*>//g')
+[ -f "$OUT_FILE" ] && rm "$OUT_FILE"
+
+i=0
+while IFS= read -r LINE; do
+    if [ $((i % 2)) -eq 0 ]; then
+        printf "%s " "$LINE" >> "$OUT_FILE"
+    else
+        printf "%s\n" "$LINE" >> "$OUT_FILE"
+    fi
+    i="$((i + 1))"
+done <<< "$RAW_DATA"
