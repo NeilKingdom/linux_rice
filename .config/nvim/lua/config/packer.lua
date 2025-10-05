@@ -5,6 +5,7 @@
 -- PackerInstall:       Install a package
 -- PackerClean:         Cleans up installed plugins which are not referenced in this file
 -- PackerCompile:       Compile packer settings
+-- PackerStatus: 	    Show list of installed plugins
 
 -- Only required if you have packer configured as 'opt'
 vim.cmd [[packadd packer.nvim]]
@@ -13,10 +14,13 @@ return require("packer").startup(function(use)
     -- The Packer plugin (manages itself)
     use("wbthomason/packer.nvim")
 
+    -- Common dependency
+    use("nvim-lua/plenary.nvim")
+
     -- Telescope for file search/explorer
     use({
         "nvim-telescope/telescope.nvim",
-        requires = "nvim-lua/plenary.nvim"
+        requires = { "nvim-lua/plenary.nvim" }
     })
 
     -- Tokyonight colorscheme
@@ -25,7 +29,7 @@ return require("packer").startup(function(use)
     -- Lualine status bar
     use({
         "nvim-lualine/lualine.nvim",
-        requires = "nvim-tree/nvim-web-devicons"
+        requires = { "nvim-tree/nvim-web-devicons", opt = true }
     })
 
     -- Treesitter for syntax highlighting and semantic analysis
@@ -38,10 +42,10 @@ return require("packer").startup(function(use)
     use({
         "ThePrimeagen/harpoon",
         branch = "harpoon2",
-        dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" }
+        requires = { "nvim-lua/plenary.nvim" }
     })
 
-    -- Neogen for generating annotations
+    -- Neogen for generating doxygen comments
     use("danymat/neogen")
 
     -- Undotree for managing file history
@@ -53,10 +57,8 @@ return require("packer").startup(function(use)
     -- Render-Markdown for rendering markdown inline
     use({
         "MeanderingProgrammer/render-markdown.nvim",
-        dependencies = { "nvim-treesitter" },
-        config = function()
-            require("render-markdown").setup({})
-        end,
+        after = { "nvim-treesitter" },
+        requires = { "nvim-tree/nvim-web-devicons", opt = true }
     })
 
     -- LSP-Zero for LSP support

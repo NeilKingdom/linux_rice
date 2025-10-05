@@ -48,8 +48,6 @@ export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
 export PASSWORD_STORE_CLIP_TIME=300
 # Used by all applications that rely on dbus
 export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
-# Disable C# telemetry
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
 # Fixes GUI applications written in Java
 export _JAVA_AWT_WM_NONREPARENTING=1
 # Android SDK location
@@ -63,4 +61,9 @@ export GPG_TTY
 # System environment variables
 
 export ZDOTDIR="$HOME/.config/zsh"
-export PATH="$JAVA_HOME/bin:$GOPATH/bin:$PYENV_ROOT:$HOME/.dotnet/tools:$PATH"
+
+export PATH="$PATH:$JAVA_HOME/bin"
+export PATH="$PATH:$GOPATH/bin"
+export PATH="$PATH:$PYENV_ROOT"
+export PATH="$PATH:$ANDROID_HOME/emulator"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"

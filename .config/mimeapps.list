@@ -18,6 +18,7 @@ text/html=librewolf.desktop
 image/jpeg=sxiv.desktop
 image/png=sxiv.desktop
 image/ppm=sxiv.desktop
+x-scheme-handler/postman=Postman.desktop
 
 [Added Associations]
 x-scheme-handler/http=librewolf.desktop;
