@@ -10,7 +10,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 -- Invoke Prettier plugin for JS/TS files on buffer write
-vim.api.nvim_create_autocmd("BufWritePre", {
+vim.api.nvim_create_autocmd("BufWritePost", {
     pattern = { "*.js", "*.ts", "*.jsx", "*.tsx" },
     command = "silent !npx prettier -w %"
 })
