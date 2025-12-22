@@ -16,8 +16,8 @@ dbus-daemon --session --nofork --nopidfile --address="unix:path=$XDG_RUNTIME_DIR
 #
 # feh: Written in C. Primarily an image viewer, but has support for displaying
 #      images in the background which is equivallent to setting a wallpaper.
-feh -z "$HOME/pics/bkgnds" --bg-fill --no-fehbg &
-# wal -i "$HOME/pics/bkgnds/$(ls $HOME/pics/bkgnds | sort -R | sort -n 1)" &
+feh -z "$HOME/images/bkgnds" --bg-fill --no-fehbg &
+#wal -i "$(shuf -e $(ls -d $HOME/images/bkgnds/*) | sed 1q)" &
 
 # Start Picom compositor (primarily manages window transparency)
 picom -b
