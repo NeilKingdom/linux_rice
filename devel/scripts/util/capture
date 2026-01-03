@@ -3,7 +3,13 @@
 # Description: Take a screenshot of the current window
 # Dependencies: notify-send
 
-i="$(($(ls | grep -c "capture.\.jpg") + 1))"
+# This sets positional params $1, $2, $3, ... to expansion of the glob
+set -- ./capture?.jpg
+
+i=1
+[ "$1" = "./capture?.jpg" ] || for _ in "$@"; do
+    i=$((i + 1))
+done
 
 OUT_FILE="capture${i}.jpg"
 import -window root "$OUT_FILE" && \

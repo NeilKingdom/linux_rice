@@ -7,11 +7,10 @@
 # interpret special characters such as '?' as a regex pattern
 
 usage() {
-    printf "Usage: yt-audio [Options...] \"<URL>\"\n%s\n\t%s\n\t%s\n" \
+    printf "Usage: yt-audio [Options...] \"<URL>\"\n%s\n%s\n%s\n" \
         "Options:" \
-        "-d Specify output directory" \
-        "-h Help menu"
-    exit 0
+        "-d    Specify output directory" \
+        "-h    Help menu"
 }
 
 i=0
@@ -26,8 +25,7 @@ while [ "$i" -le "$#" ]; do
 
     case "$ARG" in
         "-d")
-            [ "$(echo "$URL" | grep "www.youtube.com")" = "" ] && \
-                echo "Invalid URL" && exit 1
+            [ "$(echo "$URL" | grep "www.youtube.com")" = "" ] && echo "Invalid URL" && exit 1
 
             printf "Enter the directory you'd like to place the file in (default is %s)\n" "$MUSIC_DIR"; read -r DIR
             printf "Enter the new name of the file (default is to keep file name unchanged)\n"; read -r NAME

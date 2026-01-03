@@ -1,0 +1,19 @@
+#!/bin/sh
+#
+# Purpose: Record a gif from the CLI
+# Dependencies: ffmpeg
+
+# Get screen size
+SCREEN=$(xdpyinfo | awk '/dimensions/{print $2}')
+
+# 1️⃣ Generate palette
+ffmpeg -f x11grab -framerate 15 -video_size $SCREEN -i :0.0 \
+  -t 10 \
+  -vf "fps=15,scale=1280:-1:flags=lanczos,palettegen" palette.png
+
+# 2️⃣ Create GIF using palette
+ffmpeg -f x11grab -framerate 15 -video_size $SCREEN -i :0.0 \
+  -t 10 \
+  -i palette.png \
+  -lavfi "fps=15,scale=1280:-1:flags=lanczos,paletteuse" \
+  -y out.gif

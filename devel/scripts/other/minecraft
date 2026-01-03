@@ -1,9 +1,0 @@
-#!/bin/sh
-#
-# Description: Launches server.jar and the minecraft launcher
-# Dependencies: mincraft-launcher, java
-
-JAR="$SCRIPT_DIR/res/$(basename "$0")/server.jar"
-
-minecraft-launcher
-java -Xmx4096m -Xms4096m -jar "$JAR" nogui

@@ -1,21 +1,20 @@
 #!/bin/sh
 #
 # Description: Scaffold a working directory for a new C project
-# Dependencies: genreadme, lynx, doxygen, git
+# Dependencies: mkreadme, lynx, doxygen, git
 
 usage() {
     printf "%s\n%s\n\n" \
-        "Usage: $(basename "$0") [project_dir]" \
+        "Usage: cproj [project_dir]" \
         "Note: If project_dir is not specified, cproj will attempt to use the current directory if empty"
-    exit 0
 }
 
 PROJ_DIR="$1"
 
 # If using current directory, check that it's empty
 [ -z "$PROJ_DIR" ] && \
-[ "$(find . -maxdepth 1 -exec echo \; | wc -l)" -gt 1 ] && \
-usage && exit 1
+    [ "$(find . -maxdepth 1 -exec echo \; | wc -l)" -gt 1 ] && \
+    usage && exit 1
 
 [ -n "$PROJ_DIR" ] && ! [ -d "$PROJ_DIR" ] && mkdir "$PROJ_DIR"
 cd "$PROJ_DIR" || exit 1
@@ -56,7 +55,7 @@ lynx -dump "https://mit-license.org" | sed -n "1,22p;22q" \
     | sed "s/<.*>$/Neil Kingdom/g" | awk '{$1=$1};1' > LICENSE
 
 # README
-genreadme
+mkreadme
 
 # Doxyfile
 doxygen -g "res/doc/Doxyfile" > "/dev/null" 2>&1

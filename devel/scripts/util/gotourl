@@ -5,61 +5,71 @@
 # in a given file, they are piped to dmenu. The script opens the located resource using xdg-open.
 # Dependencies: xdg-open
 
-REGEX="https\?://\S*\.[A-Za-z]\+\S*"
-HIST_LOCATION="$HOME/.history"
+REGEX="https?://\S+"
+USE_HISTORY=0
 
-failure() {
-    printf "Could not find file or URI\nExiting...\n"
-    exit 1
+usage() {
+    printf "%s\n" \
+        "Usage: gotourl [-h] [-y] [file | url]" \
+        "-h    Show help" \
+        "-y    Search last 10 shell history entries"
 }
 
-parameters() {
-    # Check for help flag
-    for ARG in $1; do
-        if [ "$ARG" = "-h" ]; then
-            printf "%s\n\t%s\n\t%s%s\n\t%s\n" \
-                "Usage: gotourl [options] [file | url]" \
-                "-h: help menu" \
-                "-y: Use this option to search the last 10 commands in your history" \
-                " file for URIs (/home/\$USER/.history is the default search location)" \
-                "-f <path_to_history_file>: Enter the absolute path to your history file"
+# Parse options
+while getopts "hy" opt; do
+    case "$opt" in
+        h) usage && exit 0
+            ;;
+        y) USE_HISTORY=1
+            ;;
+        *) usage && exit 1
+            ;;
+    esac
+done
+shift $((OPTIND - 1))
+
+if [ "$USE_HISTORY" -eq 1 ]; then
+    # TODO: No POSIX compliant way to get history. Have user specify hist location
+    URLS=
+    if [ -z "$URLS" ]; then
+        echo "No URLs found in last 10 commands of history" >&2
+        exit 1
+    fi
+elif [ "$#" -gt 0 ]; then
+    if [ -f "$1" ]; then
+        # Extract URLs from file
+        URLS="$(grep -Eo "$REGEX" "$1")"
+        if [ -z "$URLS" ]; then
+            echo "No URLs found in file $1" >&2
+            exit 1
         fi
-    done
-
-    # Check for history file location flag
-    # Keep in mind that $1 expands to $@
-    for i in $1; do
-        eval ARG=\$"$i"
-        eval NEXT_ARG=\$"$((i+1))"
-        # If -f is supplied, but NEXT_ARG is empty, HIST_LOCATION remains as the default
-        [ "$ARG" = '-f' ] && [ -n "$NEXT_ARG" ] && HIST_LOCATION="$NEXT_ARG" || HIST_LOCATION="$HOME/.history"
-    done
-
-    SOURCE="$LAST_ARG"
-
-    # Check for history flag (takes precedence over file or url if both are provided)
-    for ARG in $1; do
-        if [ "$ARG" = "-y" ]; then
-            SOURCE="$(tail "$HIST_LOCATION")"
-            break
+    else
+        # Treat argument as raw URL
+        if echo "$1" | grep -Eq "^$REGEX$"; then
+            URL="$1"
+        else
+            # Extract URLs from the string if multiple
+            URLS="$(echo "$1" | grep -Eo "$REGEX")"
+            if [ -z "$URLS" ]; then
+                echo "No valid URLs found in input" >&2
+                exit 1
+            fi
         fi
-    done
+    fi
+else
+    # Interactive input
+    printf "Enter file, URL, or text containing URLs: "; read -r INPUT
+    URLS="$(echo "$INPUT" | grep -Eo "$REGEX")"
+    if [ -z "$URLS" ]; then
+        echo "No URLs found in input" >&2
+        exit 1
+    fi
+fi
 
-    # Hacky way to return local variable
-    echo "$SOURCE"
-}
+# If URL not already set (raw single URL), prompt user if multiple URLs found
+if [ -z "$URL" ]; then
+    URL="$(echo "$URLS" | dmenu -p "Select URL" -l 10)"
+    [ -z "$URL" ] && echo "No URL selected" >&2 && exit 1
+fi
 
-# Get the final user argument (POSIX compliant)
-for LAST_ARG in "$@"; do :; done
-
-# If no arguments are supplied, request the name of the file, otherwise check parameters
-echo "Please enter a file that you would like to parse or a direct URL: "
-[ "$#" -eq 0 ]; read -r LAST_ARG
-SOURCE="$(parameters "$@")"
-
-# Pipe to dmenu if more than 1 URI were found
-[ "$(grep -c "$REGEX" "$SOURCE")" -gt 1 ] \
-    && URI="$(grep "$REGEX" "$SOURCE" | dmenu -p "Select the URL you'd like to open" -l 10)" \
-    || URI="$(grep -o "$REGEX" "$SOURCE")"
-
-xdg-open "$URI"
+xdg-open "$URL"

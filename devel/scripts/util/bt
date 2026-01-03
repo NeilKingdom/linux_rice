@@ -1,16 +1,13 @@
 #!/bin/sh
 #
-# Description: Connect bluetooth headphones
-# Dependencies: bluez, bluez-utils, bluez-libs, pipewire, pipewire-pulse, wireplumber
+# Description: Connect bluetooth device to a receiver
+# Dependencies: bluez, bluez-utils, bluez-libs
 #
 # Troubleshooting:
 #
-# - If you consistently have troubles connecting, even after using bt off, you will
-# need to restart your audio manager, reset device list on headphones (if applicable), put headphones
-# in pairing mode and run the following:
-#
-# 1)  bluetoothctl devices (to get MAC address)
-# 2)  bluetoothctl
+# - If you consistently have troubles connecting, do the following manually:
+# 1)  bluetoothctl
+# 2)  devices (to get MAC address)
 # 3)  remove $MAC
 # 4)  power on
 # 5)  agent on
@@ -19,16 +16,14 @@
 # 8)  pair $MAC
 # 9)  trust $MAC
 # 10) connect $MAC
-# 11) scan off
-# 12) exit
 #
-# - If you receive error "Could not find default agent", try removing bluetooth dongle
+# - If you receive error "Could not find default agent", try removing bluetooth receiver
 # from USB port and plug back in.
 #
-# - Try changing audio managers. If using pipewire, try switching to pulseaudio-bluetooth
+# - Try changing audio managers. If using pipewire, try switching to pulseaudio
 #
 # - If the device does not automatically connect on startup, ensure that the device is trusted and you may
-# try changing AutoEnable=true and ControllerMode = bredr in /etc/bluetooth/main.conf.
+# try changing AutoEnable=true and ControllerMode=bredr in /etc/bluetooth/main.conf.
 #
 # - If the device works correctly, but certain applications have difficulty detecting the device e.g. online
 # meeting apps, I've found the easiest solution to be installing pavucontrol and ensuring that an appropriate
@@ -38,46 +33,68 @@
 # - If after all that, you get org.bluez.Error.Failed br-connection-profile-unavailable, you may just have to
 # downgrade bluez, change audio servers, or wait until the next system update :(
 
-SELECTION="$1"
-MAC="$(bluetoothctl devices | grep "Bose QC35 II" | awk '{print $2}')"
+MAC=""
+CACHE_FILE="$XDG_CACHE_HOME/$(basename "$0")"
 
-signal_handler() {
+usage() {
+    printf "%s\n%s\n%s\n%s\n" \
+        "Options:" \
+        "con)    Attempts connection with previously connected device" \
+        "sel)    Select a new device to pair with" \
+        "dis)    Disconnects from actively connected device"
+}
+
+sigint_handler() {
     PAIRING_STATUS="$(bluetoothctl info "$MAC" | sed '9q;d' | awk '{print $2}')"
-    [ "$PAIRING_STATUS" = "yes" ] && echo "Successfully paired with $MAC!" || echo "Failed to pair with $MAC..."
+    [ "$PAIRING_STATUS" = "yes" ] \
+        && echo "Successfully paired with $MAC!" \
+        || echo "Failed to pair with $MAC..."
     exit 0
 }
 
-usage() {
-    printf "%s\n%s\n%s\n" \
-        "Options:" \
-        "on)    Attempts to connect with headphones" \
-        "off)   Terminates connection between headphones and bluetooth dongle"
-}
-
-turnon() {
-    trap signal_handler SIGINT
-
-    echo "Please wait until headphones are in pairing mode and then run this script"
+connect_to_cached() {
+    trap sigint_handler INT
     bluetoothctl power on
     bluetoothctl connect "$MAC"
     wait
 }
 
-turnoff() {
+update_cached() {
+    ! [ -z "$MAC" ] && disconnect
+
+    MAC="$(bluetoothctl devices | awk '{print $2}' | \
+        dmenu -p "Select a device to pair with" -l 10 -g 1)"
+    if [ "$MAC" != "" ]; then
+        echo "$MAC" > "$CACHE_FILE"
+        connect_to_cached
+    fi
+}
+
+disconnect() {
     bluetoothctl disconnect "$MAC"
-    bluetoothctl power off
-    bluetoothctl quit
+    bluetoothctl exit
     echo "Disconnected from $MAC"
 }
 
-case "$SELECTION" in
-    on)
-        turnon
-        ;;
-    off)
-        turnoff
-        ;;
-    *)
-        usage
-        ;;
-esac
+# Script start
+
+if [ -f "$CACHE_FILE" ]; then
+    MAC="$(sed 1q "$CACHE_FILE")"
+
+    case "$1" in
+        con)
+            connect_to_cached
+            ;;
+        sel)
+            update_cached
+            ;;
+        dis)
+            disconnect
+            ;;
+        *)
+            usage
+            ;;
+    esac
+else
+    update_cached
+fi
