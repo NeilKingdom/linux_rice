@@ -13,7 +13,6 @@ alias cdd="cd $DEVEL_DIR"
 alias cds="cd $SCRIPT_DIR"
 alias ap="absolutely-proprietary -f"
 alias za="zathura"
-alias mc="minecraft"
 alias py="python"
 
 # Overrides
