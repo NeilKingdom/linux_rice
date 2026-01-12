@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# Clear /tmp (caution: you probably don't want this unless you know what you're doing)
-/bin/rm -rf /tmp/* /tmp/.* > /dev/null
-
 # Start D-Bus message bus daemon
 dbus-daemon --session --nofork --nopidfile --address="unix:path=$XDG_RUNTIME_DIR/bus" &
 
@@ -28,7 +25,7 @@ chronyc trimrtc &
 # Enable numlock at boot
 numlockx &
 
-# Logitech mouse/keyboard manager
+# Logitech device manager
 solaar -w hide &
 
 # Set autorepeat delay and the repeat rate for key presses
@@ -43,14 +40,11 @@ mpd &
 # Start dunst notification daemon
 dunst &
 
-# Open a browser session
-eval "$BROWSER" &
-
-# Send a welcome notification
-notify-send "Welcome $USER 😎"
-
 # Start taskbar
-exec dwmblocks &
+dwmblocks &
+
+# Launch browser
+! [ -z "$BROWSER" ] && sh -c "$BROWSER" &
 
 # Start DWM (MUST be last command)
 exec dwm

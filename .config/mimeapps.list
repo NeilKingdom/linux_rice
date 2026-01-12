@@ -3,6 +3,7 @@ x-scheme-handler/magnet=torrent.desktop;
 x-scheme-handler/prusaslicer=PrusaSlicerURLProtocol.desktop
 x-scheme-handler/mailto=librewolf.desktop
 x-scheme-handler/signalcaptcha=signalcaptcha.desktop
+x-scheme-handler/postman=Postman.desktop
 x-scheme-handler/http=librewolf.desktop
 x-scheme-handler/https=librewolf.desktop
 x-scheme-handler/chrome=librewolf.desktop
@@ -14,11 +15,39 @@ application/x-extension-xhtml=librewolf.desktop
 application/x-extension-xht=librewolf.desktop
 application/x-bittorrent=torrent.desktop;
 application/pdf=org.pwmt.zathura.desktop
+
+# Text
+
 text/html=librewolf.desktop
-image/jpeg=sxiv.desktop
+text/plain=nvim.desktop
+inode/x-empty=nvim.desktop
+
+# Video
+
+video/mp4=mpv.desktop
+video/webm=mpv.desktop
+video/ogg=mpv.desktop
+video/*=mpv.desktop
+
+# Audio
+
+audio/ogg=mpv.desktop
+audio/x-opus+ogg=mpv.desktop
+audio/mpeg=mpv.desktop
+audio/flac=mpv.desktop
+audio/webm=mpv.desktop
+audio/wav=mpv.desktop
+audio/*=mpv.desktop
+
+# Images
+
 image/png=sxiv.desktop
+image/jpeg=sxiv.desktop
+image/gif=sxiv.desktop
+image/bmp=sxiv.desktop
+image/webp=sxiv.desktop
 image/ppm=sxiv.desktop
-x-scheme-handler/postman=Postman.desktop
+image/*=sxiv.desktop
 
 [Added Associations]
 x-scheme-handler/http=librewolf.desktop;
@@ -30,4 +59,3 @@ application/x-extension-html=librewolf.desktop;
 application/x-extension-shtml=librewolf.desktop;
 application/x-extension-xhtml=librewolf.desktop;
 application/x-extension-xht=librewolf.desktop;
-text/html=librewolf.desktop;

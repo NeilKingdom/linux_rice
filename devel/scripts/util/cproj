@@ -12,12 +12,13 @@ usage() {
 PROJ_DIR="$1"
 
 # If using current directory, check that it's empty
-[ -z "$PROJ_DIR" ] && \
+if [ -z "$PROJ_DIR" ]; then
     [ "$(find . -maxdepth 1 -exec echo \; | wc -l)" -gt 1 ] && \
     usage && exit 1
-
-[ -n "$PROJ_DIR" ] && ! [ -d "$PROJ_DIR" ] && mkdir "$PROJ_DIR"
-cd "$PROJ_DIR" || exit 1
+else
+    ! [ -d "$PROJ_DIR" ] && mkdir "$PROJ_DIR"
+    cd "$PROJ_DIR"
+fi
 
 # Check if the project will be a library
 while
