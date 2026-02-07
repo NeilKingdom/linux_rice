@@ -1,7 +1,7 @@
 local neogen = require("neogen")
 local i = require("neogen.types.template").item
 
-cpp_doxycomment = {
+local cpp_doxycomment = {
     -- Annotation for files
     { nil, "/**", { no_results = true, type = { "file" } } },
     { nil, " * @file " .. vim.fn.expand("%:t"), { no_results = true, type = { "file" } } },
@@ -37,4 +37,4 @@ neogen.setup({
     }
 })
 
-vim.keymap.set("n", "<leader>dx", function() neogen.generate() end)
+vim.keymap.set("n", "<leader>dx", neogen.generate)

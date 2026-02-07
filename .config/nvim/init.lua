@@ -1,3 +1,3 @@
--- This is the entry point for nvim
+require("neil")
 
-require("config")
+vim.lsp.enable("luals")
