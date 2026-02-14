@@ -1,0 +1,44 @@
+vim.g.mapleader = " "
+
+-- Switching windows
+
+vim.keymap.set("n", "<C-h>", "<C-w>h")
+vim.keymap.set("n", "<C-j>", "<C-w>j")
+vim.keymap.set("n", "<C-k>", "<C-w>k")
+vim.keymap.set("n", "<C-l>", "<C-w>l")
+
+-- Resizing windows
+
+vim.keymap.set("n", "<Up>", "5<C-w><S-+>")
+vim.keymap.set("n", "<Down>", "5<C-w><S-->")
+vim.keymap.set("n", "<Left>", "10<C-w><S->>")
+vim.keymap.set("n", "<Right>", "10<C-w><S-<>")
+
+-- Center cursor on motions
+
+vim.keymap.set("n", "n", "nzz")
+vim.keymap.set("n", "N", "Nzz")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "}", "}zz")
+vim.keymap.set("n", "{", "{zz")
+
+-- General purpose
+
+-- Move the current line up to previous line (leaves a space)
+vim.keymap.set("n", "d-", "mm0d^i<BS><Space><ESC>`m")
+-- Move the current line up to previous line (no space)
+vim.keymap.set("n", "d_", "mm0d^i<BS><ESC>`m")
+-- Swap current line with line below
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+-- Swap current line with line above
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- Open netrw
+vim.keymap.set("n", "<leader>ex", vim.cmd.Ex)
+-- Delete buffer
+vim.keymap.set("n", "<leader>q", ":bd<CR>")
+-- Source file
+vim.keymap.set("n", "<leader>so", ":so<CR>")
+-- Shellcheck
+vim.keymap.set("n", "<leader>sc", ":!clear<CR>:!shellcheck %<CR>")
