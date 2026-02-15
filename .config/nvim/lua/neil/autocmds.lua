@@ -33,6 +33,7 @@ vim.api.nvim_create_autocmd("InsertEnter", {
     command = "norm zz"
 })
 
+-- LSP binds
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
     callback = function(event)

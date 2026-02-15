@@ -31,8 +31,14 @@ solaar -w hide &
 # Set autorepeat delay and the repeat rate for key presses
 xset r rate 200 45 &
 
-# Pulse works better than pipewire for my setup
-pulseaudio &
+# NOTE: I'm using pipewire instead of pulseaudio. The ONLY way I could get this
+# to work in Artix was to add the following two lines in my pipewire.conf
+# (inside the context.exec block):
+#
+# { path = "/usr/bin/wireplumber"  args = "" }
+# { path = "/usr/bin/pipewire-pulse" args = "" }
+/usr/bin/pipewire &
+#pulseaudio &
 
 # Start Music Player Daemon (used by ncmpcpp)
 mpd &

@@ -17,6 +17,7 @@
 !.config/newsboat
 !.config/nvim
 !.config/picom
+!.config/pipewire
 !.config/python
 !.config/sxiv/exec
 !.config/vim
