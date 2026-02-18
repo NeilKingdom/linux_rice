@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# Purpose: Send push notification when torrenting starts or finishes.
+# Dependencies: transmission-remote notify-send
+# Reference: https://wiki.archlinux.org/title/Transmission
+
+PERCENTAGE=$(transmission-remote -t "$TR_TORRENT_ID" -l | awk -v ID="$TR_TORRENT_ID" '$0 ~ ID{print $2}')
+
+if [ "$PERCENTAGE" != "100%" ]; then
+     notify-send "Transmission" "Starting download for $TR_TORRENT_NAME"
+else
+     notify-send "Transmission" "Finished download of $TR_TORRENT_NAME"
+fi

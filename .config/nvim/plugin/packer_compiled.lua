@@ -201,9 +201,9 @@ try_loadstring("\27LJ\2\n3\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K
 time([[Config for mason.nvim]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
+vim.cmd [[ packadd mason-lspconfig.nvim ]]
 vim.cmd [[ packadd nvim-treesitter ]]
 vim.cmd [[ packadd render-markdown.nvim ]]
-vim.cmd [[ packadd mason-lspconfig.nvim ]]
 time([[Sequenced loading]], false)
 
 _G._packer.inside_compile = false
