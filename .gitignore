@@ -22,14 +22,13 @@
 !.config/mutt/mailcap
 !.config/mutt/muttrc
 !.config/mutt/neomuttrc
-!.config/ncmpcpp/config
-!.config/ncmpcpp/bindings
 !.config/neofetch/config.conf
 !.config/newsboat/config
 !.config/nvim/**
 !.config/picom/picom.conf
 !.config/pipewire/pipewire.conf
 !.config/python/startup.py
+!.config/rmpc/config.ron
 !.config/transmission-daemon/setting.json
 !.config/vim/vimrc
 !.config/zathura/zathurarc
