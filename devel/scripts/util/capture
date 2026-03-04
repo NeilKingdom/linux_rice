@@ -3,7 +3,6 @@
 # Description: Take a screenshot of the current window
 # Dependencies: notify-send
 
-# This sets positional params $1, $2, $3, ... to expansion of the glob
 set -- ./capture?.jpg
 
 i=1

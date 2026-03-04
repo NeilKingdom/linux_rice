@@ -2,7 +2,6 @@
 
 !.gitignore
 !.zprofile
-!.xinitrc
 !.config/bash/.bash_aliases
 !.config/bash/.bashrc
 !.config/dunst/dunstrc
@@ -31,9 +30,9 @@
 !.config/rmpc/config.ron
 !.config/transmission-daemon/setting.json
 !.config/vim/vimrc
+!.config/X11/**
 !.config/zathura/zathurarc
 !.config/zsh/aliases
 !.config/zsh/.zshrc
 !.config/mimeapps.list
-!.config/xresources
 !devel/scripts/**

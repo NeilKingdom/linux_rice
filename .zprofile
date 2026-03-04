@@ -27,6 +27,7 @@ export XDG_VIDEOS_DIR=
 
 # Alternative XDG-compliant config file locations
 
+export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
 export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export GOPATH="$XDG_DATA_HOME/go"
@@ -52,11 +53,11 @@ export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
 export _JAVA_AWT_WM_NONREPARENTING=1
 # Android SDK location
 export ANDROID_HOME="$HOME/devel/android/sdk"
+export ANDROID_SDK="$HOME/devel/android/sdk"
 # Clangd options
 export CLANGD_FLAGS="--header-insertion=never"
 # GNU Privacy Guard
-GPG_TTY=$(tty)
-export GPG_TTY
+export GPG_TTY="$(tty)"
 
 # System environment variables
 

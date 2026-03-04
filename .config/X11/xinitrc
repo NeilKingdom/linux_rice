@@ -4,7 +4,7 @@
 dbus-daemon --session --nofork --nopidfile --address="unix:path=$XDG_RUNTIME_DIR/bus" &
 
 # Load .Xresources
-[ -f "$XDG_CONFIG_HOME/xresources" ] && xrdb -load "$XDG_CONFIG_HOME/xresources"
+[ -f "$XDG_CONFIG_HOME/X11/xresources" ] && xrdb -load "$XDG_CONFIG_HOME/X11/xresources"
 
 # Set a random wallpaper
 #
@@ -40,7 +40,7 @@ xset r rate 200 45 &
 /usr/bin/pipewire &
 #pulseaudio &
 
-# Start Music Player Daemon (used by ncmpcpp)
+# Start Music Player Daemon
 mpd &
 
 # Start dunst notification daemon
