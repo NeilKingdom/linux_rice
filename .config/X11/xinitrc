@@ -3,18 +3,18 @@
 # Start D-Bus message bus daemon
 dbus-daemon --session --nofork --nopidfile --address="unix:path=$XDG_RUNTIME_DIR/bus" &
 
-# Load .Xresources
+# Load xresources
 [ -f "$XDG_CONFIG_HOME/X11/xresources" ] && xrdb -load "$XDG_CONFIG_HOME/X11/xresources"
 
 # Set a random wallpaper
 #
 # wal: Written in Python. Sets the system color scheme based on the primary colors
 #      of the selected background image.
+#wal -i "$(shuf -e $(ls -d $HOME/images/bkgnds/*) | sed 1q)" &
 #
 # feh: Written in C. Primarily an image viewer, but has support for displaying
 #      images in the background which is equivallent to setting a wallpaper.
 feh -z "$HOME/images/bkgnds" --bg-fill --no-fehbg &
-#wal -i "$(shuf -e $(ls -d $HOME/images/bkgnds/*) | sed 1q)" &
 
 # Start Picom compositor (primarily manages window transparency)
 picom -b
@@ -38,7 +38,6 @@ xset r rate 200 45 &
 # { path = "/usr/bin/wireplumber"  args = "" }
 # { path = "/usr/bin/pipewire-pulse" args = "" }
 /usr/bin/pipewire &
-#pulseaudio &
 
 # Start Music Player Daemon
 mpd &
