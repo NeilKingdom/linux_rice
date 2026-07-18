@@ -165,13 +165,6 @@ _G.packer_plugins = {
     path = "/home/neil/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
-  ["render-markdown.nvim"] = {
-    load_after = {},
-    loaded = true,
-    needs_bufread = false,
-    path = "/home/neil/.local/share/nvim/site/pack/packer/opt/render-markdown.nvim",
-    url = "https://github.com/MeanderingProgrammer/render-markdown.nvim"
-  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/neil/.local/share/nvim/site/pack/packer/start/telescope.nvim",
@@ -202,8 +195,6 @@ time([[Config for mason.nvim]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
 vim.cmd [[ packadd mason-lspconfig.nvim ]]
-vim.cmd [[ packadd nvim-treesitter ]]
-vim.cmd [[ packadd render-markdown.nvim ]]
 time([[Sequenced loading]], false)
 
 _G._packer.inside_compile = false

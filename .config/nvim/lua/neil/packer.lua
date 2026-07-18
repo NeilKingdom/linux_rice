@@ -55,11 +55,11 @@ return require("packer").startup(function(use)
     use("tpope/vim-fugitive")
 
     -- Render-Markdown for rendering markdown inline
-    use({
-        "MeanderingProgrammer/render-markdown.nvim",
-        after = { "nvim-treesitter" },
-        requires = { "nvim-tree/nvim-web-devicons", opt = true }
-    })
+    --use({
+    --    "MeanderingProgrammer/render-markdown.nvim",
+    --    after = { "nvim-treesitter" },
+    --    requires = { "nvim-tree/nvim-web-devicons", opt = true }
+    --})
 
     -- Mason for managing LSPs
     use({
