@@ -18,7 +18,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 -- Compile latex files on buffer write
 vim.api.nvim_create_autocmd("BufWritePost", {
     pattern = "*.tex",
-    command = "silent !latexmk %"
+    command = "silent !latexmk -pdf -shell-escape %"
 })
 
 -- Cleanup latex files on close
