@@ -1,9 +1,8 @@
-text/plain; xdg-open %s ;
-text/html; xdg-open %s ; nametemplate=%s.html
-text/html; lynx -assume_charset=%{charset} -display_charset=utf-8 -dump -width=1024 %s; nametemplate=%s.html; copiousoutput;
-image/*; xdg-open %s ;
-video/*; setsid mpv --quiet %s &; copiousoutput
-audio/*; xdg-open %s ;
-application/pdf; xdg-open %s ;
+text/plain; xdg-open %s;
+text/html; xdg-open %s; nametemplate=%s.html
+image/*; xdg-open %s;
+video/*; xdg-open %s;
+audio/*; xdg-open %s;
+application/pdf; xdg-open %s;
 application/pgp-encrypted; gpg -d '%s'; copiousoutput;
 application/pgp-keys; gpg --import '%s'; copiousoutput;

@@ -3,7 +3,6 @@
 # Aliases for XDG-compliant config files
 
 alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts --no-config"
-alias mbsync="mbsync -c $XDG_CONFIG_HOME/isync/mbsyncrc --all"
 alias neomutt="neomutt -F $XDG_CONFIG_HOME/mutt/muttrc"
 alias lf="$XDG_CONFIG_HOME/lf/lfub"
 
@@ -27,7 +26,6 @@ alias umount="sudo umount"
 alias history="history 1"
 alias ls="ls --color=auto"
 alias grep="grep --color=always"
-alias scli="scli -nfs --color=high"
 alias vim="export VIMINIT='source ~/.config/vim/vimrc' && vim"
 alias nvim="unset VIMINIT && nvim"
 alias fzf="fzf --smart-case --border=rounded --height=~75% --reverse --color=16"
